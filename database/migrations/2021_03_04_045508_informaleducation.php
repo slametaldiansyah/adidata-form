@@ -15,14 +15,15 @@ class Informaleducation extends Migration
     {
         //
         Schema::create('informaleducation', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',5);
-            $table->integer('course_trainingname',200);
-            $table->string('year',4);
-            $table->string('duration',4);
-            $table->bolean('certificate');
-            $table->string('sponsoreby',100);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('course_trainingname')->length(200);
+            $table->string('year')->length(4);
+            $table->string('duration')->length(4);
+            $table->boolean('certificate');
+            $table->string('sponsoreby')->length(100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,6 @@ class Informaleducation extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('informaleducation');
     }
 }

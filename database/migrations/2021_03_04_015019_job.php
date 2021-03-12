@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Familystatus extends Migration
+class Job extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class Familystatus extends Migration
     public function up()
     {
         //
-        Schema::create('familystatus', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->string('familystatus',20);
+        Schema::create('job', function (Blueprint $table) {
+            $table->id()->length(11);
+            $table->string('jobname')->length(50);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class Familystatus extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('job');
     }
 }

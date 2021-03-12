@@ -15,16 +15,18 @@ class Formaleducation extends Migration
     {
         //
         Schema::create('formaleducation', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',5);
-            $table->integer('educationlevelid',5);
-            $table->string('institutionname',200);
-            $table->string('location',500);
-            $table->string('major',100);
-            $table->decimal('GPA',10,0);
-            $table->string('yearentry',4);
-            $table->string('yeargraduation',4);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('educationlevelid')->constrained('education')->onDelete('cascade')->onUpdate('cascade');
+            // $table->integer('educationlevelid',5);
+            $table->string('institutionname')->length(200);
+            $table->string('location')->length(500);
+            $table->string('major')->length(100);
+            $table->decimal('GPA')->length(10,0);
+            $table->string('yearentry')->length(4);
+            $table->string('yeargraduation')->length(4);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,6 +37,6 @@ class Formaleducation extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('formaleducation');
     }
 }

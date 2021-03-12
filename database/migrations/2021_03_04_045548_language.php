@@ -15,9 +15,10 @@ class Language extends Migration
     {
         //
         Schema::create('language', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->string('language',100);
+            $table->id()->length(11);
+            $table->string('language')->length(100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class Language extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('language');
     }
 }

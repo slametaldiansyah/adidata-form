@@ -15,10 +15,12 @@ class Emergencycontact extends Migration
     {
         //
         Schema::create('emergencycontact', function (Blueprint $table) {
-            $table->id('candidateid',11);
-            $table->string('skillname',100);
-            $table->string('proficiencylevel',10);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('skillname')->length(11);
+            $table->string('proficiencylevel')->length(10);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +31,7 @@ class Emergencycontact extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('emergencycontact');
+
     }
 }

@@ -15,9 +15,10 @@ class Employeestatus extends Migration
     {
         //
         Schema::create('employeestatus', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->string('employeestatus',20);
+            $table->id()->length(11);
+            $table->string('employeestatus')->length(20);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class Employeestatus extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('employeestatus');
     }
 }

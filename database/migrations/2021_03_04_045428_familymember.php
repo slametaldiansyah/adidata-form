@@ -15,15 +15,16 @@ class Familymember extends Migration
     {
         //
         Schema::create('familymember', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('familyid',5);
-            $table->integer('familystatusid',5);
-            $table->string('name',60);
-            $table->string('sexid',4);
+            $table->id()->length(11);
+            $table->foreignId('familyid')->constrained('family')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('familystatusid')->constrained('familystatus')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name')->length(60);
+            $table->foreignId('sexid')->constrained('sex')->onDelete('cascade')->onUpdate('cascade');
             $table->date('birthdate');
-            $table->integer('educationlevel',11);
-            $table->integer('ocupation',11);
+            $table->foreignId('educationlevelid')->constrained('education')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('ocupation')->length(11);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -34,6 +35,6 @@ class Familymember extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('familymember');
     }
 }

@@ -15,13 +15,14 @@ class Reference extends Migration
     {
         //
         Schema::create('reference', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',11);
-            $table->string('name',50);
-            $table->string('phonenumber',50);
-            $table->string('position',50);
-            $table->string('division',50);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name')->length(50);
+            $table->string('phonenumber')->length(50);
+            $table->string('position')->length(50);
+            $table->string('division')->length(50);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +33,6 @@ class Reference extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('reference');
     }
 }

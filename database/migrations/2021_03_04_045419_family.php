@@ -15,11 +15,13 @@ class Family extends Migration
     {
         //
         Schema::create('family', function (Blueprint $table) {
-            $table->id('candidateid',11);
-            $table->string('maritialstatusid',5);
-            $table->string('maritialyear',4);
-            $table->string('divorceyear',4);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('maritialstatusid')->constrained('maritialstatus')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('maritialyear')->length(4);
+            $table->string('divorceyear')->length(4)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +32,6 @@ class Family extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('family');
     }
 }

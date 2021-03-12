@@ -15,14 +15,15 @@ class Organization extends Migration
     {
         //
         Schema::create('organization', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',11);
-            $table->string('name',50);
-            $table->string('organizationtype',50);
-            $table->string('yearstart',4);
-            $table->string('yearend',4);
-            $table->string('position',100);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('name')->length(50);
+            $table->string('organizationtype')->length(50);
+            $table->string('yearstart')->length(4);
+            $table->string('yearend')->length(4);
+            $table->string('position')->length(100);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,6 @@ class Organization extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('organization');
     }
 }

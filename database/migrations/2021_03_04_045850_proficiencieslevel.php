@@ -15,9 +15,10 @@ class Proficiencieslevel extends Migration
     {
         //
         Schema::create('proficiencieslevel', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->string('level',20);
+            $table->id()->length(11);
+            $table->string('level')->length(20);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class Proficiencieslevel extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('proficiencieslevel');
     }
 }

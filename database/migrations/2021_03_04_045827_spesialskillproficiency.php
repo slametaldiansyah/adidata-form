@@ -15,11 +15,12 @@ class Spesialskillproficiency extends Migration
     {
         //
         Schema::create('spesialskillproficiency', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',11);
-            $table->string('skillname',100);
-            $table->integer('proficiencylevel',20);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('skillname')->length(100);
+            $table->integer('proficiencylevel')->length(20);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,6 @@ class Spesialskillproficiency extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('spesialskillproficiency');
     }
 }

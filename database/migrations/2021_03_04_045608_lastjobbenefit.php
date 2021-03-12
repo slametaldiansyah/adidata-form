@@ -15,10 +15,11 @@ class Lastjobbenefit extends Migration
     {
         //
         Schema::create('lastjobbenefit', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('benefitid',11);
-            $table->integer('candidateid',11);
+            $table->id()->length(11);
+            $table->foreignId('benefitid')->constrained('benefit')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +30,6 @@ class Lastjobbenefit extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('lastjobbenefit');
     }
 }

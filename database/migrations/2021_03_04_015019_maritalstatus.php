@@ -14,10 +14,11 @@ class Maritalstatus extends Migration
     public function up()
     {
         //
-        Schema::create('maritalstatus', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->string('maritalstatus',20);
+        Schema::create('maritialstatus', function (Blueprint $table) {
+            $table->id()->length(11);
+            $table->string('maritialstatus')->length(20);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,6 @@ class Maritalstatus extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('maritialstatus');
     }
 }

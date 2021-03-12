@@ -15,13 +15,14 @@ class Languageproficiency extends Migration
     {
         //
         Schema::create('languageproficiency', function (Blueprint $table) {
-            $table->id('id',11);
-            $table->integer('candidateid',5);
-            $table->integer('languageid',11);
-            $table->integer('written',11);
-            $table->integer('read',11);
-            $table->integer('speaking',11);
+            $table->id()->length(11);
+            $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('languageid')->constrained('language')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('written')->length(11);
+            $table->integer('read')->length(11);
+            $table->integer('speaking')->length(11);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +33,6 @@ class Languageproficiency extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('languageproficiency');
     }
 }
