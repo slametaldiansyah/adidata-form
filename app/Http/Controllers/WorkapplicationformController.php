@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bloodtype;
+use App\Models\Citizenship;
+use App\Models\Education;
+use App\Models\FamilyStatus;
+use App\Models\MaritalStatus;
+use App\Models\Position;
+use App\Models\Religion;
+use App\Models\Sex;
 use Illuminate\Http\Request;
 
 class WorkapplicationformController extends Controller
@@ -13,7 +21,23 @@ class WorkapplicationformController extends Controller
      */
     public function index()
     {
-        return view('applicationform.v_index');
+        $positionlist = Position::all();
+        $sexlist = Sex::all();
+        $bloodlist = Bloodtype::all();
+        $citizenshiplist = Citizenship::all();
+        $religionlist = Religion::all();
+        $maritalstatuslist = MaritalStatus::all();
+        $familystatuslist = FamilyStatus::all();
+        $educationlist = Education::all();
+        return view('applicationform.v_index',
+        compact('positionlist',
+                'sexlist',
+                'bloodlist',
+                'citizenshiplist',
+                'religionlist',
+                'maritalstatuslist',
+                'familystatuslist',
+                'educationlist'));
     }
 
     /**
@@ -34,7 +58,7 @@ class WorkapplicationformController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

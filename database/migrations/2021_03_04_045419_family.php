@@ -17,8 +17,8 @@ class Family extends Migration
         Schema::create('family', function (Blueprint $table) {
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('maritialstatusid')->constrained('maritialstatus')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('maritialyear')->length(4);
+            $table->foreignId('maritalstatusid')->constrained('maritalstatus')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('maritalyear')->length(4);
             $table->string('divorceyear')->length(4)->nullable();
             $table->timestamps();
             $table->softDeletes();
