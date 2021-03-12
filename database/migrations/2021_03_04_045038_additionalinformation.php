@@ -28,7 +28,7 @@ class Additionalinformation extends Migration
             $table->tinyinteger('pledgeoftruthness')->length(1);
             $table->foreignId('positionid')->constrained('position')->onDelete('cascade')->onUpdate('cascade');
             // $table->string('position')->length(5);
-            $table->string('jobcode')->length(50);
+            $table->string('jobcode')->length(50)->nullable();
             $table->foreignId('jobdurationid')->constrained('jobduration')->onDelete('cascade')->onUpdate('cascade');
             // $table->string('jobdurationid')->length(10);
             $table->timestamps();

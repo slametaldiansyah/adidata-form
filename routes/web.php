@@ -1,5 +1,7 @@
 <?php
 
+// use App\Http\Controllers\WorkApplicationForm;
+use App\Http\Controllers\WorkapplicationformController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::resource('/workapplicationform', WorkApplicationForm::class);
+// Route::resource('/', WorkApplicationForm::class);
+Route::resource('/',WorkapplicationformController::class);
+// Route::resource('photos', PhotoController::class);
+
