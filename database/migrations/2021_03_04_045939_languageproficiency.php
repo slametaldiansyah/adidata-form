@@ -18,9 +18,9 @@ class Languageproficiency extends Migration
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('languageid')->constrained('language')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('written')->length(11);
-            $table->integer('read')->length(11);
-            $table->integer('speaking')->length(11);
+            $table->string('written')->length(11);
+            $table->string('read')->length(11);
+            $table->string('speaking')->length(11);
             $table->timestamps();
             $table->softDeletes();
         });

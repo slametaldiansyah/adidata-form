@@ -18,7 +18,7 @@ class Spesialskillproficiency extends Migration
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
             $table->string('skillname')->length(100);
-            $table->integer('proficiencylevel')->length(20);
+            $table->foreignId('proficiencylevelid')->constrained('proficiencieslevel')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -63,17 +63,41 @@
                 <small id="nama" class="form-text text-muted">Nama Lengkap</small>
               </div>
               <div class="form-group">
-                <textarea class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required></textarea>
-                <small name="alamat" id="alamat" class="form-text text-muted">Alamat Rumah</small>
+                <textarea name="alamat" class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required></textarea>
+                <small id="alamat" class="form-text text-muted">Alamat Rumah</small>
               </div>
               <div class="form-group">
                 <input name="kode-pos" type="text" class="form-control" id="postal" aria-describedby="postal" placeholder="Kode Pos" required>
                 <small id="postal" class="form-text text-muted">Kode Pos</small>
               </div>
+              <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input name="tanggal_lahir" type="date" class="form-control" id="tanggal-lahir" aria-describedby="tanggal-lahir" placeholder="Tanggal Lahir" required>
+                                    <small id="tanggal-lahir" class="form-text text-muted">Tanggal Lahir</small>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control" name="baru_lulus" id="baru-lulus">
+                                      <option value="0">Tidak</option>
+                                      <option value="1">Ya</option>
+                                    </select>
+                                    <small id="baru-lulus" class="form-text text-muted">Baru Lulus</small>
+                                  </div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                        <input name="tempat_lahir" type="text" class="form-control" id="tempat-lahir" aria-describedby="tempat-lahir" placeholder="Tempat Lahir" required>
+                        <small id="tempat-lahir" class="form-text text-muted">Tempat Lahir</small>
+                        </div>
+                    </div>
+              </div>
 
               <div class="row">
                 <div class="col-6">
-                  <select class="form-control" name="sex" id="wn">
+                  <select class="form-control" name="sex" id="sex">
                     <option value="">--option--</option>
                       @foreach ($sexlist as $sx)
                       <option value="{{$sx->id}}"
@@ -82,7 +106,7 @@
                     {{-- <option value="p">Pria</option>
                     <option value="w">Wanita</option> --}}
                   </select>
-                  <small id="wn" class="form-text text-muted">Jenis Kelamin</small>
+                  <small id="sex" class="form-text text-muted">Jenis Kelamin</small>
                 </div>
 
                 <div class="col-6">
@@ -108,14 +132,14 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="tel-rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah" required>
+                    <input name="tel_rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah" required>
                     <small id="tel-rmh" class="form-text text-muted">Telfon Rumah</small>
                   </div>
 
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="tel-hp" type="text" class="form-control" id="tel-hp" aria-describedby="tel-hp" placeholder="Telepon Selular" required>
+                    <input name="tel_hp" type="text" class="form-control" id="tel-hp" aria-describedby="tel-hp" placeholder="Telepon Selular" required>
                     <small id="tel-hp" class="form-text text-muted">Telepon Selular</small>
                   </div>
                 </div>
@@ -139,14 +163,14 @@
 
               <div class="row">
                 <div class="col-6">
-                  <select class="form-control" name="citizenship" id="wn">
+                  <select class="form-control" name="citizenship" id="citizenship">
                     <option value="">--option--</option>
                     @foreach ($citizenshiplist as $cs)
                     <option value="{{$cs->id}}"
                       >{{$cs->citizenship}}</option>
                     @endforeach
                   </select>
-                  <small id="wn" class="form-text text-muted">Kewarganegaraan</small>
+                  <small id="citizenship" class="form-text text-muted">Kewarganegaraan</small>
                 </div>
 
                 <div class="col-6">
@@ -161,9 +185,8 @@
                 </div>
               </div>
 
-              {{-- <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button> --}}
+
             </section>
-        </form>
             <!-- Family -->
             <section id="family" class="collapse">
               <div class="row">
@@ -182,7 +205,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" required>
+                    <input name="menikah_thn" type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" required>
                     <small id="menikah-thn" class="form-text text-muted">Tahun menikah</small>
                   </div>
                 </div>
@@ -211,16 +234,19 @@
                 <!-- Loop -->
                 <div class="family-loop">
                   <div class="form-group">
-                    <input name="fam-name-inti" type="text" class="form-control" id="fam-name-inti" aria-describedby="fam-name-inti" placeholder="Nama Pasangan / Anak" required>
-                    <small id="fam-name[]" class="form-text text-muted">Nama Pasangan / Anak</small>
+                    <input name="fam_name_inti[]" type="text" class="form-control" id="fam-name-inti" aria-describedby="fam-name-inti" placeholder="Nama Pasangan / Anak" required>
+                    <small id="fam-nameinti" class="form-text text-muted">Nama Pasangan / Anak</small>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <select class="select2mul form-control" name="fam-status[]" id="fam-status">
+                      <select class="form-control" name="fam_status_inti[]" id="fam-statusinti">
                         <option value="">--option--</option>
                         @foreach ($familystatuslist as $fs)
+                        @if ($fs->id <= 3)
+
                         <option value="{{$fs->id}}"
                           >{{$fs->familystatus}}</option>
+                        @endif
                         @endforeach
                         {{-- <option value="1">Suami</option>
                         <option value="2">Istri</option>
@@ -229,36 +255,36 @@
                       <small id="fam-status" class="form-text text-muted">Status </small>
                     </div>
                     <div class="col-md-6">
-                      <select class="select2mul form-control" name="fam-sex[]" id="fam-sex">
+                      <select class="form-control" name="fam_sex_inti[]" id="fam-sexinti">
                         <option value="">--option--</option>
                       @foreach ($sexlist as $sx)
                       <option value="{{$sx->id}}"
                         >{{$sx->sex}}</option>
                       @endforeach
                       </select>
-                      <small id="fam-sex" class="form-text text-muted">Jenis Kelamin</small>
+                      <small id="fam-sexinti" class="form-text text-muted">Jenis Kelamin</small>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-md-6">
-                      <select class="select2mul form-control" name="fam-education[]" id="fam-education">
+                      <select class="form-control" name="fam_education_inti[]" id="fam-educationinyi">
                         <option value="">--option--</option>
                         @foreach ($educationlist as $el)
                         <option value="{{$el->id}}"
                           >{{$el->education}}</option>
                         @endforeach
                       </select>
-                      <small id="fam-education" class="form-text text-muted">Pendiidkan </small>
+                      <small id="fam-educationinti" class="form-text text-muted">Pendiidkan </small>
                     </div>
                     <div class="col-md-6">
-                    <input name="fam-work" type="text" class="form-control" id="fam-work" aria-describedby="fam-work" placeholder="Pekerjaan" required>
+                    <input name="fam_work_inti[]" type="text" class="form-control" id="fam-workinti[]" aria-describedby="fam-work" placeholder="Pekerjaan" required>
 
                       {{-- <select class="select2fill form-control" name="fam-work[]" id="fam-work">
                         <option value="PNS">PNS</option>
                         <option value="P">Perempuan</option>
                       </select> --}}
-                      <small id="fam-work" class="form-text text-muted">Perkerjaan</small>
+                      <small id="fam-workinti" class="form-text text-muted">Perkerjaan</small>
                     </div>
                   </div>
 
@@ -272,22 +298,30 @@
               <!-- Loop -->
               <div class="family-loop">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="fam-name" aria-describedby="fam-name" placeholder="Nama keluarga" required>
+                  <input name="fam_name[]" type="text" class="form-control" id="fam-name" aria-describedby="fam-name" placeholder="Nama keluarga" required>
                   <small id="fam-name[]" class="form-text text-muted">Nama keluarga</small>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <select class="select2mul form-control" name="fam-status[]" id="fam-status">
-                      <option value="4">Ayah</option>
-                      <option value="5">Ibu</option>
-                      <option value="6">Saudara/Saudari</option>
+                    <select class=" form-control" name="fam_status[]" id="fam-status">
+                      <option value="">--option--</option>
+                        @foreach ($familystatuslist as $fs)
+                        @if ($fs->id > 3)
+
+                        <option value="{{$fs->id}}"
+                          >{{$fs->familystatus}}</option>
+                        @endif
+                        @endforeach
                     </select>
                     <small id="fam-status" class="form-text text-muted">Status </small>
                   </div>
                   <div class="col-md-6">
-                    <select class="select2mul form-control" name="fam-sex[]" id="fam-sex">
-                      <option value="L">Laki-laki</option>
-                      <option value="P">Perempuan</option>
+                    <select class=" form-control" name="fam_sex[]" id="fam-sex">
+                      <option value="">--option--</option>
+                        @foreach ($sexlist as $s)
+                        <option value="{{$s->id}}"
+                          >{{$s->sex}}</option>
+                        @endforeach
                     </select>
                     <small id="fam-sex" class="form-text text-muted">Jenis Kelamin</small>
                   </div>
@@ -295,18 +329,21 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <select class="select2mul form-control" name="fam-education[]" id="fam-education">
-                      <option value="1">S1</option>
-                      <option value="2">Istri</option>
-                      <option value="3">Anak</option>
+                    <select class=" form-control" name="fam_education[]" id="fam-education">
+                      <option value="">--option--</option>
+                        @foreach ($educationlist as $es)
+                        <option value="{{$es->id}}"
+                          >{{$es->education}}</option>
+                        @endforeach
                     </select>
                     <small id="fam-education" class="form-text text-muted">Pendiidkan </small>
                   </div>
                   <div class="col-md-6">
-                    <select class="select2fill form-control" name="fam-work[]" id="fam-work">
+                    <input name="fam_work[]" type="text" class="form-control" id="fam-work" aria-describedby="fam-work" placeholder="Pekerjaan" required>
+                    {{-- <select class=" form-control" name="fam-work[]" id="fam-work">
                       <option value="PNS">PNS</option>
                       <option value="P">Perempuan</option>
-                    </select>
+                    </select> --}}
                     <small id="fam-work" class="form-text text-muted">Perkerjaan</small>
                   </div>
                 </div>
@@ -316,9 +353,13 @@
 
             </section>
 
-            <!-- Education -->
+
+
+
+              <!-- Education -->
             <section id="education" class="collapse">
               <!-- Formal -->
+
               <span>Formal Education</span>
               <br>
               <button type="button" id="addbtnformal" class="btn btn-primary btn-sm">+</button>
@@ -326,36 +367,74 @@
                 <div class="form-group" id="isiformaled">
                   <div class="row">
                     <div class="col-md-2">
-                      <select class="select2fill form-control" name="jenjang" id="jenjang">
-                        <option value="1">SLTA/SMA</option>
-                        <option value="2">D3</option>
-                        <option value="3">S1</option>
+                      <select class="form-control" name="jenjang[]" id="jenjang-1">
+                        <option value="">--option--</option>
+                        @foreach ($educationlist as $es)
+                        <option value="{{$es->id}}"
+                          >{{$es->education}}</option>
+                        @endforeach
                       </select>
-                      <small id="jenjang" class="form-text text-muted">Jenjang</small>
+                      <small id="jenjang-1" class="form-text text-muted">Jenjang</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="nama-lembaga" aria-describedby="nama" placeholder="Nama Lembaga" required>
-                      <small id="nama-lembaga" class="form-text text-muted">Nama</small>
+                      <input name="nama_lembaga[]" type="text" class="form-control" id="nama-lembaga-1" aria-describedby="nama" placeholder="Nama Lembaga" required>
+                      <small id="nama-lembaga-1" class="form-text text-muted">Nama</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="kota-lembaga" aria-describedby="nama" placeholder="Kota" required>
-                      <small id="kota-lembaga" class="form-text text-muted">Kota</small>
+                      <input name="kota_lembaga[]" type="text" class="form-control" id="kota-lembaga-1" aria-describedby="nama" placeholder="Kota" required>
+                      <small id="kota-lembaga-1" class="form-text text-muted">Kota</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="IPK" aria-describedby="nama" placeholder="IPK" required>
-                      <small id="IPK" class="form-text text-muted">IPK</small>
+                      <input name="IPK[]" type="text" class="form-control" id="IPK-1" aria-describedby="nama" placeholder="IPK" required>
+                      <small id="IPK-1" class="form-text text-muted">IPK</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="masuk-lembaga" aria-describedby="nama" placeholder="Masuk" required>
-                      <small id="masuk-lembaga" class="form-text text-muted">Masuk</small>
+                      <input name="masuk_lembaga[]" type="text" class="form-control" id="masuk-lembaga-1" aria-describedby="nama" placeholder="Masuk" required>
+                      <small id="masuk-lembaga-1" class="form-text text-muted">Masuk</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="lulus-lembaga" aria-describedby="nama" placeholder="Lulus" required>
-                      <small id="lulus-lembaga" class="form-text text-muted">Lulus</small>
+                      <input name="lulus_lembaga[]" type="text" class="form-control" id="lulus-lembaga-1" aria-describedby="nama" placeholder="Lulus" required>
+                      <small id="lulus-lembaga-1" class="form-text text-muted">Lulus</small>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <select class="form-control" name="jenjang[]" id="jenjang-2">
+                        <option value="">--option--</option>
+                        @foreach ($educationlist as $es)
+                        <option value="{{$es->id}}"
+                          >{{$es->education}}</option>
+                        @endforeach
+                      </select>
+                      <small id="jenjang-2" class="form-text text-muted">Jenjang</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="nama_lembaga[]" type="text" class="form-control" id="nama-lembaga-2" aria-describedby="nama" placeholder="Nama Lembaga" required>
+                      <small id="nama-lembaga-2" class="form-text text-muted">Nama</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="kota_lembaga[]" type="text" class="form-control" id="kota-lembaga-2" aria-describedby="nama" placeholder="Kota" required>
+                      <small id="kota-lembaga-2" class="form-text text-muted">Kota</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="IPK[]" type="text" class="form-control" id="IPK-2" aria-describedby="nama" placeholder="IPK" required>
+                      <small id="IPK-2" class="form-text text-muted">IPK</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="masuk_lembaga[]" type="text" class="form-control" id="masuk-lembaga-2" aria-describedby="nama" placeholder="Masuk" required>
+                      <small id="masuk-lembaga-2" class="form-text text-muted">Masuk</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="lulus_lembaga[]" type="text" class="form-control" id="lulus-lembaga-2" aria-describedby="nama" placeholder="Lulus" required>
+                      <small id="lulus-lembaga-2" class="form-text text-muted">Lulus</small>
+                    </div>
+                  </div>
+
+
                 </div>
                 <hr>
+
+
 
               <!-- NonFormal -->
               <span>Nonformal Education</span>
@@ -365,24 +444,46 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="kursus-nama" aria-describedby="nama" placeholder="Nama Kursus" required>
-                      <small id="kursus-nama" class="form-text text-muted">Kursus/Training</small>
+                      <input name="kursus_nama[]" type="text" class="form-control" id="kursus-nama-1" aria-describedby="nama" placeholder="Nama Kursus" required>
+                      <small id="kursus-nama-1" class="form-text text-muted">Kursus/Training</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="kursus-tahun" aria-describedby="nama" placeholder="Tahun" required>
-                      <small id="kursus-tahun" class="form-text text-muted">Tahun</small>
+                      <input name="kursus_tahun[]" type="text" class="form-control" id="kursus-tahun-1" aria-describedby="nama" placeholder="Tahun" required>
+                      <small id="kursus-tahun-1" class="form-text text-muted">Tahun</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="kursus-durasi" aria-describedby="nama" placeholder="Lama Kursus" required>
-                      <small id="kursus-durasi" class="form-text text-muted">Lama</small>
+                      <input name="kursus_durasi[]" type="text" class="form-control" id="kursus-durasi-1" aria-describedby="nama" placeholder="Lama Kursus" required>
+                      <small id="kursus-durasi-1" class="form-text text-muted">Lama</small>
                     </div>
                     <div class="col-md-1">
-                      <input type="checkbox" id="kursus-ijazah">
-                      <small id="kursus-ijazah" class="form-text text-muted">Ijazah</small>
+                      <input name="kursus_ijazah[]" type="checkbox" id="kursus-ijazah-1">
+                      <small id="kursus-ijazah-1" class="form-text text-muted">Ijazah</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="kursus-biaya" aria-describedby="nama" placeholder="Masuk" required>
-                      <small id="kursus-biaya" class="form-text text-muted">Dibiayai</small>
+                      <input name="kursus_biaya[]" type="text" class="form-control" id="kursus-biaya-1" aria-describedby="nama" placeholder="Masuk" required>
+                      <small id="kursus-biaya-1" class="form-text text-muted">Dibiayai</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input name="kursus_nama[]" type="text" class="form-control" id="kursus-nama-2" aria-describedby="nama" placeholder="Nama Kursus" required>
+                      <small id="kursus-nama-2" class="form-text text-muted">Kursus/Training</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="kursus_tahun[]" type="text" class="form-control" id="kursus-tahun-2" aria-describedby="nama" placeholder="Tahun" required>
+                      <small id="kursus-tahun-2" class="form-text text-muted">Tahun</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="kursus_durasi[]" type="text" class="form-control" id="kursus-durasi-2" aria-describedby="nama" placeholder="Lama Kursus" required>
+                      <small id="kursus-durasi-2" class="form-text text-muted">Lama</small>
+                    </div>
+                    <div class="col-md-1">
+                      <input name="kursus_ijazah[]" type="checkbox" id="kursus-ijazah-2">
+                      <small id="kursus-ijazah-2" class="form-text text-muted">Ijazah</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="kursus_biaya[]" type="text" class="form-control" id="kursus-biaya-2" aria-describedby="nama" placeholder="Masuk" required>
+                      <small id="kursus-biaya-2" class="form-text text-muted">Dibiayai</small>
                     </div>
                   </div>
                   <hr>
@@ -390,6 +491,7 @@
             </section>
 
             <!-- Kemampuan -->
+
             <section id="kemampuan" class="collapse">
               <span>Kemampuan Berbahasa</span>
               <br>
@@ -398,32 +500,82 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="bahasa" aria-describedby="nama" placeholder="Bahasa" required>
-                      <small id="bahasa" class="form-text text-muted">Bahasa</small>
+                        <select class="form-control" name="bahasa[]" id="bahasa-1">
+                        <option value="">--option--</option>
+                        @foreach ($languagelist as $ll)
+                        <option value="{{$ll->id}}"
+                          >{{$ll->language}}</option>
+                        @endforeach
+                          </select>
+                      {{-- <input type="text" class="form-control" id="bahasa" aria-describedby="nama" placeholder="Bahasa" required> --}}
+                      <small id="bahasa-1" class="form-text text-muted">Bahasa</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="select2mul form-control" name="tulis-level[]" id="tulis-level">
+                      <select class="form-control" name="tulis_level[]" id="tulis-level-1">
+                        <option value="">--option--</option>
                         <option value="B">Baik</option>
                         <option value="C">Cukup</option>
                         <option value="K">Kurang</option>
                       </select>
-                      <small id="tulis" class="form-text text-muted">Tulis</small>
+                      <small id="tulis-1" class="form-text text-muted">Tulis</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="select2mul form-control" name="lisan-level[]" id="lisan-level">
+                      <select class="form-control" name="lisan_level[]" id="lisan-level-1">
+                        <option value="">--option--</option>
                         <option value="B">Baik</option>
                         <option value="C">Cukup</option>
                         <option value="K">Kurang</option>
                       </select>
-                      <small id="lisan" class="form-text text-muted">Lisan</small>
+                      <small id="lisan-1" class="form-text text-muted">Lisan</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="select2mul form-control" name="baca-level[]" id="baca-level">
+                      <select class="form-control" name="baca_level[]" id="baca-level-1">
+                        <option value="">--option--</option>
                         <option value="B">Baik</option>
                         <option value="C">Cukup</option>
                         <option value="K">Kurang</option>
                       </select>
-                      <small id="baca" class="form-text text-muted">Baca</small>
+                      <small id="baca-1" class="form-text text-muted">Baca</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <select class="form-control" name="bahasa[]" id="bahasa-2">
+                        <option value="">--option--</option>
+                        @foreach ($languagelist as $ll)
+                        <option value="{{$ll->id}}"
+                          >{{$ll->language}}</option>
+                        @endforeach
+                          </select>
+                      {{-- <input type="text" class="form-control" id="bahasa" aria-describedby="nama" placeholder="Bahasa" required> --}}
+                      <small id="bahasa-2" class="form-text text-muted">Bahasa</small>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control" name="tulis_level[]" id="tulis-level-2">
+                        <option value="">--option--</option>
+                        <option value="B">Baik</option>
+                        <option value="C">Cukup</option>
+                        <option value="K">Kurang</option>
+                      </select>
+                      <small id="tulis-2" class="form-text text-muted">Tulis</small>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control" name="lisan_level[]" id="lisan-level-2">
+                        <option value="">--option--</option>
+                        <option value="B">Baik</option>
+                        <option value="C">Cukup</option>
+                        <option value="K">Kurang</option>
+                      </select>
+                      <small id="lisan-2" class="form-text text-muted">Lisan</small>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control" name="baca_level[]" id="baca-level-2">
+                        <option value="">--option--</option>
+                        <option value="B">Baik</option>
+                        <option value="C">Cukup</option>
+                        <option value="K">Kurang</option>
+                      </select>
+                      <small id="baca-2" class="form-text text-muted">Baca</small>
                     </div>
                   </div>
                   <hr>
@@ -437,17 +589,35 @@
                       <button type="button" class="btn btn-primary btn-sm">+</button>
                       <button type="button" class="btn btn-primary btn-sm">-</button>
                       <div class="row">
-                        <div class="col-md-4">
-                          <input type="text" class="form-control" id="komputer" aria-describedby="nama" placeholder="Jenis Program" required>
-                          <small id="komputer" class="form-text text-muted">Jenis Program</small>
+                        <div class="col-md-7">
+                          <input name="komputer[]" type="text" class="form-control" id="komputer-1" aria-describedby="nama" placeholder="Jenis Program" required>
+                          <small id="komputer-1" class="form-text text-muted">Jenis Program</small>
                         </div>
-                        <div class="col-md-2">
-                          <select class="select2mul form-control" name="komputer-level[]" id="komputer-level">
-                            <option value="B">Baik</option>
-                            <option value="C">Cukup</option>
-                            <option value="K">Kurang</option>
+                        <div class="col-md-5">
+                          <select class="form-control" name="komputer_level[]" id="komputer-level-1">
+                            <option value="">--option--</option>
+                            @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
                           </select>
-                          <small id="komputer" class="form-text text-muted">Penguasaan Komputer</small>
+                          <small id="komputer-1" class="form-text text-muted">Penguasaan Komputer</small>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-7">
+                          <input name="komputer[]" type="text" class="form-control" id="komputer-2" aria-describedby="nama" placeholder="Jenis Program" required>
+                          <small id="komputer-2" class="form-text text-muted">Jenis Program</small>
+                        </div>
+                        <div class="col-md-5">
+                          <select class="form-control" name="komputer_level[]" id="komputer-level-2">
+                            <option value="">--option--</option>
+                            @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
+                          </select>
+                          <small id="komputer-2" class="form-text text-muted">Penguasaan Komputer</small>
                         </div>
                       </div>
                     </div>
@@ -457,17 +627,35 @@
                       <button type="button" class="btn btn-primary btn-sm">+</button>
                       <button type="button" class="btn btn-primary btn-sm">-</button>
                       <div class="row">
-                        <div class="col-md-4">
-                          <input type="text" class="form-control" id="special" aria-describedby="nama" placeholder="Kemampuan Khusus" required>
-                          <small id="special" class="form-text text-muted">Kemampuan Khusus</small>
+                        <div class="col-md-7">
+                          <input name="special[]" type="text" class="form-control" id="special-1" aria-describedby="nama" placeholder="Kemampuan Khusus" required>
+                          <small id="special-1" class="form-text text-muted">Kemampuan Khusus</small>
                         </div>
-                        <div class="col-md-1">
-                          <select class="select2mul form-control" name="special-level[]" id="special-level">
-                            <option value="B">Baik</option>
-                            <option value="C">Cukup</option>
-                            <option value="K">Kurang</option>
+                        <div class="col-md-5">
+                          <select class="form-control" name="special_level[]" id="special-level-1">
+                            <option value="">--option--</option>
+                            @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
                           </select>
-                          <small id="special" class="form-text text-muted">Kemampuan Khusus</small>
+                          <small id="special-1" class="form-text text-muted">Kemampuan Khusus</small>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-7">
+                          <input name="special[]" type="text" class="form-control" id="special-2" aria-describedby="nama" placeholder="Kemampuan Khusus" required>
+                          <small id="special-2" class="form-text text-muted">Kemampuan Khusus</small>
+                        </div>
+                        <div class="col-md-5">
+                          <select class="form-control" name="special_level[]" id="special-level-2">
+                            <option value="">--option--</option>
+                            @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
+                          </select>
+                          <small id="special-2" class="form-text text-muted">Kemampuan Khusus</small>
                         </div>
                       </div>
                     </div>
@@ -482,27 +670,48 @@
                 <button type="button" class="btn btn-primary btn-sm">-</button>
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-md-3">
-                        <input type="text" class="form-control" id="sertifikasi-nama" aria-describedby="nama" placeholder="Nama Kursus" required>
-                        <small id="sertifikasi-nama" class="form-text text-muted">Nama Sertifikasi</small>
+                      <div class="col-md-4">
+                        <input name="sertifikasi_nama[]" type="text" class="form-control" id="sertifikasi-nama-1" aria-describedby="nama" placeholder="Nama Kursus" required>
+                        <small id="sertifikasi-nama-1" class="form-text text-muted">Nama Sertifikasi</small>
                       </div>
-                      <div class="col-md-3">
-                        <input type="text" class="form-control" id="sertifikasi-penerbit" aria-describedby="nama" placeholder="Penerbit" required>
-                        <small id="sertifikasi-penerbit" class="form-text text-muted">Penerbit</small>
-                      </div>
-                      <div class="col-md-2">
-                        <input type="text" class="form-control" id="sertifikasi-tahun" aria-describedby="nama" placeholder="Tahun" required>
-                        <small id="sertifikasi-tahun" class="form-text text-muted">Tahun</small>
+                      <div class="col-md-4">
+                        <input name="sertifikasi_penerbit[]" type="text" class="form-control" id="sertifikasi-penerbit-1" aria-describedby="nama" placeholder="Penerbit" required>
+                        <small id="sertifikasi-penerbit-1" class="form-text text-muted">Penerbit</small>
                       </div>
                       <div class="col-md-2">
-                        <input type="text" class="form-control" id="sertifikasi-berlaku" aria-describedby="nama" placeholder="Berlaku" required>
-                        <small id="sertifikasi-berlaku" class="form-text text-muted">Berlaku</small>
+                        <input name="sertifikasi_tahun[]" type="text" class="form-control" id="sertifikasi-tahun-1" aria-describedby="nama" placeholder="Tahun" required>
+                        <small id="sertifikasi-tahun-1" class="form-text text-muted">Tahun</small>
+                      </div>
+                      <div class="col-md-2">
+                        <input name="sertifikasi_berlaku[]" type="text" class="form-control" id="sertifikasi-berlaku-1" aria-describedby="nama" placeholder="Berlaku" required>
+                        <small id="sertifikasi-berlaku-1" class="form-text text-muted">Berlaku</small>
                       </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <input name="sertifikasi_nama[]" type="text" class="form-control" id="sertifikasi-nama-2" aria-describedby="nama" placeholder="Nama Kursus" required>
+                          <small id="sertifikasi-nama-2" class="form-text text-muted">Nama Sertifikasi</small>
+                        </div>
+                        <div class="col-md-4">
+                          <input name="sertifikasi_penerbit[]" type="text" class="form-control" id="sertifikasi-penerbit-2" aria-describedby="nama" placeholder="Penerbit" required>
+                          <small id="sertifikasi-penerbit-2" class="form-text text-muted">Penerbit</small>
+                        </div>
+                        <div class="col-md-2">
+                          <input name="sertifikasi_tahun[]" type="text" class="form-control" id="sertifikasi-tahun-2" aria-describedby="nama" placeholder="Tahun" required>
+                          <small id="sertifikasi-tahun-2" class="form-text text-muted">Tahun</small>
+                        </div>
+                        <div class="col-md-2">
+                          <input name="sertifikasi_berlaku[]" type="text" class="form-control" id="sertifikasi-berlaku-2" aria-describedby="nama" placeholder="Berlaku" required>
+                          <small id="sertifikasi-berlaku-2" class="form-text text-muted">Berlaku</small>
+                        </div>
+                      </div>
                     <hr>
                   </div>
+
+            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
             </section>
 
+          </form>
             <!--Work Experience-->
             <section id="pengalaman" class="collapse">
               <span>Pengalaman Kerja</span>

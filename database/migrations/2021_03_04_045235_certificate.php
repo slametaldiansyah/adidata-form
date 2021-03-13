@@ -20,7 +20,7 @@ class Certificate extends Migration
             $table->string('namecertificate')->length(200);
             $table->string('issuer')->length(500);
             $table->integer('year')->length(4);
-            $table->integer('expiredyear')->length(4);
+            $table->string('expiredyear')->length(60);
             $table->timestamps();
             $table->softDeletes();
         });

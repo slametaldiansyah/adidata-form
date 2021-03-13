@@ -21,7 +21,7 @@ class Formaleducation extends Migration
             // $table->integer('educationlevelid',5);
             $table->string('institutionname')->length(200);
             $table->string('location')->length(500);
-            $table->string('major')->length(100);
+            $table->string('major')->length(100)->nullable();
             $table->decimal('GPA')->length(10,0);
             $table->string('yearentry')->length(4);
             $table->string('yeargraduation')->length(4);

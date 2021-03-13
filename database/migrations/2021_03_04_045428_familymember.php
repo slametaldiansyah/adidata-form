@@ -20,9 +20,9 @@ class Familymember extends Migration
             $table->foreignId('familystatusid')->constrained('familystatus')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name')->length(60);
             $table->foreignId('sexid')->constrained('sex')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('birthdate');
+            $table->date('birthdate')->nullable();
             $table->foreignId('educationlevelid')->constrained('education')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('ocupation')->length(11);
+            $table->string('profession')->length(60);
             $table->timestamps();
             $table->softDeletes();
         });

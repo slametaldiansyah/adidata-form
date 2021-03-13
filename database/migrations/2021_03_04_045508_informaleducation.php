@@ -17,9 +17,9 @@ class Informaleducation extends Migration
         Schema::create('informaleducation', function (Blueprint $table) {
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('course_trainingname')->length(200);
+            $table->string('course_trainingname')->length(200);
             $table->string('year')->length(4);
-            $table->string('duration')->length(4);
+            $table->string('duration')->length(60);
             $table->boolean('certificate');
             $table->string('sponsoreby')->length(100);
             $table->timestamps();

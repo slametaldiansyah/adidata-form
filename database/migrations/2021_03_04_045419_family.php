@@ -18,7 +18,7 @@ class Family extends Migration
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('maritalstatusid')->constrained('maritalstatus')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('maritalyear')->length(4);
+            $table->string('maritalyear')->length(4)->nullable();
             $table->string('divorceyear')->length(4)->nullable();
             $table->timestamps();
             $table->softDeletes();
