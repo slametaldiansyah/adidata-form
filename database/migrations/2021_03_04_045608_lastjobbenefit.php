@@ -18,6 +18,7 @@ class Lastjobbenefit extends Migration
             $table->id()->length(11);
             $table->foreignId('benefitid')->constrained('benefit')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('other')->length(100)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

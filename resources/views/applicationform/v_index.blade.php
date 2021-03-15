@@ -42,8 +42,8 @@
         <div class="col-9">
           {{-- <form id="forms"> --}}
             <!-- Jabatan -->
-            <form id="myFormId" role="form" action="/" method="post">
-                @csrf
+
+{{--
             <section id="jabatan" class="collapse show">
               <div class="form-group">
                   <select class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
@@ -103,8 +103,6 @@
                       <option value="{{$sx->id}}"
                         >{{$sx->sex}}</option>
                       @endforeach
-                    {{-- <option value="p">Pria</option>
-                    <option value="w">Wanita</option> --}}
                   </select>
                   <small id="sex" class="form-text text-muted">Jenis Kelamin</small>
                 </div>
@@ -116,10 +114,6 @@
                     <option value="{{$bl->id}}"
                       >{{$bl->blood}}</option>
                     @endforeach
-                    {{-- <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="AB">AB</option>
-                    <option value="O">O</option> --}}
                   </select>
                   <small id="emailHelp" class="form-text text-muted">Golongan Darah</small>
                 </div>
@@ -187,6 +181,7 @@
 
 
             </section>
+
             <!-- Family -->
             <section id="family" class="collapse">
               <div class="row">
@@ -197,9 +192,6 @@
                     <option value="{{$mr->id}}"
                       >{{$mr->maritalstatus}}</option>
                     @endforeach
-                    {{-- <option value="1">Lajang</option>
-                    <option value="2">Janda/Duda</option>
-                    <option value="3">Menikah</option> --}}
                   </select>
                   <small id="emailHelp" class="form-text text-muted">Status Pernikahan</small>
                 </div>
@@ -215,22 +207,6 @@
               <div id="center-fam">
                 <span>Susunan anggota keluarga inti</span>
                 <br>
-                {{-- <div class="row">
-                  <div class="col-md-6">
-                    <select class="select2mul form-control" name="menikah" id="menikah">
-                      <option value="1">Lajang</option>
-                      <option value="2">Janda/Duda</option>
-                      <option value="3">Menikah</option>
-                    </select>
-                    <small id="emailHelp" class="form-text text-muted">Status Pernikahan</small>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" required>
-                      <small id="menikah-thn" class="form-text text-muted">Tahun menikah</small>
-                    </div>
-                  </div>
-                </div> --}}
                 <!-- Loop -->
                 <div class="family-loop">
                   <div class="form-group">
@@ -248,9 +224,6 @@
                           >{{$fs->familystatus}}</option>
                         @endif
                         @endforeach
-                        {{-- <option value="1">Suami</option>
-                        <option value="2">Istri</option>
-                        <option value="3">Anak</option> --}}
                       </select>
                       <small id="fam-status" class="form-text text-muted">Status </small>
                     </div>
@@ -279,11 +252,6 @@
                     </div>
                     <div class="col-md-6">
                     <input name="fam_work_inti[]" type="text" class="form-control" id="fam-workinti[]" aria-describedby="fam-work" placeholder="Pekerjaan" required>
-
-                      {{-- <select class="select2fill form-control" name="fam-work[]" id="fam-work">
-                        <option value="PNS">PNS</option>
-                        <option value="P">Perempuan</option>
-                      </select> --}}
                       <small id="fam-workinti" class="form-text text-muted">Perkerjaan</small>
                     </div>
                   </div>
@@ -340,10 +308,6 @@
                   </div>
                   <div class="col-md-6">
                     <input name="fam_work[]" type="text" class="form-control" id="fam-work" aria-describedby="fam-work" placeholder="Pekerjaan" required>
-                    {{-- <select class=" form-control" name="fam-work[]" id="fam-work">
-                      <option value="PNS">PNS</option>
-                      <option value="P">Perempuan</option>
-                    </select> --}}
                     <small id="fam-work" class="form-text text-muted">Perkerjaan</small>
                   </div>
                 </div>
@@ -353,7 +317,7 @@
 
             </section>
 
-
+ --}}
 
 
               <!-- Education -->
@@ -708,12 +672,14 @@
                     <hr>
                   </div>
 
-            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
             </section>
 
-          </form>
+
+            <form id="myFormId" role="form" action="/" method="post">
+                @csrf
+
             <!--Work Experience-->
-            <section id="pengalaman" class="collapse">
+            <section id="pengalaman" class="">
               <span>Pengalaman Kerja</span>
               <br>
               <button type="button" class="btn btn-primary btn-sm">+</button>
@@ -721,32 +687,33 @@
               <div class="form-group" id="workexperience">
                 <div class="row">
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="pengalaman-nama" aria-describedby="nama" placeholder="Nama Perusahaan" required>
+                    <input name="pengalaman[0][nama]" type="text" class="form-control" id="pengalaman-nama" aria-describedby="nama" placeholder="Nama Perusahaan" required>
                     <small id="pengalaman-nama" class="form-text text-muted">Nama Perusahaan</small>
                   </div>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" id="pengalaman-bidang" aria-describedby="nama" placeholder="Bidang Perusahaan" required>
+                    <input name="pengalaman[0][bidang]" required type="text" class="form-control" id="pengalaman-bidang" aria-describedby="nama" placeholder="Bidang Perusahaan" >
                     <small id="pengalaman-bidang" class="form-text text-muted">Bidang Perusahaan</small>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-6">
-                    <textarea class="form-control" id="pengalaman-alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Perusahaan" required></textarea>
+                    <textarea name="pengalaman[0][alamat]" required class="form-control" id="pengalaman-alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Perusahaan" ></textarea>
                     <small id="pengalaman-alamat" class="form-text text-muted">Alamat Perusahaan</small>
                   </div>
                   <div class="col-md-6">
                     <div class="row">
                       <div class="col-md-5">
-                        <input type="date" class="form-control" id="pengalaman-mulai" aria-describedby="nama" placeholder="" required>
+                        <input name="pengalaman[0][mulai]" required type="date" class="form-control" id="pengalaman-mulai" aria-describedby="nama" placeholder="" >
                         <small id="pengalaman-mulai" class="form-text text-muted">Mulai</small>
                       </div>
                       <div class="col-md-5" id="berakhir">
-                        <input type="date" class="form-control" id="pengalaman-akhir" aria-describedby="nama" placeholder="" required>
+                        <input name="pengalaman[0][berakhir]" type="date" class="form-control" id="pengalaman-akhir" aria-describedby="nama" placeholder="" >
                         <small class="form-text text-muted">Berakhir</small>
                       </div>
-                      <div class="col-md-2">
-                        <input type="checkbox" id="pengalaman-statuskerja">
+                      <div class="col-md-1">
+                        <input type="hidden" name="pengalaman[0][statuskerja]" value="0" >
+                        <input name="pengalaman[0][statuskerja]" type="checkbox" value="1" id="pengalaman-statuskerja">
                         <small class="form-text text-muted">Masih Bekerja</small>
                       </div>
                     </div>
@@ -757,14 +724,16 @@
                   <div class="col-md-6">
                     <div class="row">
                       <div class="col-8">
-                        <input type="text" class="form-control" id="pengalaman-upah" aria-describedby="nama" placeholder="Upah Pokok" required>
+                        <input name="pengalaman[0][upah]" required type="text" class="form-control" id="pengalaman-upah" aria-describedby="nama" placeholder="Upah Pokok" >
                         <small id="pengalaman-upah" class="form-text text-muted">Upah Pokok</small>
                       </div>
                       <div class="col-md-4">
-                        <select class="select2mul form-control" name="pengalaman-status[]" id="pengalaman-status">
-                          <option value="B">Permanent</option>
-                          <option value="C">Kontrak</option>
-                          <option value="K">Freelancer</option>
+                        <select name="pengalaman[0][status]" required class="form-control" name="pengalaman-status[]" id="pengalaman-status">
+                            <option value="">--option--</option>
+                            @foreach ($employeestatuslist as $el)
+                            <option value="{{$el->id}}"
+                              >{{$el->employeestatus}}</option>
+                            @endforeach
                         </select>
                         <small id="pengalaman-status" class="form-text text-muted">Status Karyawan</small>
                       </div>
@@ -772,7 +741,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="col">
-                      <input type="text" class="form-control" id="pengalaman-alasan" aria-describedby="nama" placeholder="Alasan Berhenti" required>
+                      <input name="pengalaman[0][alasan]" required type="text" class="form-control" id="pengalaman-alasan" aria-describedby="nama" placeholder="Alasan Berhenti" >
                       <small id="pengalaman-alasan" class="form-text text-muted">Alasan Berhenti</small>
                     </div>
                   </div>
@@ -781,7 +750,7 @@
               </div>
 
               <!--Proyek-->
-              <div class="form-group" id="proyek">
+              <div class="form-group" id="proyek-1">
                 <span>Proyek</span>
                 <br>
                 <button type="button" class="btn btn-primary btn-sm">+</button>
@@ -789,17 +758,17 @@
                 <div class="row">
                   <div class="col-6">
                     <div class="col">
-                      <input type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" required>
+                      <input name="pengalaman[0][proyek][0][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
                       <small id="proyek-nama" class="form-text text-muted">Nama Proyek</small>
                     </div>
                     <div class="col">
                       <div class="row">
                         <div class="col-6">
-                          <input type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" required>
+                          <input name="pengalaman[0][proyek][0][posisi]" required type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" >
                           <small id="proyek-posisi" class="form-text text-muted">Posisi</small>
                         </div>
                         <div class="col-6">
-                          <input type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" required>
+                          <input name="pengalaman[0][proyek][0][divisi]" type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" >
                           <small id="proyek-divisi" class="form-text text-muted">Divisi</small>
                         </div>
                       </div>
@@ -807,7 +776,41 @@
                   </div>
                   <div class="col-6">
                     <div class="col">
-                      <textarea class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" required></textarea>
+                      <textarea name="pengalaman[0][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" ></textarea>
+                      <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan</small>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <!-- Proyek 2 -->
+              <div class="form-group" id="proyek-2">
+                <span>Proyek</span>
+                <br>
+                <button type="button" class="btn btn-primary btn-sm">+</button>
+                <button type="button" class="btn btn-primary btn-sm">-</button>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="col">
+                      <input name="pengalaman[0][proyek][1][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
+                      <small id="proyek-nama" class="form-text text-muted">Nama Proyek</small>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <div class="col-6">
+                          <input name="pengalaman[0][proyek][1][posisi]" required type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" >
+                          <small id="proyek-posisi" class="form-text text-muted">Posisi</small>
+                        </div>
+                        <div class="col-6">
+                          <input name="pengalaman[0][proyek][1][divisi]" type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" >
+                          <small id="proyek-divisi" class="form-text text-muted">Divisi</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="col">
+                      <textarea name="pengalaman[0][proyek][1][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" ></textarea>
                       <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan</small>
                     </div>
                   </div>
@@ -815,9 +818,147 @@
                 <hr>
               </div>
 
+              <br>
+              <br><br><br><br>
+
+              <!--Work Experience 2-->
+                <span>Pengalaman Kerja</span>
+                <br>
+                <button type="button" class="btn btn-primary btn-sm">+</button>
+                <button type="button" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="workexperience">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input name="pengalaman[1][nama]" type="text" class="form-control" id="pengalaman-nama" aria-describedby="nama" placeholder="Nama Perusahaan" required>
+                      <small id="pengalaman-nama" class="form-text text-muted">Nama Perusahaan</small>
+                    </div>
+                    <div class="col-md-6">
+                      <input name="pengalaman[1][bidang]" required type="text" class="form-control" id="pengalaman-bidang" aria-describedby="nama" placeholder="Bidang Perusahaan" >
+                      <small id="pengalaman-bidang" class="form-text text-muted">Bidang Perusahaan</small>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <textarea name="pengalaman[1][alamat]" required class="form-control" id="pengalaman-alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Perusahaan" ></textarea>
+                      <small id="pengalaman-alamat" class="form-text text-muted">Alamat Perusahaan</small>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <input name="pengalaman[1][mulai]" required type="date" class="form-control" id="pengalaman-mulai" aria-describedby="nama" placeholder="" >
+                          <small id="pengalaman-mulai" class="form-text text-muted">Mulai</small>
+                        </div>
+                        <div class="col-md-5" id="berakhir">
+                          <input name="pengalaman[1][berakhir]" type="date" class="form-control" id="pengalaman-akhir" aria-describedby="nama" placeholder="" >
+                          <small class="form-text text-muted">Berakhir</small>
+                        </div>
+                        <div class="col-md-1">
+                          <input type="hidden" name="pengalaman[1][statuskerja]" value="0" >
+                          <input name="pengalaman[1][statuskerja]" type="checkbox" value="1" id="pengalaman-statuskerja">
+                          <small class="form-text text-muted">Masih Bekerja</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-8">
+                          <input name="pengalaman[1][upah]" required type="text" class="form-control" id="pengalaman-upah" aria-describedby="nama" placeholder="Upah Pokok" >
+                          <small id="pengalaman-upah" class="form-text text-muted">Upah Pokok</small>
+                        </div>
+                        <div class="col-md-4">
+                          <select name="pengalaman[1][status]" required class="form-control" name="pengalaman-status[]" id="pengalaman-status">
+                              <option value="">--option--</option>
+                              @foreach ($employeestatuslist as $el)
+                              <option value="{{$el->id}}"
+                                >{{$el->employeestatus}}</option>
+                              @endforeach
+                          </select>
+                          <small id="pengalaman-status" class="form-text text-muted">Status Karyawan</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="col">
+                        <input name="pengalaman[1][alasan]" required type="text" class="form-control" id="pengalaman-alasan" aria-describedby="nama" placeholder="Alasan Berhenti" >
+                        <small id="pengalaman-alasan" class="form-text text-muted">Alasan Berhenti</small>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                </div>
+
+                <!--Proyek-->
+              <div class="form-group" id="proyek-1">
+                <span>Proyek</span>
+                <br>
+                <button type="button" class="btn btn-primary btn-sm">+</button>
+                <button type="button" class="btn btn-primary btn-sm">-</button>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="col">
+                      <input name="pengalaman[1][proyek][0][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
+                      <small id="proyek-nama" class="form-text text-muted">Nama Proyek</small>
+                    </div>
+                    <div class="col">
+                      <div class="row">
+                        <div class="col-6">
+                          <input name="pengalaman[1][proyek][0][posisi]" required type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" >
+                          <small id="proyek-posisi" class="form-text text-muted">Posisi</small>
+                        </div>
+                        <div class="col-6">
+                          <input name="pengalaman[1][proyek][0][divisi]" type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" >
+                          <small id="proyek-divisi" class="form-text text-muted">Divisi</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="col">
+                      <textarea name="pengalaman[1][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" ></textarea>
+                      <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan</small>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+
+                {{--
             <!--Benefit-->
             <div class="form-group">
               <div class="row">
+                  @foreach ($benefitlist as $index => $ben)
+                  @if ($index == 0)
+                  <div class="col-4">
+                  @else
+                        @if ($index != 0)
+                            @if (fmod($index,4) == 0)
+                                    </div>
+                            @endif
+                        @endif
+                      @if (fmod($index,4) == 0)
+                      <div class="col-4">
+                     @endif
+                  @endif
+                  <div class="col">
+                    <div class="row">
+                      <div class=col-3>
+                        <input name="benefit[]" type="checkbox" value="{{$ben->id}}">
+                      </div>
+                      <div class=col-6>
+                        <small class="form-text text-muted">{{$ben->benefit}}</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  @endforeach
+                  <div class="col">
+                    <input name="other" type="text" class="form-control" id="benefit-lainnya" aria-describedby="nama" placeholder="Lainnya" >
+                  </div>
+                  </div>
                 <div class="col-4">
                   <div class="col">
                     <div class="row">
@@ -934,14 +1075,17 @@
                     </div>
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" id="benefit-lainnya" aria-describedby="nama" placeholder="Lainnya" required>
+                    <input type="text" class="form-control" id="benefit-lainnya" aria-describedby="nama" placeholder="Lainnya" >
                   </div>
                 </div>
               </div>
               <hr>
             </div>
+            --}}
             </section>
 
+        <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
             <!--Organisasi dan Refrensi-->
             <section id="orgnref" class="collapse">
@@ -954,19 +1098,19 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="organisasi-nama" aria-describedby="nama" placeholder="Nama Organisasi" required>
+                      <input type="text" class="form-control" id="organisasi-nama" aria-describedby="nama" placeholder="Nama Organisasi" >
                       <small id="organisasi-nama" class="form-text text-muted">Nama Organisasi</small>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="organisasi-jenis" aria-describedby="nama" placeholder="Jenis Organisasi" required>
+                      <input type="text" class="form-control" id="organisasi-jenis" aria-describedby="nama" placeholder="Jenis Organisasi" >
                       <small id="organisasi-penerbit" class="form-text text-muted">Jenis Organisasi</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="organisasi-tahun" aria-describedby="nama" placeholder="Tahun" required>
+                      <input type="text" class="form-control" id="organisasi-tahun" aria-describedby="nama" placeholder="Tahun" >
                       <small id="organisasi-tahun" class="form-text text-muted">Tahun</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="organisasi-jabatan" aria-describedby="nama" placeholder="Jabatan" required>
+                      <input type="text" class="form-control" id="organisasi-jabatan" aria-describedby="nama" placeholder="Jabatan" >
                       <small id="organisasi-jabatan" class="form-text text-muted">Jabatan</small>
                     </div>
                   </div>
@@ -981,19 +1125,19 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="Ref-nama" aria-describedby="nama" placeholder="Nama Refrensi" required>
+                      <input type="text" class="form-control" id="Ref-nama" aria-describedby="nama" placeholder="Nama Refrensi" >
                       <small id="Ref-nama" class="form-text text-muted">Nama Refrensi</small>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="Ref-notlp" aria-describedby="nama" placeholder="Nomor Telepon" required>
+                      <input type="text" class="form-control" id="Ref-notlp" aria-describedby="nama" placeholder="Nomor Telepon" >
                       <small id="Ref-notlp" class="form-text text-muted">No.Telepon</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="Ref-jabatan" aria-describedby="nama" placeholder="Jabatan" required>
+                      <input type="text" class="form-control" id="Ref-jabatan" aria-describedby="nama" placeholder="Jabatan" >
                       <small id="Ref-jabatan" class="form-text text-muted">Jabatan</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="Ref-hubungan" aria-describedby="nama" placeholder="Hubungan" required>
+                      <input type="text" class="form-control" id="Ref-hubungan" aria-describedby="nama" placeholder="Hubungan" >
                       <small id="Ref-hubungan" class="form-text text-muted">Hubungan</small>
                     </div>
                   </div>
@@ -1009,19 +1153,19 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-lowongan" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-lowongan" aria-describedby="nama" placeholder="" >
                       <small id="other-lowongan" class="form-text text-muted">Dari mana Anda Mengetahui adanya Lowongan ini?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-kelebihan" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-kelebihan" aria-describedby="nama" placeholder="" >
                       <small id="other-kelebihan" class="form-text text-muted">Apa kelebihan anda?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-kekurangan" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-kekurangan" aria-describedby="nama" placeholder="" >
                       <small id="other-kekurangan" class="form-text text-muted">Apa kelemahan anda?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-mengatasi" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-mengatasi" aria-describedby="nama" placeholder="" >
                       <small id="other-mengatasi" class="form-text text-muted">Apa yang anda lakukan untuk mengatasi kelemahan anda?</small>
                     </div>
                   </div>
@@ -1031,15 +1175,15 @@
                       <small class="form-text text-muted">Apakah Anda pernah dirawat di rumah sakit dan atau sakit keras?</small>
                     </div>
                     <div class="col-md" style="display:none" id="jika-ya">
-                      <input type="text" class="form-control" id="other-ya" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-ya" aria-describedby="nama" placeholder="" >
                       <small id="other-ya" class="form-text text-muted">Jika Ya, harap sebutkan penyakit yang pernah diderita?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-gaji" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-gaji" aria-describedby="nama" placeholder="" >
                       <small id="other-gaji" class="form-text text-muted">Gaji yang diharapkan?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-mulaikerja" aria-describedby="nama" placeholder="" required>
+                      <input type="text" class="form-control" id="other-mulaikerja" aria-describedby="nama" placeholder="" >
                       <small id="other-mulaikerja" class="form-text text-muted">Kapan anda dapat mulai bekerja?</small>
                     </div>
                   </div>
@@ -1048,7 +1192,7 @@
 
                 <!--Check data-->
                 <div class="col">
-                  <input type="checkbox" id="other-data" required>
+                  <input type="checkbox" id="other-data" >
                       <small id="other-data" class="form-text text-muted">Semua keterangan yang saya buat diatas adalah dengan jujur
                         dan sesungguhnya
                         </small>
@@ -1072,11 +1216,25 @@
   {{-- <script src="{{asset('applicationform/')}}/page.js"></script> --}}
 
   <!--Check Pernah di rawat-->
+      <!-- Checkbox -->
+      <script type="text/javascript">
+        $(document).ready(function() {
+             // on form submit
+            $("#myFormId").on('submit', function() {
+                // to each unchecked checkbox
+                $(this + 'input[type=checkbox]:not(:checked)').each(function () {
+                    // set value 0 and check it
+                    $(this).attr('checked', true).val(0);
+                });
+            })
+        })
+    </script>
   <script>
     $('#myFormId').submit(function() {
         $("#myButtonID", this)
             .html("Please Wait...")
             .attr('disabled', 'disabled');
+
         return true;
     });
     </script>
@@ -1112,5 +1270,6 @@
       });
     });
     </script>
+
 </body>
 </html>

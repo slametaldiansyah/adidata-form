@@ -21,11 +21,11 @@ class Workexperience extends Migration
             $table->string('lineofbussiness')->length(200);
             $table->string('address')->length(500);
             $table->date('start');
-            $table->date('end');
+            $table->date('end')->nullable();
             $table->biginteger('basicsalary')->length(20);
-            $table->integer('employeestatus')->length(11);
+            $table->foreignId('employeestatusid')->constrained('employeestatus')->onDelete('cascade')->onUpdate('cascade');
             $table->string('leavingreason')->length(200);
-            $table->string('otherbenefit')->length(200);
+            $table->string('otherbenefit')->length(200)->nullable();
             $table->boolean('stillworking');
             $table->timestamps();
             $table->softDeletes();
