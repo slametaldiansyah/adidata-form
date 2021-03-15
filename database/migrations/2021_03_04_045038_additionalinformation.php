@@ -24,12 +24,12 @@ class Additionalinformation extends Migration
             $table->string('weakness')->length(300);
             $table->string('overcomeweakness')->length(300);
             $table->biginteger('expectedsalary')->length(20);
-            $table->date('expectedreadytojoindate');
+            $table->string('expectedreadytojoindate')->length(200);
             $table->tinyinteger('pledgeoftruthness')->length(1);
             $table->foreignId('positionid')->constrained('position')->onDelete('cascade')->onUpdate('cascade');
             // $table->string('position')->length(5);
             $table->string('jobcode')->length(50)->nullable();
-            $table->foreignId('jobdurationid')->constrained('jobduration')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('jobdurationid')->nullable()->constrained('jobduration')->onDelete('cascade')->onUpdate('cascade');
             // $table->string('jobdurationid')->length(10);
             $table->timestamps();
             $table->softDeletes();

@@ -20,7 +20,7 @@ class Organization extends Migration
             $table->string('name')->length(50);
             $table->string('organizationtype')->length(50);
             $table->string('yearstart')->length(4);
-            $table->string('yearend')->length(4);
+            $table->string('yearend')->length(4)->nullable();
             $table->string('position')->length(100);
             $table->timestamps();
             $table->softDeletes();

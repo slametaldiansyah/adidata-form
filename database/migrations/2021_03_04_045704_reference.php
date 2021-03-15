@@ -20,7 +20,7 @@ class Reference extends Migration
             $table->string('name')->length(50);
             $table->string('phonenumber')->length(50);
             $table->string('position')->length(50);
-            $table->string('division')->length(50);
+            $table->string('relationship')->length(50);
             $table->timestamps();
             $table->softDeletes();
         });

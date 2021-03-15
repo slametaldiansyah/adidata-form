@@ -43,7 +43,9 @@
           {{-- <form id="forms"> --}}
             <!-- Jabatan -->
 
-{{--
+
+            <form id="myFormId" role="form" action="/" method="post">
+                @csrf
             <section id="jabatan" class="collapse show">
               <div class="form-group">
                   <select class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
@@ -317,7 +319,7 @@
 
             </section>
 
- --}}
+
 
 
               <!-- Education -->
@@ -471,8 +473,7 @@
                           >{{$ll->language}}</option>
                         @endforeach
                           </select>
-                      {{-- <input type="text" class="form-control" id="bahasa" aria-describedby="nama" placeholder="Bahasa" required> --}}
-                      <small id="bahasa-1" class="form-text text-muted">Bahasa</small>
+                     <small id="bahasa-1" class="form-text text-muted">Bahasa</small>
                     </div>
                     <div class="col-md-3">
                       <select class="form-control" name="tulis_level[]" id="tulis-level-1">
@@ -511,7 +512,6 @@
                           >{{$ll->language}}</option>
                         @endforeach
                           </select>
-                      {{-- <input type="text" class="form-control" id="bahasa" aria-describedby="nama" placeholder="Bahasa" required> --}}
                       <small id="bahasa-2" class="form-text text-muted">Bahasa</small>
                     </div>
                     <div class="col-md-3">
@@ -675,11 +675,8 @@
             </section>
 
 
-            <form id="myFormId" role="form" action="/" method="post">
-                @csrf
-
             <!--Work Experience-->
-            <section id="pengalaman" class="">
+            <section id="pengalaman" class="collapse">
               <span>Pengalaman Kerja</span>
               <br>
               <button type="button" class="btn btn-primary btn-sm">+</button>
@@ -926,8 +923,9 @@
                 <hr>
               </div>
 
-                {{--
-            <!--Benefit-->
+
+
+                    <!--Benefit-->
             <div class="form-group">
               <div class="row">
                   @foreach ($benefitlist as $index => $ben)
@@ -959,133 +957,13 @@
                     <input name="other" type="text" class="form-control" id="benefit-lainnya" aria-describedby="nama" placeholder="Lainnya" >
                   </div>
                   </div>
-                <div class="col-4">
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="bpjstenagakerja">
-                      </div>
-                      <div class=col-6>
-                        <small id="bpjstenagakerja" class="form-text text-muted">BPJS Tenagakerja</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="bpjskesehatan">
-                      </div>
-                      <div class=col-6>
-                        <small id="bpjskesehatan" class="form-text text-muted">BPJS Kesehatan</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="kesehatan">
-                      </div>
-                      <div class=col-6>
-                        <small id="kesehatan" class="form-text text-muted">Kesehatan</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="pajak">
-                      </div>
-                      <div class=col-6>
-                        <small id="pajak" class="form-text text-muted">Pajak</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="transport">
-                      </div>
-                      <div class=col-6>
-                        <small id="transport" class="form-text text-muted">Transport</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="makan">
-                      </div>
-                      <div class=col-6>
-                        <small id="makan" class="form-text text-muted">Makan</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="bonus">
-                      </div>
-                      <div class=col-6>
-                        <small id="bonus" class="form-text text-muted">Bonus</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="lembur">
-                      </div>
-                      <div class=col-6>
-                        <small id="lembur" class="form-text text-muted">Lembur</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4">
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="Laptop">
-                      </div>
-                      <div class=col-6>
-                        <small id="laptop" class="form-text text-muted">Laptop</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="danapensiun">
-                      </div>
-                      <div class=col-6>
-                        <small id="danapensiun" class="form-text text-muted">Dana Pensiun</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class=col-3>
-                        <input type="checkbox" id="lainnya">
-                      </div>
-                      <div class=col-6>
-                        <small id="lainnya" class="form-text text-muted">Lainnya</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" id="benefit-lainnya" aria-describedby="nama" placeholder="Lainnya" >
-                  </div>
-                </div>
+
               </div>
               <hr>
             </div>
-            --}}
+
             </section>
 
-        <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
-        </form>
 
             <!--Organisasi dan Refrensi-->
             <section id="orgnref" class="collapse">
@@ -1098,20 +976,38 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="organisasi-nama" aria-describedby="nama" placeholder="Nama Organisasi" >
+                      <input name="organisasi[0][nama]" required type="text" class="form-control" id="organisasi-nama" aria-describedby="nama" placeholder="Nama Organisasi" >
                       <small id="organisasi-nama" class="form-text text-muted">Nama Organisasi</small>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="organisasi-jenis" aria-describedby="nama" placeholder="Jenis Organisasi" >
+                      <input name="organisasi[0][jenis]" required type="text" class="form-control" id="organisasi-jenis" aria-describedby="nama" placeholder="Jenis Organisasi" >
                       <small id="organisasi-penerbit" class="form-text text-muted">Jenis Organisasi</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="organisasi-tahun" aria-describedby="nama" placeholder="Tahun" >
+                      <input name="organisasi[0][tahun]" required type="text" class="form-control" id="organisasi-tahun" aria-describedby="nama" placeholder="Tahun" >
                       <small id="organisasi-tahun" class="form-text text-muted">Tahun</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="organisasi-jabatan" aria-describedby="nama" placeholder="Jabatan" >
+                      <input name="organisasi[0][jabatan]" required type="text" class="form-control" id="organisasi-jabatan" aria-describedby="nama" placeholder="Jabatan" >
                       <small id="organisasi-jabatan" class="form-text text-muted">Jabatan</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input name="organisasi[1][nama]" required type="text" class="form-control" id="organisasi-nama-1" aria-describedby="nama" placeholder="Nama Organisasi" >
+                      <small id="organisasi-nama-1" class="form-text text-muted">Nama Organisasi</small>
+                    </div>
+                    <div class="col-md-3">
+                      <input name="organisasi[1][jenis]" required type="text" class="form-control" id="organisasi-jenis-1" aria-describedby="nama" placeholder="Jenis Organisasi" >
+                      <small id="organisasi-penerbit-1" class="form-text text-muted">Jenis Organisasi</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="organisasi[1][tahun]" required type="text" class="form-control" id="organisasi-tahun-1" aria-describedby="nama" placeholder="Tahun" >
+                      <small id="organisasi-tahun-1" class="form-text text-muted">Tahun</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="organisasi[1][jabatan]" required type="text" class="form-control" id="organisasi-jabatan-1" aria-describedby="nama" placeholder="Jabatan" >
+                      <small id="organisasi-jabatan-1" class="form-text text-muted">Jabatan</small>
                     </div>
                   </div>
                   <hr>
@@ -1125,25 +1021,44 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="Ref-nama" aria-describedby="nama" placeholder="Nama Refrensi" >
+                      <input name="refrensi[0][nama]" required type="text" class="form-control" id="Ref-nama" aria-describedby="nama" placeholder="Nama Refrensi" >
                       <small id="Ref-nama" class="form-text text-muted">Nama Refrensi</small>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="Ref-notlp" aria-describedby="nama" placeholder="Nomor Telepon" >
+                      <input name="refrensi[0][notlp]" required type="text" class="form-control" id="Ref-notlp" aria-describedby="nama" placeholder="Nomor Telepon" >
                       <small id="Ref-notlp" class="form-text text-muted">No.Telepon</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="Ref-jabatan" aria-describedby="nama" placeholder="Jabatan" >
+                      <input name="refrensi[0][jabatan]" required type="text" class="form-control" id="Ref-jabatan" aria-describedby="nama" placeholder="Jabatan" >
                       <small id="Ref-jabatan" class="form-text text-muted">Jabatan</small>
                     </div>
                     <div class="col-md-2">
-                      <input type="text" class="form-control" id="Ref-hubungan" aria-describedby="nama" placeholder="Hubungan" >
+                      <input name="refrensi[0][hubungan]" required type="text" class="form-control" id="Ref-hubungan" aria-describedby="nama" placeholder="Hubungan" >
                       <small id="Ref-hubungan" class="form-text text-muted">Hubungan</small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <input name="refrensi[1][nama]" required type="text" class="form-control" id="Ref-nama-1" aria-describedby="nama" placeholder="Nama Refrensi" >
+                      <small id="Ref-nama-1" class="form-text text-muted">Nama Refrensi</small>
+                    </div>
+                    <div class="col-md-3">
+                      <input name="refrensi[1][notlp]" required type="text" class="form-control" id="Ref-notlp-1" aria-describedby="nama" placeholder="Nomor Telepon" >
+                      <small id="Ref-notlp-1" class="form-text text-muted">No.Telepon</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="refrensi[1][jabatan]" required type="text" class="form-control" id="Ref-jabatan-1" aria-describedby="nama" placeholder="Jabatan" >
+                      <small id="Ref-jabatan-1" class="form-text text-muted">Jabatan</small>
+                    </div>
+                    <div class="col-md-2">
+                      <input name="refrensi[1][hubungan]" required type="text" class="form-control" id="Ref-hubungan-1" aria-describedby="nama" placeholder="Hubungan" >
+                      <small id="Ref-hubungan-1" class="form-text text-muted">Hubungan</small>
                     </div>
                   </div>
                   <hr>
                 </div>
             </section>
+
 
             <!--Keterangan Lain-->
             <section id="other" class="collapse">
@@ -1153,37 +1068,38 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-lowongan" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_lowongan" type="text" class="form-control" id="other-lowongan" aria-describedby="nama" placeholder="" >
                       <small id="other-lowongan" class="form-text text-muted">Dari mana Anda Mengetahui adanya Lowongan ini?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-kelebihan" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_kelebihan" type="text" class="form-control" id="other-kelebihan" aria-describedby="nama" placeholder="" >
                       <small id="other-kelebihan" class="form-text text-muted">Apa kelebihan anda?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-kekurangan" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_kekurangan" type="text" class="form-control" id="other-kekurangan" aria-describedby="nama" placeholder="" >
                       <small id="other-kekurangan" class="form-text text-muted">Apa kelemahan anda?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-mengatasi" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_mengatasi"  type="text" class="form-control" id="other-mengatasi" aria-describedby="nama" placeholder="" >
                       <small id="other-mengatasi" class="form-text text-muted">Apa yang anda lakukan untuk mengatasi kelemahan anda?</small>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="col-md">
-                      <input type="checkbox" id="other-sakit">
+                        <input name="informasilain_sakit" type="hidden" value="0">
+                      <input name="informasilain_sakit" type="checkbox" value="1" id="other-sakit">
                       <small class="form-text text-muted">Apakah Anda pernah dirawat di rumah sakit dan atau sakit keras?</small>
                     </div>
                     <div class="col-md" style="display:none" id="jika-ya">
-                      <input type="text" class="form-control" id="other-ya" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_sakit_ya" type="text" class="form-control" id="other-ya" aria-describedby="nama" placeholder="" >
                       <small id="other-ya" class="form-text text-muted">Jika Ya, harap sebutkan penyakit yang pernah diderita?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-gaji" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_gaji" type="text" class="form-control" id="other-gaji" aria-describedby="nama" placeholder="" >
                       <small id="other-gaji" class="form-text text-muted">Gaji yang diharapkan?</small>
                     </div>
                     <div class="col-md">
-                      <input type="text" class="form-control" id="other-mulaikerja" aria-describedby="nama" placeholder="" >
+                      <input name="informasilain_mulaikerja" type="text" class="form-control" id="other-mulaikerja" aria-describedby="nama" placeholder="" >
                       <small id="other-mulaikerja" class="form-text text-muted">Kapan anda dapat mulai bekerja?</small>
                     </div>
                   </div>
@@ -1192,14 +1108,15 @@
 
                 <!--Check data-->
                 <div class="col">
-                  <input type="checkbox" id="other-data" >
+                  <input name="informasilain_data" type="checkbox" value="1" id="other-data" required>
                       <small id="other-data" class="form-text text-muted">Semua keterangan yang saya buat diatas adalah dengan jujur
                         dan sesungguhnya
                         </small>
                 </div>
               </div>
             </section>
-
+            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
+        </form>
             <button type="button" class="btn btn-primary prev"> Pref</button>
             <button type="button" class="btn btn-primary next"> Next</button>
           {{-- </form> --}}
