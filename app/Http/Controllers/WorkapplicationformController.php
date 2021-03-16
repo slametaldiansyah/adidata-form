@@ -90,7 +90,6 @@ class WorkapplicationformController extends Controller
         $rules = [
             //
             'jabatan' => 'required',
-
             //candidate
             'name' => 'required|string|min:6',
             'sex' => 'required',
@@ -103,20 +102,35 @@ class WorkapplicationformController extends Controller
             'citizenship' => 'required',
             'religion' => 'required',
             'menikah' => 'required',
-
-            // //detail_user
-            // 'fullname' => 'required|string|between:4,100',
-            // 'name' => 'required|string',
-            // 'birth_date' => 'required|date',
-            // 'join_date' => 'required|date',
-            // 'position_id' => 'required',
-            // 'NIK' => 'required|integer',
-            // 'NPWP' => 'required|string',
-            // 'email' => 'required|string|email',
-
-            // //role
-            // 'role_id' => 'required',
-            // 'application_id' => 'required',
+            // Family Inti
+            // 'faminti' => 'required',
+            // Family Inti
+            'fam' => 'required',
+            // formal
+            'formal' => 'required',
+            // nonformal
+            'nonformal' => 'required',
+            // bahasa
+            'bahasa' => 'required',
+            // komputer
+            'komputer' => 'required',
+            // special
+            'special' => 'required',
+            // sertifikasi
+            'sertifikasi' => 'required',
+            // special
+            'special' => 'required',
+            // special
+            'special' => 'required',
+            // additionalinformation
+            'informasilain_lowongan' => 'required',
+            'informasilain_sakit' => 'required',
+            'informasilain_sakit_ya' => 'required',
+            'informasilain_kelebihan' => 'required',
+            'informasilain_kekurangan' => 'required',
+            'informasilain_mengatasi' => 'required',
+            'informasilain_mulaikerja' => 'required',
+            'informasilain_data' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
 
@@ -124,6 +138,7 @@ class WorkapplicationformController extends Controller
             return back()->withErrors($request->all());
         }
 
+        // dd($request->all());
         // candidate
         $candidateId = Candidate::create([
             'name' => $request->name,
@@ -142,6 +157,7 @@ class WorkapplicationformController extends Controller
             'createdate' => Carbon::now()->toDateString(),
             'isfreshgraduate' => $request->baru_lulus,
         ])->id;
+
 
         //status menikah
         if ($request->menikah == '3') {
@@ -165,120 +181,122 @@ class WorkapplicationformController extends Controller
         }
 
         // family member
-        $sizeinti = count($request->fam_name_inti);
-        $sizefam = count($request->fam_name);
+
         if ($familyId == true) {
-            if ($request->fam_name_inti != null ) {
+            $sizeinti = count($request->faminti);
+            if ($request->faminti[0]['status'] != null ) {
             for ($i=0; $i < $sizeinti; $i++) {
                 $familyMemberInti = Familymember::create([
                     'familyid' => $familyId,
-                    'familystatusid' => $request->fam_status_inti[$i],
-                    'name' => $request->fam_name_inti[$i],
-                    'sexid' => $request->fam_sex_inti[$i],
-                    'educationlevelid' => $request->fam_education_inti[$i],
-                    'profession' => $request->fam_work_inti[$i],
+                    'familystatusid' => $request->faminti[$i]['status'],
+                    'name' => $request->faminti[$i]['name'],
+                    'sexid' => $request->faminti[$i]['sex'],
+                    'educationlevelid' => $request->faminti[$i]['education'],
+                    'profession' => $request->faminti[$i]['work'],
                 ]);
                 }
             }
-            if ($request->fam_name != null) {
+            $sizefam = count($request->fam);
+            if ($request->fam != null) {
                 for ($i=0; $i < $sizefam; $i++) {
                     $familyMember = Familymember::create([
                         'familyid' => $familyId,
-                        'familystatusid' => $request->fam_status[$i],
-                        'name' => $request->fam_name[$i],
-                        'sexid' => $request->fam_sex[$i],
-                        'educationlevelid' => $request->fam_education[$i],
-                        'profession' => $request->fam_work[$i],
+                        'familystatusid' => $request->fam[$i]['status'],
+                        'name' => $request->fam[$i]['name'],
+                        'sexid' => $request->fam[$i]['sex'],
+                        'educationlevelid' => $request->fam[$i]['education'],
+                        'profession' => $request->fam[$i]['work'],
                     ]);
                     }
             }
         }
 
+
         //formaleducation
-        $sizeformal = count($request->jenjang);
-            if ($request->jenjang != null ) {
+            if ($request->formal != null ) {
+            $sizeformal = count($request->formal);
             for ($i=0; $i < $sizeformal; $i++) {
                 $formaleducation = Formaleducation::create([
                     'candidateid' => $candidateId,
                     // 'candidateid' => 1,
-                    'educationlevelid' => $request->jenjang[$i],
-                    'institutionname' => $request->nama_lembaga[$i],
-                    'location' => $request->kota_lembaga[$i],
-                    'GPA' => $request->IPK[$i],
-                    'yearentry' => $request->masuk_lembaga[$i],
-                    'yeargraduation' => $request->lulus_lembaga[$i],
+                    'educationlevelid' => $request->formal[$i]['jenjang'],
+                    'institutionname' => $request->formal[$i]['nama'],
+                    'location' => $request->formal[$i]['kota'],
+                    'GPA' => $request->formal[$i]['IPK'],
+                    'yearentry' => $request->formal[$i]['masuk'],
+                    'yeargraduation' => $request->formal[$i]['lulus'],
                 ]);
             }
         }
 
         // // Nonformal Education
-        $sizenonformal = count($request->kursus_nama);
-            if ($request->kursus_nama != null ) {
+            if ($request->nonformal != null ) {
+            $sizenonformal = count($request->nonformal);
             for ($i=0; $i < $sizenonformal; $i++) {
                 $nonformaleducation = Informaleducation::create([
                     'candidateid' => $candidateId,
                     // 'candidateid' => 1,
-                    'course_trainingname' => $request->kursus_nama[$i],
-                    'year' => $request->kursus_tahun[$i],
-                    'duration' => $request->kursus_durasi[$i],
-                    'certificate' => 0,
-                    'sponsoreby' => $request->kursus_biaya[$i],
+                    'course_trainingname' => $request->nonformal[$i]['nama'],
+                    'year' => $request->nonformal[$i]['tahun'],
+                    'duration' => $request->nonformal[$i]['durasi'],
+                    'certificate' => $request->nonformal[$i]['ijazah'],
+                    'sponsoreby' => $request->nonformal[$i]['biaya'],
                 ]);
             }
         }
 
         // language
-        $sizelanguage = count($request->bahasa);
         if ($request->bahasa != null ) {
-        for ($i=0; $i < $sizelanguage; $i++) {
+            $sizelanguage = count($request->bahasa);
+            for ($i=0; $i < $sizelanguage; $i++) {
             $language = Languageproficiency::create([
-                // 'candidateid' => 1,
+                // 'candidateid' => 3,
                 'candidateid' => $candidateId,
-                'languageid' => $request->bahasa[$i],
-                'written' => $request->tulis_level[$i],
-                'read' => $request->baca_level[$i],
-                'speaking' => $request->lisan_level[$i],
+                'languageid' => $request->bahasa[$i]['bahasa'],
+                'written' => $request->bahasa[$i]['tulis_level'],
+                'read' => $request->bahasa[$i]['baca_level'],
+                'speaking' => $request->bahasa[$i]['lisan_level'],
             ]);
             }
         }
 
         // // computerproficiency
-        $sizesomprof = count($request->komputer);
         if ($request->komputer != null ) {
-        for ($i=0; $i < $sizesomprof; $i++) {
-            $comprof = Computerproficiency::create([
-                // 'candidateid' => 1,
-                'candidateid' => $candidateId,
-                'skillname' => $request->komputer[$i],
-                'proficiencylevelid' => $request->komputer_level[$i],
-            ]);
+            $sizesomprof = count($request->komputer);
+            for ($i=0; $i < $sizesomprof; $i++) {
+                $comprof = Computerproficiency::create([
+                    // 'candidateid' => 3,
+                    'candidateid' => $candidateId,
+                    'skillname' => $request->komputer[$i]['name'],
+                    'proficiencylevelid' => $request->komputer[$i]['level'],
+                ]);
+                }
             }
-        }
 
         // //spesial proficiency
-        $sizespesial = count($request->special);
         if ($request->special != null ) {
-        for ($i=0; $i < $sizespesial; $i++) {
+            $sizespesial = count($request->special);
+            for ($i=0; $i < $sizespesial; $i++) {
             $spesialprof = Spesialskillproficiency::create([
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
-                'skillname' => $request->special[$i],
-                'proficiencylevelid' => $request->special_level[$i],
+                // 'candidateid' => 3,
+                'skillname' => $request->special[$i]['name'],
+                'proficiencylevelid' => $request->special[$i]['level'],
             ]);
             }
         }
 
         // // certificate
-        $sizecertificate = count($request->sertifikasi_nama);
-        if ($request->sertifikasi_nama != null ) {
+        $sizecertificate = count($request->sertifikasi);
+        if ($request->sertifikasi != null ) {
         for ($i=0; $i < $sizecertificate; $i++) {
             $spesialprof = Certificate::create([
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
-                'namecertificate' => $request->sertifikasi_nama[$i],
-                'issuer' => $request->sertifikasi_penerbit[$i],
-                'year' => $request->sertifikasi_tahun[$i],
-                'expiredyear' => $request->sertifikasi_berlaku[$i],
+                // 'candidateid' => 3,
+                'namecertificate' => $request->sertifikasi[$i]['name'],
+                'issuer' => $request->sertifikasi[$i]['penerbit'],
+                'year' => $request->sertifikasi[$i]['tahun'],
+                'expiredyear' => $request->sertifikasi[$i]['berlaku'],
             ]);
             }
         }
@@ -286,13 +304,13 @@ class WorkapplicationformController extends Controller
         // dd($request->pengalaman[0]['proyek'][0]['nama']);
         // dd($request->pengalaman[0]['statuskerja']);
         // Workexperience
-        $sizeexperience = count($request->pengalaman);
         if ($request->pengalaman != null ) {
-        for ($i=0; $i < $sizeexperience; $i++) {
+            $sizeexperience = count($request->pengalaman);
+            for ($i=0; $i < $sizeexperience; $i++) {
             if ($request->pengalaman[$i]['statuskerja'] == '1' ) {
             $workexperienceId = Workexperience::create([
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
+                // 'candidateid' => 3,
                 'companyname' => $request->pengalaman[$i]['nama'],
                 'lineofbussiness' => $request->pengalaman[$i]['bidang'],
                 'address' => $request->pengalaman[$i]['alamat'],
@@ -305,7 +323,7 @@ class WorkapplicationformController extends Controller
             }else{
                 $workexperienceId = Workexperience::create([
                     'candidateid' => $candidateId,
-                    // 'candidateid' => 1,
+                    // 'candidateid' => 3,
                     'companyname' => $request->pengalaman[$i]['nama'],
                     'lineofbussiness' => $request->pengalaman[$i]['bidang'],
                     'address' => $request->pengalaman[$i]['alamat'],
@@ -333,20 +351,20 @@ class WorkapplicationformController extends Controller
         }
 
          // Lastjobbenefit
-        $sizebenefit = count($request->benefit);
         if ($request->benefit != null ) {
-        for ($i=0; $i < $sizebenefit; $i++) {
+            $sizebenefit = count($request->benefit);
+            for ($i=0; $i < $sizebenefit; $i++) {
             $lastjobbenefitId = Lastjobbenefit::create([
                 'benefitid' => $request->benefit[$i],
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
+                // 'candidateid' => 3,
             ]);
             }
             if ($request->other != null) {
                 $lastjobbenefitId = Lastjobbenefit::create([
                     'benefitid' => 11,
                     'candidateid' => $candidateId,
-                    // 'candidateid' => 1,
+                    // 'candidateid' => 3,
                     'other' => $request->other,
 
                 ]);
@@ -355,12 +373,12 @@ class WorkapplicationformController extends Controller
         // dd($request->all());
 
         // Organization
-        $sizeorganization = count($request->organisasi);
         if ($request->organisasi != null ) {
-        for ($i=0; $i < $sizeorganization; $i++) {
+            $sizeorganization = count($request->organisasi);
+            for ($i=0; $i < $sizeorganization; $i++) {
             $lastjobbenefitId = Organization::create([
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
+                // 'candidateid' => 3,
                 'name' => $request->organisasi[$i]['nama'],
                 'organizationtype' => $request->organisasi[$i]['jenis'],
                 'yearstart' => $request->organisasi[$i]['tahun'],
@@ -371,12 +389,12 @@ class WorkapplicationformController extends Controller
 
         // dd($request->all());
         // Reference
-        $sizereference = count($request->refrensi);
         if ($request->refrensi != null ) {
-        for ($i=0; $i < $sizereference; $i++) {
+            $sizereference = count($request->refrensi);
+            for ($i=0; $i < $sizereference; $i++) {
             $referenceId = Reference::create([
                 'candidateid' => $candidateId,
-                // 'candidateid' => 1,
+                // 'candidateid' => 3,
                 'name' => $request->refrensi[$i]['nama'],
                 'phonenumber' => $request->refrensi[$i]['notlp'],
                 'position' => $request->refrensi[$i]['jabatan'],
@@ -390,7 +408,7 @@ class WorkapplicationformController extends Controller
             if ($request->informasilain_sakit == '1') {
                 $additionalinformation = Additionalinformation::create([
                     'candidateid' => $candidateId,
-                    // 'candidateid' => 1,
+                    // 'candidateid' => 3,
                     'vacancyinfosource' => $request->informasilain_lowongan,
                     'hospitalizestatus' => $request->informasilain_sakit,
                     'hospitalisereason' => $request->informasilain_sakit_ya,
@@ -406,7 +424,7 @@ class WorkapplicationformController extends Controller
             }else{
                 $additionalinformation = Additionalinformation::create([
                     'candidateid' => $candidateId,
-                    // 'candidateid' => 1,
+                    // 'candidateid' => 3,
                     'vacancyinfosource' => $request->informasilain_lowongan,
                     'hospitalizestatus' => $request->informasilain_sakit,
                     'hospitalisereason' => 0,
