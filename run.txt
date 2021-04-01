@@ -1,0 +1,4 @@
+https://github.com/slametaldiansyah/adidata-form.git
+
+run composer install
+php artisan key:generate

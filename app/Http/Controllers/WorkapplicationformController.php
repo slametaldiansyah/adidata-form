@@ -87,6 +87,8 @@ class WorkapplicationformController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
+
         $rules = [
             //
             'jabatan' => 'required',

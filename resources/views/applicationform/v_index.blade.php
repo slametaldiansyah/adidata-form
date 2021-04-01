@@ -147,7 +147,6 @@
                     <input name="ktp" type="text" class="form-control" id="ktp" aria-describedby="nama" placeholder="No KTP" required>
                     <small id="ktp" class="form-text text-muted">No KTP</small>
                   </div>
-
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
