@@ -87,7 +87,7 @@ class WorkapplicationformController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $rules = [
             //
@@ -126,8 +126,8 @@ class WorkapplicationformController extends Controller
             'special' => 'required',
             // additionalinformation
             'informasilain_lowongan' => 'required',
-            'informasilain_sakit' => 'required',
-            'informasilain_sakit_ya' => 'required',
+            // 'informasilain_sakit' => 'required',
+            // 'informasilain_sakit_ya' => 'required',
             'informasilain_kelebihan' => 'required',
             'informasilain_kekurangan' => 'required',
             'informasilain_mengatasi' => 'required',
@@ -137,7 +137,15 @@ class WorkapplicationformController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            return back()->withErrors($request->all());
+
+            $messages = $validator->errors();
+
+            foreach ($messages->all() as $message)
+            {
+                echo $message;
+            }
+
+            // return back()->withErrors($validator);
         }
 
         // dd($request->all());

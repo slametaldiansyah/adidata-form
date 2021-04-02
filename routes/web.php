@@ -1,6 +1,8 @@
 <?php
 
 // use App\Http\Controllers\WorkApplicationForm;
+
+use App\Http\Controllers\DataColl\EducationController;
 use App\Http\Controllers\WorkapplicationformController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +24,6 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('/workapplicationform', WorkApplicationForm::class);
 // Route::resource('/', WorkApplicationForm::class);
 Route::resource('/',WorkapplicationformController::class);
+Route::resource('education',EducationController::class);
 // Route::resource('photos', PhotoController::class);
 

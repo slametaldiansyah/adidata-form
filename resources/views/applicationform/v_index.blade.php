@@ -322,14 +322,14 @@
 
 
               <!-- Education -->
-            <section id="education" class="collapse">
+            <section id="education" class="collapse show">
               <!-- Formal -->
 
               <span>Formal Education</span>
               <br>
-              <button type="button" id="addbtnformal" class="btn btn-primary btn-sm">+</button>
-              <button type="button" id="rembtnformal" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group" id="isiformaled">
+              <button type="button" id="addbtnformal" onclick="addBtnFormal(1)" class="btn btn-primary btn-sm">+</button>
+              <button type="button" id="rembtnformal" onclick="addBtnFormal(2)" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="formallist">
                   <div class="row">
                     <div class="col-md-2">
                       <select class="form-control" name="formal[0][jenjang]" id="jenjang-1">
@@ -362,39 +362,6 @@
                       <small id="lulus-formal-1" class="form-text text-muted">Lulus</small>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-2">
-                      <select class="form-control" name="formal[1][jenjang]" id="jenjang-2">
-                        <option value="">--option--</option>
-                        @foreach ($educationlist as $es)
-                        <option value="{{$es->id}}"
-                          >{{$es->education}}</option>
-                        @endforeach
-                      </select>
-                      <small id="jenjang-2" class="form-text text-muted">Jenjang</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="formal[1][nama]" type="text" class="form-control" id="nama-formal-2" aria-describedby="nama" placeholder="Nama formal" required>
-                      <small id="nama-formal-2" class="form-text text-muted">Nama</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="formal[1][kota]" type="text" class="form-control" id="kota-formal-2" aria-describedby="nama" placeholder="Kota" required>
-                      <small id="kota-formal-2" class="form-text text-muted">Kota</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="formal[1][IPK]" type="text" class="form-control" id="IPK-2" aria-describedby="nama" placeholder="IPK" required>
-                      <small id="IPK-2" class="form-text text-muted">IPK</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="formal[1][masuk]" type="text" class="form-control" id="masuk-formal-2" aria-describedby="nama" placeholder="Masuk" required>
-                      <small id="masuk-formal-2" class="form-text text-muted">Masuk</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="formal[1][lulus]" type="text" class="form-control" id="lulus-formal-2" aria-describedby="nama" placeholder="Lulus" required>
-                      <small id="lulus-formal-2" class="form-text text-muted">Lulus</small>
-                    </div>
-                  </div>
-
 
                 </div>
                 <hr>
@@ -1135,7 +1102,154 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   {{-- <script src="page.js"></script> --}}
   <script src="{{asset('pagesource/')}}/page.js"></script>
-  {{-- <script src="{{asset('applicationform/')}}/page.js"></script> --}}
+  {{-- <script src="{{asset('pagesource/')}}/createinput.js"></script> --}}
+
+  {{-- Formal --}}
+  <script>
+      var n = 0;
+      function addBtnFormal(x) {
+        if (x == 1) {
+        n++;
+        //jenjang
+        var div1 = document.createElement("div");
+                    div1.className = 'row';
+                    div1.id = 'formal-'+n;
+        var div1_1 = document.createElement("div");
+                    div1_1.className = 'col-md-2';
+        var select = document.createElement("select");
+                    select.setAttribute("class",'form-control');
+                    select.setAttribute("name",'formal['+n+'][jenjang]');
+        var small = document.createElement("small");
+                    small.className = 'form-text text-muted';
+                    small.append('Jenjang');
+        var option = document.createElement("option");
+                    option.id = '';
+                    option.append("--option--");
+                    select.append(option);
+        $.ajax({
+        type: 'GET', //THIS NEEDS TO BE GET
+        url: '{{ url('education/show') }}',
+        dataType: 'json',
+        success: function (data) {
+                // console.log(data.dataE);
+                var education = data.dataE;
+                education.forEach(educationList);
+                function educationList(item, index) {
+                    var optionD = document.createElement("option");
+                    optionD.id = index;
+                    optionD.append(item.education);
+                    select.append(optionD);
+                }
+            },
+        error:function(){
+                console.log(data.dataE);
+            }
+        });
+        div1_1.append(select);
+        div1_1.append(small);
+        div1.append(div1_1);
+
+        //nama
+        var div1_2 = document.createElement("div");
+        div1_2.className = 'col-md-2';
+        var input1_1 = document.createElement("input");
+        input1_1.setAttribute("name",'formal['+n+'][nama]');
+        input1_1.setAttribute("type",'text');
+        input1_1.setAttribute("class",'form-control');
+        input1_1.setAttribute("placeholder",'Nama');
+        input1_1.attributes.required = "required";
+        var small_2 = document.createElement("small");
+        small_2.className = 'form-text text-muted';
+        small_2.append('Nama');
+        div1_2.append(input1_1);
+        div1_2.append(small_2);
+        div1.append(div1_2);
+
+        //Kota
+        var div1_3 = document.createElement("div");
+        div1_3.className = 'col-md-2';
+        var input1_2 = document.createElement("input");
+        input1_2.setAttribute("name",'formal['+n+'][kota]');
+        input1_2.setAttribute("type",'text');
+        input1_2.setAttribute("class",'form-control');
+        input1_2.setAttribute("placeholder",'Kota');
+        input1_2.attributes.required = "required";
+        var small_3 = document.createElement("small");
+        small_3.className = 'form-text text-muted';
+        small_3.append('Kota');
+        div1_3.append(input1_2);
+        div1_3.append(small_3);
+        div1.append(div1_3);
+
+        //IPK
+        var div1_4 = document.createElement("div");
+        div1_4.className = 'col-md-2';
+        var input1_3 = document.createElement("input");
+        input1_3.setAttribute("name",'formal['+n+'][IPK]');
+        input1_3.setAttribute("type",'text');
+        input1_3.setAttribute("class",'form-control');
+        input1_3.setAttribute("placeholder",'Kota');
+        input1_3.attributes.required = "required";
+        var small_4 = document.createElement("small");
+        small_4.className = 'form-text text-muted';
+        small_4.append('IPK');
+        div1_4.append(input1_3);
+        div1_4.append(small_4);
+        div1.append(div1_4);
+
+        //masuk
+        var div1_5 = document.createElement("div");
+        div1_5.className = 'col-md-2';
+        var input1_4 = document.createElement("input");
+        input1_4.setAttribute("name",'formal['+n+'][masuk]');
+        input1_4.setAttribute("type",'text');
+        input1_4.setAttribute("class",'form-control');
+        input1_4.setAttribute("placeholder",'Masuk');
+        input1_4.attributes.required = "required";
+        var small_5 = document.createElement("small");
+        small_5.className = 'form-text text-muted';
+        small_5.append('Masuk');
+        div1_5.append(input1_4);
+        div1_5.append(small_5);
+        div1.append(div1_5);
+
+        //lulus
+        var div1_6 = document.createElement("div");
+        div1_6.className = 'col-md-2';
+        var input1_5 = document.createElement("input");
+        input1_5.setAttribute("name",'formal['+n+'][lulus]');
+        input1_5.setAttribute("type",'text');
+        input1_5.setAttribute("class",'form-control');
+        input1_5.setAttribute("placeholder",'Lulus');
+        input1_5.attributes.required = "required";
+        var small_6 = document.createElement("small");
+        small_6.className = 'form-text text-muted';
+        small_6.append('Lulus');
+        div1_6.append(input1_5);
+        div1_6.append(small_6);
+        div1.append(div1_6);
+
+        document.getElementById("formallist").appendChild(div1);
+        }else if(x == 2){
+                if (n > 0) {
+                    var formaldel = document.getElementById('formal-'+n);
+                    formaldel.remove();
+                    n--;
+                }else{
+                alert('form tidak bisa dihapus lagi');
+                }
+            }
+        }
+
+        // function delBtnFormal() {
+        //     // var formaldel = document.getElementById('formal-'+n);
+        //     //     formaldel.remove();
+        //         n--;
+        // }
+        console.log(n);
+        // <input name="formal[1][nama]" type="text" class="form-control" id="nama-formal-2" aria-describedby="nama" placeholder="Nama formal" required>
+
+  </script>
 
   <!--Check Pernah di rawat-->
       <!-- Checkbox -->
