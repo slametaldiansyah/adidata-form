@@ -46,7 +46,7 @@
 
             <form id="myFormId" role="form" action="/" method="post">
                 @csrf
-            <section id="jabatan" class="collapse show">
+            {{-- <section id="jabatan" class="collapse show">
               <div class="form-group">
                   <select class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
                     @foreach ($positionlist as $p)
@@ -368,12 +368,12 @@
 
 
 
-              <!-- NonFormal -->
+               <!-- NonFormal -->
               <span>Nonformal Education</span>
               <br>
-              <button type="button" class="btn btn-primary btn-sm">+</button>
-              <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group">
+              <button type="button" onclick="addBtnNonFormal(1)" class="btn btn-primary btn-sm">+</button>
+              <button type="button" onclick="addBtnNonFormal(2)" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="nonformallist">
                   <div class="row">
                     <div class="col-md-3">
                       <input name="nonformal[0][nama]" type="text" class="form-control" id="kursus-nama-1" aria-describedby="nama" placeholder="Nama Kursus" required>
@@ -393,48 +393,28 @@
                       <small id="kursus-ijazah-1" class="form-text text-muted">Ijazah</small>
                     </div>
                     <div class="col-md-2">
-                      <input name="nonformal[0][biaya]" type="text" class="form-control" id="kursus-biaya-1" aria-describedby="nama" placeholder="Masuk" required>
+                      <input name="nonformal[0][biaya]" type="text" class="form-control" id="kursus-biaya-1" aria-describedby="nama" placeholder="Dibiayai" required>
                       <small id="kursus-biaya-1" class="form-text text-muted">Dibiayai</small>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <input name="nonformal[1][nama]" type="text" class="form-control" id="kursus-nama-2" aria-describedby="nama" placeholder="Nama Kursus" required>
-                      <small id="kursus-nama-2" class="form-text text-muted">Kursus/Training</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="nonformal[1][tahun]" type="text" class="form-control" id="kursus-tahun-2" aria-describedby="nama" placeholder="Tahun" required>
-                      <small id="kursus-tahun-2" class="form-text text-muted">Tahun</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="nonformal[1][durasi]" type="text" class="form-control" id="kursus-durasi-2" aria-describedby="nama" placeholder="Lama Kursus" required>
-                      <small id="kursus-durasi-2" class="form-text text-muted">Lama</small>
-                    </div>
-                    <div class="col-md-1">
-                      <input name="nonformal[1][ijazah]" type="hidden" value="0">
-                      <input name="nonformal[1][ijazah]" type="checkbox" value="1" id="kursus-ijazah-2">
-                      <small id="kursus-ijazah-2" class="form-text text-muted">Ijazah</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="nonformal[1][biaya]" type="text" class="form-control" id="kursus-biaya-2" aria-describedby="nama" placeholder="Masuk" required>
-                      <small id="kursus-biaya-2" class="form-text text-muted">Dibiayai</small>
-                    </div>
-                  </div>
-                  <hr>
+
                 </div>
+
+                <hr>
             </section>
+--}}
 
             <!-- Kemampuan -->
 
-            <section id="kemampuan" class="collapse">
+            <section id="kemampuan" class="collapse show">
               <span>Kemampuan Berbahasa</span>
               <br>
-              <button type="button" class="btn btn-primary btn-sm">+</button>
-              <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group">
+              <button type="button" onclick="addBtnLanguage(1)" class="btn btn-primary btn-sm">+</button>
+              <button type="button" onclick="addBtnLanguage(2)" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="languagelist">
                   <div class="row">
                     <div class="col-md-3">
-                        <select class="form-control" name="bahasa[0][bahasa]" id="bahasa-1">
+                        <select class="form-control" name="bahasa[0][bahasa]" id="bahasa-1" required>
                         <option value="">--option--</option>
                         @foreach ($languagelist as $ll)
                         <option value="{{$ll->id}}"
@@ -444,34 +424,37 @@
                      <small id="bahasa-1" class="form-text text-muted">Bahasa</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="form-control" name="bahasa[0][tulis_level]" id="tulis-level-1">
+                      <select class="form-control" name="bahasa[0][tulis_level]" id="tulis-level-1" required>
                         <option value="">--option--</option>
-                        <option value="B">Baik</option>
-                        <option value="C">Cukup</option>
-                        <option value="K">Kurang</option>
+                        @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
                       </select>
                       <small id="tulis-1" class="form-text text-muted">Tulis</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="form-control" name="bahasa[0][lisan_level]" id="lisan-level-1">
+                      <select class="form-control" name="bahasa[0][lisan_level]" id="lisan-level-1" required>
                         <option value="">--option--</option>
-                        <option value="B">Baik</option>
-                        <option value="C">Cukup</option>
-                        <option value="K">Kurang</option>
+                        @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
                       </select>
                       <small id="lisan-1" class="form-text text-muted">Lisan</small>
                     </div>
                     <div class="col-md-3">
-                      <select class="form-control" name="bahasa[0][baca_level]" id="baca-level-1">
+                      <select class="form-control" name="bahasa[0][baca_level]" id="baca-level-1" required>
                         <option value="">--option--</option>
-                        <option value="B">Baik</option>
-                        <option value="C">Cukup</option>
-                        <option value="K">Kurang</option>
+                        @foreach ($proficiencieslevellist as $pl)
+                        <option value="{{$pl->id}}"
+                          >{{$pl->level}}</option>
+                        @endforeach
                       </select>
                       <small id="baca-1" class="form-text text-muted">Baca</small>
                     </div>
                   </div>
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-md-3">
                         <select class="form-control" name="bahasa[1][bahasa]" id="bahasa-2">
                         <option value="">--option--</option>
@@ -485,9 +468,10 @@
                     <div class="col-md-3">
                       <select class="form-control" name="bahasa[1][tulis_level]" id="tulis-level-2">
                         <option value="">--option--</option>
-                        <option value="B">Baik</option>
-                        <option value="C">Cukup</option>
-                        <option value="K">Kurang</option>
+                        @foreach ($proficiencieslevellist as $pl)
+                            <option value="{{$pl->id}}"
+                              >{{$pl->level}}</option>
+                            @endforeach
                       </select>
                       <small id="tulis-2" class="form-text text-muted">Tulis</small>
                     </div>
@@ -509,11 +493,10 @@
                       </select>
                       <small id="baca-2" class="form-text text-muted">Baca</small>
                     </div>
-                  </div>
-                  <hr>
+                  </div> --}}
                 </div>
-
-                <!--Hard Skill-->
+                <hr>
+                {{-- <!--Hard Skill-->
                 <div class="form-group">
                   <div class="row">
                     <!--Komputer-->
@@ -638,13 +621,13 @@
                         </div>
                       </div>
                     <hr>
-                  </div>
+                  </div> --}}
 
             </section>
 
 
             <!--Work Experience-->
-            <section id="pengalaman" class="collapse">
+            {{-- <section id="pengalaman" class="collapse">
               <span>Pengalaman Kerja</span>
               <br>
               <button type="button" class="btn btn-primary btn-sm">+</button>
@@ -931,10 +914,10 @@
               <hr>
             </div>
 
-            </section>
+            </section> --}}
 
 
-            <!--Organisasi dan Refrensi-->
+{{--            <!--Organisasi dan Refrensi-->
             <section id="orgnref" class="collapse">
 
               <!--Organisasi-->
@@ -1086,10 +1069,11 @@
 
 
             <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
-            </section>
+            </section> --}}
 
             <button type="button" class="btn btn-primary prev"> Pref</button>
             <button type="button" class="btn btn-primary next"> Next</button>
+            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
         </form>
           {{-- </form> --}}
         </div>
@@ -1136,7 +1120,7 @@
                 education.forEach(educationList);
                 function educationList(item, index) {
                     var optionD = document.createElement("option");
-                    optionD.id = index;
+                    optionD.value = item.id;
                     optionD.append(item.education);
                     select.append(optionD);
                 }
@@ -1240,16 +1224,250 @@
                 }
             }
         }
-
-        // function delBtnFormal() {
-        //     // var formaldel = document.getElementById('formal-'+n);
-        //     //     formaldel.remove();
-        //         n--;
-        // }
         console.log(n);
-        // <input name="formal[1][nama]" type="text" class="form-control" id="nama-formal-2" aria-describedby="nama" placeholder="Nama formal" required>
-
   </script>
+
+    {{-- NonFormal --}}
+    <script>
+        var n = 0;
+        function addBtnNonFormal(x) {
+          if (x == 1) {
+          n++;
+          var div1 = document.createElement("div");
+                      div1.className = 'row';
+                      div1.id = 'nonformal-'+n;
+          //nama
+          var div1_2 = document.createElement("div");
+          div1_2.className = 'col-md-3';
+          var input1_1 = document.createElement("input");
+          input1_1.setAttribute("name",'nonformal['+n+'][nama]');
+          input1_1.setAttribute("type",'text');
+          input1_1.setAttribute("class",'form-control');
+          input1_1.setAttribute("placeholder",'Nama Kursus');
+          var small_2 = document.createElement("small");
+          small_2.className = 'form-text text-muted';
+          small_2.append('Nama Kursus');
+          div1_2.append(input1_1);
+          div1_2.append(small_2);
+          div1.append(div1_2);
+
+          //Tahun
+          var div1_3 = document.createElement("div");
+          div1_3.className = 'col-md-2';
+          var input1_2 = document.createElement("input");
+          input1_2.setAttribute("name",'nonformal['+n+'][tahun]');
+          input1_2.setAttribute("type",'text');
+          input1_2.setAttribute("class",'form-control');
+          input1_2.setAttribute("placeholder",'Tahun');
+          var small_3 = document.createElement("small");
+          small_3.className = 'form-text text-muted';
+          small_3.append('Tahun');
+          div1_3.append(input1_2);
+          div1_3.append(small_3);
+          div1.append(div1_3);
+
+          //Durasi
+          var div1_4 = document.createElement("div");
+          div1_4.className = 'col-md-2';
+          var input1_3 = document.createElement("input");
+          input1_3.setAttribute("name",'nonformal['+n+'][durasi]');
+          input1_3.setAttribute("type",'text');
+          input1_3.setAttribute("class",'form-control');
+          input1_3.setAttribute("placeholder",'Lama Kursus');
+          var small_4 = document.createElement("small");
+          small_4.className = 'form-text text-muted';
+          small_4.append('Durasi');
+          div1_4.append(input1_3);
+          div1_4.append(small_4);
+          div1.append(div1_4);
+
+          //ijazah
+          var div1_5 = document.createElement("div");
+          div1_5.className = 'col-md-1';
+          var input1_4_h = document.createElement("input");
+          input1_4_h.setAttribute("name",'nonformal['+n+'][ijazah]');
+          input1_4_h.setAttribute("type", 'hidden');
+          input1_4_h.setAttribute("value", '0');
+          var input1_4 = document.createElement("input");
+          input1_4.setAttribute("name",'nonformal['+n+'][ijazah]');
+          input1_4.setAttribute("type",'checkbox');
+          input1_4.setAttribute("value", '1');
+          var small_5 = document.createElement("small");
+          small_5.className = 'form-text text-muted';
+          small_5.append('Ijazah');
+          div1_5.append(input1_4_h);
+          div1_5.append(input1_4);
+          div1_5.append(small_5);
+          div1.append(div1_5);
+
+          //lulus
+          var div1_6 = document.createElement("div");
+          div1_6.className = 'col-md-2';
+          var input1_5 = document.createElement("input");
+          input1_5.setAttribute("name",'nonformal['+n+'][biaya]');
+          input1_5.setAttribute("type",'text');
+          input1_5.setAttribute("class",'form-control');
+          input1_5.setAttribute("placeholder",'Dibiayai');
+          var small_6 = document.createElement("small");
+          small_6.className = 'form-text text-muted';
+          small_6.append('Dibiaya');
+          div1_6.append(input1_5);
+          div1_6.append(small_6);
+          div1.append(div1_6);
+
+          document.getElementById("nonformallist").appendChild(div1);
+          }else if(x == 2){
+                  if (n > 0) {
+                      var formaldel = document.getElementById('nonformal-'+n);
+                      formaldel.remove();
+                      n--;
+                  }else{
+                  alert('form tidak bisa dihapus lagi');
+                  }
+              }
+          }
+    </script>
+
+  {{-- Language --}}
+  <script>
+    var n = 0;
+    function addBtnLanguage(x) {
+      if (x == 1) {
+      n++;
+      //jenjang
+      var div1 = document.createElement("div");
+                  div1.className = 'row';
+                  div1.id = 'language-'+n;
+      var div1_1 = document.createElement("div");
+                  div1_1.className = 'col-md-3';
+      var select1 = document.createElement("select");
+                  select1.setAttribute("class",'form-control');
+                  select1.setAttribute("name",'bahasa['+n+'][bahasa]');
+                  select1.setAttribute("required",'required');
+      var small = document.createElement("small");
+                  small.className = 'form-text text-muted';
+                  small.append('Bahasa');
+      var optionLang = document.createElement("option");
+                  optionLang.value = '';
+                  optionLang.append("--option--");
+                  select1.append(optionLang);
+      $.ajax({
+      type: 'GET', //THIS NEEDS TO BE GET
+      url: '{{ url('language/show') }}',
+      dataType: 'json',
+      success: function (data) {
+              console.log(data.dataE);
+              var language = data.dataE;
+              language.forEach(fordata);
+              function fordata(item, index) {
+                  var optionLangD = document.createElement("option");
+                  optionLangD.value = item.id;
+                  optionLangD.append(item.language);
+                  select1.append(optionLangD);
+              }
+          },
+      error:function(){
+              console.log(data.dataE);
+          }
+      });
+      div1_1.append(select1);
+      div1_1.append(small);
+      div1.append(div1_1);
+
+      var div1_2 = document.createElement("div");
+                  div1_2.className = 'col-md-3';
+      var select2 = document.createElement("select");
+                  select2.setAttribute("class",'form-control');
+                  select2.setAttribute("name",'bahasa['+n+'][tulis_level]');
+                  select2.setAttribute("required",'required');
+      var small1 = document.createElement("small");
+                  small1.className = 'form-text text-muted';
+                  small1.append('Tulis');
+      var optionLevel = document.createElement("option");
+                  optionLevel.value = '';
+                  optionLevel.append("--option--");
+                  select2.append(optionLevel);
+
+      var div1_3 = document.createElement("div");
+                  div1_3.className = 'col-md-3';
+      var select3 = document.createElement("select");
+                  select3.setAttribute("class",'form-control');
+                  select3.setAttribute("name",'bahasa['+n+'][lisan_level]');
+                  select3.setAttribute("required",'required');
+      var small3 = document.createElement("small");
+                  small3.className = 'form-text text-muted';
+                  small3.append('Lisan');
+      var optionLevel3 = document.createElement("option");
+                  optionLevel3.value = '';
+                  optionLevel3.append("--option--");
+                  select3.append(optionLevel3);
+
+
+      var div1_4 = document.createElement("div");
+                  div1_4.className = 'col-md-3';
+      var select4 = document.createElement("select");
+                  select4.setAttribute("class",'form-control');
+                  select4.setAttribute("name",'bahasa['+n+'][baca_level]');
+                  select4.setAttribute("required",'required');
+      var small4 = document.createElement("small");
+                  small4.className = 'form-text text-muted';
+                  small4.append('Baca');
+      var optionLevel4 = document.createElement("option");
+                  optionLevel4.value = '';
+                  optionLevel4.append("--option--");
+                  select4.append(optionLevel4);
+
+      $.ajax({
+      type: 'GET', //THIS NEEDS TO BE GET
+      url: '{{ url('proficiencieslevel/show') }}',
+      dataType: 'json',
+      success: function (data) {
+              console.log(data.dataE);
+              var proficiencieslevel = data.dataE;
+              proficiencieslevel.forEach(fordata);
+              function fordata(item, index) {
+                  var optionPdata = document.createElement("option");
+                  optionPdata.value = item.id;
+                  optionPdata.append(item.level);
+                  select2.append(optionPdata);
+                var optionPdata3 = document.createElement("option");
+                  optionPdata3.value = item.id;
+                  optionPdata3.append(item.level);
+                  select3.append(optionPdata3);
+                var optionPdata4 = document.createElement("option");
+                  optionPdata4.value = item.id;
+                  optionPdata4.append(item.level);
+                  select4.append(optionPdata4);
+              }
+          },
+      error:function(){
+              console.log(data.dataE);
+          }
+      });
+
+      //create
+      div1_2.append(select2);
+      div1_2.append(small1);
+      div1.append(div1_2);
+      div1_3.append(select3);
+      div1_3.append(small3);
+      div1.append(div1_3);
+      div1_4.append(select4);
+      div1_4.append(small4);
+      div1.append(div1_4);
+
+      document.getElementById("languagelist").appendChild(div1);
+      }else if(x == 2){
+              if (n > 0) {
+                  var formaldel = document.getElementById('language-'+n);
+                  formaldel.remove();
+                  n--;
+              }else{
+              alert('form tidak bisa dihapus lagi');
+              }
+          }
+      }
+</script>
 
   <!--Check Pernah di rawat-->
       <!-- Checkbox -->
