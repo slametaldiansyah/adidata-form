@@ -3,6 +3,7 @@
 // use App\Http\Controllers\WorkApplicationForm;
 
 use App\Http\Controllers\DataColl\EducationController;
+use App\Http\Controllers\DataColl\EmployestatusController;
 use App\Http\Controllers\DataColl\LanguageContoller;
 use App\Http\Controllers\DataColl\ProficiencieslevelContoller;
 use App\Http\Controllers\WorkapplicationformController;
@@ -29,5 +30,6 @@ Route::resource('/',WorkapplicationformController::class);
 Route::resource('education',EducationController::class);
 Route::resource('proficiencieslevel',ProficiencieslevelContoller::class);
 Route::resource('language',LanguageContoller::class);
+Route::resource('employestatus',EmployestatusController::class);
 // Route::resource('photos', PhotoController::class);
 

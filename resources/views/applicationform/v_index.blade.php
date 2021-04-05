@@ -546,6 +546,7 @@
               <span><h4> <strong>Pengalaman Kerja</h4></strong></span>
               <button type="button" onclick="addBtnWorkexperience(1)" class="btn btn-primary btn-sm">+</button>
               <button type="button" onclick="addBtnWorkexperience(2)" class="btn btn-danger btn-sm">-</button>
+              <div  id="workexperiencelist" >
               <div class="border border-info rounded"  id="workexperience">
               <div class="mt-3 mr-3 ml-3 mb-3 form-group">
                 <div class="row mb-3">
@@ -648,8 +649,9 @@
                 </div>
 
               </div>
-            </div>
-
+              </div>
+              <br>
+              </div>
               <!-- Proyek 2 -->
               {{-- <div class="form-group" id="proyek-2">
                 <span>Proyek</span>
@@ -1617,32 +1619,259 @@
             }
         }
     </script>
-  {{-- Sertifikasi --}}
+  {{-- Work Experiecne --}}
   <script>
-    var p = 0;
+    var wx = 0;
+    var pr = 0;
     function addBtnWorkexperience(x) {
     if (x == 1) {
-    p++;
+
+    wx++;
     //Sertifikasi nama
-    var div1 = document.createElement("div");
-                div1.className = 'row';
-                div1.id = 'workexperience-'+p;
     var div1_1 = document.createElement("div");
-                div1_1.className = 'col-md-4';
+                div1_1.className = 'border border-info rounded';
+                div1_1.id = 'workexperience-'+wx;
+    var div1_2 = document.createElement("div");
+                div1_2.className = 'mt-3 mr-3 ml-3 mb-3 form-group';
+
+    var div1_2_1 = document.createElement("div");
+                  div1_2_1.className = 'row mb-3';
+                  var div1_2_1_1 = document.createElement("div");
+                      div1_2_1_1.className = 'col-md-6';
+                      var input1_2_1_1 = document.createElement("input");
+                          input1_2_1_1.className = 'form-control';
+                          input1_2_1_1.type = 'text';
+                          input1_2_1_1.name = 'pengalaman['+wx+'][nama]';
+                          input1_2_1_1.required = 'required';
+                          input1_2_1_1.placeholder = 'Nama Perusahaan';
+                      var smal1_2_1_1 = document.createElement("small");
+                          smal1_2_1_1.className = 'form-text text-muted';
+                          var smal1_2_1_1_1 = document.createElement("small");
+                              smal1_2_1_1_1.className = 'wajib';
+                              smal1_2_1_1_1.append('*');
+                          smal1_2_1_1.append('Nama Perusahaan ');
+                          smal1_2_1_1.append(smal1_2_1_1_1);
+                      div1_2_1_1.append(input1_2_1_1);
+                      div1_2_1_1.append(smal1_2_1_1);
+                      div1_2_1.append(div1_2_1_1);
+
+                  var div1_2_1_2 = document.createElement("div");
+                      div1_2_1_2.className = 'col-md-6';
+                      var input1_2_1_2 = document.createElement("input");
+                          input1_2_1_2.className = 'form-control';
+                          input1_2_1_2.type = 'text';
+                          input1_2_1_2.name = 'pengalaman['+wx+'][bidang]';
+                          input1_2_1_2.required = 'required';
+                          input1_2_1_2.placeholder = 'Bidang Perusahaan';
+                      var smal1_2_1_2 = document.createElement("small");
+                          smal1_2_1_2.className = 'form-text text-muted';
+                          var smal1_2_1_2_1 = document.createElement("small");
+                              smal1_2_1_2_1.className = 'wajib';
+                              smal1_2_1_2_1.append('*');
+                          smal1_2_1_2.append('Bidang Perusahaan ');
+                          smal1_2_1_2.append(smal1_2_1_2_1);
+                      div1_2_1_2.append(input1_2_1_2);
+                      div1_2_1_2.append(smal1_2_1_2);
+                      div1_2_1.append(div1_2_1_2);
+
+
+
+    var div1_2_2 = document.createElement("div");
+                  div1_2_2.className = 'row mb-3';
+                  var div1_2_2_1 = document.createElement("div");
+                      div1_2_2_1.className = 'col-md-6';
+                      var textarea1_2_2_1 = document.createElement("textarea");
+                          textarea1_2_2_1.className = 'form-control';
+                          textarea1_2_2_1.name = 'pengalaman['+wx+'][alamat]';
+                          textarea1_2_2_1.rows = '5';
+                          textarea1_2_2_1.placeholder = 'Alamat Perusahaan';
+                          textarea1_2_2_1.required = 'required';
+                          var smal1_2_2_1 = document.createElement("small");
+                              smal1_2_2_1.className = 'form-text text-muted';
+                              smal1_2_2_1.append('Alamat Perusahaan ');
+                              var smal1_2_2_1_1_wajib = document.createElement("small");
+                                  smal1_2_2_1_1_wajib.className = 'wajib';
+                                  smal1_2_2_1_1_wajib.append('*');
+                                  smal1_2_2_1.append(smal1_2_2_1_1_wajib);
+                                  div1_2_2_1.append(textarea1_2_2_1);
+                                  div1_2_2_1.append(smal1_2_2_1);
+                                  div1_2_2.append(div1_2_2_1);
+
+                  var div1_2_2_2 = document.createElement("div");
+                      div1_2_2_2.className = 'col-md-6';
+                      var div1_2_2_2_1 = document.createElement("div");
+                          div1_2_2_2_1.className = 'row mb-3';
+                          var div1_2_2_2_1_1 = document.createElement("div");
+                              div1_2_2_2_1_1.className = 'col-md-7';
+                                var input1_2_2_2_1_1 = document.createElement("input");
+                                    input1_2_2_2_1_1.name = 'pengalaman['+wx+'][mulai]';
+                                    input1_2_2_2_1_1.className = 'form-control';
+                                    input1_2_2_2_1_1.type = 'date';
+                                    input1_2_2_2_1_1.required = 'required';
+                                    var smallinput1_2_2_2_1_1 = document.createElement("small");
+                                        smallinput1_2_2_2_1_1.className = 'mb-3 form-text text-muted';
+                                        smallinput1_2_2_2_1_1.append('Mulai ');
+                                        var small1_2_2_2_1_1_wajib = document.createElement("small");
+                                        small1_2_2_2_1_1_wajib.className = 'wajib';
+                                        small1_2_2_2_1_1_wajib.append('*');
+                                        smallinput1_2_2_2_1_1.append(small1_2_2_2_1_1_wajib);
+                                  div1_2_2_2_1_1.append(input1_2_2_2_1_1);
+                                  div1_2_2_2_1_1.append(smallinput1_2_2_2_1_1);
+
+                          var div1_2_2_2_1_2 = document.createElement("div");
+                              div1_2_2_2_1_2.className = 'col-md-4';
+                                var input1_2_2_2_1_2 = document.createElement("input");
+                                    input1_2_2_2_1_2.name = 'pengalaman['+wx+'][statuskerja]';
+                                    input1_2_2_2_1_2.value = '0';
+                                    input1_2_2_2_1_2.type = 'hidden';
+                                var input1_2_2_2_1_2_1 = document.createElement("input");
+                                    input1_2_2_2_1_2_1.name = 'pengalaman['+wx+'][statuskerja]';
+                                    input1_2_2_2_1_2_1.value = '1';
+                                    input1_2_2_2_1_2_1.type = 'checkbox';
+                                    var smallinput1_2_2_2_1_2 = document.createElement("small");
+                                        smallinput1_2_2_2_1_2.className = 'mb-3 form-text text-muted';
+                                        smallinput1_2_2_2_1_2.append('Masih Bekerja  ');
+
+                                  div1_2_2_2_1_2.append(input1_2_2_2_1_2);
+                                  div1_2_2_2_1_2.append(input1_2_2_2_1_2_1);
+                                  div1_2_2_2_1_2.append(smallinput1_2_2_2_1_2);
+
+                          var div1_2_2_2_1_3 = document.createElement("div");
+                              div1_2_2_2_1_3.className = 'col-md-7';
+                                var input1_2_2_2_1_3 = document.createElement("input");
+                                    input1_2_2_2_1_3.name = 'pengalaman['+wx+'][berakhir]';
+                                    input1_2_2_2_1_3.className = 'form-control';
+                                    input1_2_2_2_1_3.type = 'date';
+                                    input1_2_2_2_1_3.required = 'required';
+                                    var small1_2_2_2_1_3 = document.createElement("small");
+                                        small1_2_2_2_1_3.className = 'mb-3 form-text text-muted';
+                                        small1_2_2_2_1_3.append('Berakhir ');
+                                        var small1_2_2_2_1_3_1 = document.createElement("small");
+                                        small1_2_2_2_1_3_1.className = 'wajib';
+                                        small1_2_2_2_1_3_1.append('*');
+                                        small1_2_2_2_1_3.append(small1_2_2_2_1_3_1);
+                                  div1_2_2_2_1_3.append(input1_2_2_2_1_3);
+                                  div1_2_2_2_1_3.append(small1_2_2_2_1_3);
+
+
+                                  div1_2_2_2_1.append(div1_2_2_2_1_1);
+                                  div1_2_2_2_1.append(div1_2_2_2_1_2);
+                                  div1_2_2_2_1.append(div1_2_2_2_1_3);
+                                  div1_2_2_2.append(div1_2_2_2_1);
+                                  div1_2_2.append(div1_2_2_2);
+
+    var div1_2_3 = document.createElement("div");
+                  div1_2_3.className = 'row';
+                  var div1_2_3_1 = document.createElement("div");
+                      div1_2_3_1.className = 'col-md-6';
+                      var div1_2_3_1_1 = document.createElement("div");
+                          div1_2_3_1_1.className = 'row mb-3';
+                          var div1_2_3_1_1_1 = document.createElement("div");
+                              div1_2_3_1_1_1.className = 'col-md-7';
+                              var input1_2_3_1_1_1 = document.createElement("input");
+                                  input1_2_3_1_1_1.className = 'form-control';
+                                  input1_2_3_1_1_1.name = 'pengalaman['+wx+'][upah]';
+                                  input1_2_3_1_1_1.type = 'text';
+                                  input1_2_3_1_1_1.required = 'required';
+                                  input1_2_3_1_1_1.placeholder = 'Upah Pokok';
+                              var small1_2_3_1_1_1 = document.createElement("small");
+                                  small1_2_3_1_1_1.className = 'form-text text-muted';
+                                  small1_2_3_1_1_1.append('Upah Pokok ');
+                                  var small1_2_3_1_1_1_w = document.createElement("small");
+                                      small1_2_3_1_1_1_w.className = 'wajib';
+                                      small1_2_3_1_1_1_w.append('*');
+
+                                      div1_2_3_1_1_1.append(input1_2_3_1_1_1);
+                                      div1_2_3_1_1_1.append(small1_2_3_1_1_1);
+                                      small1_2_3_1_1_1.append(small1_2_3_1_1_1_w);
+
+                          var div1_2_3_1_1_2 = document.createElement("div");
+                              div1_2_3_1_1_2.className = 'col-md-5';
+                              var select1_2_3_1_1_2 = document.createElement("select");
+                                  select1_2_3_1_1_2.className = 'form-control';
+                                  select1_2_3_1_1_2.required = 'required';
+                                  select1_2_3_1_1_2.name = 'pengalaman['+wx+'][status]';
+                                  var option1_2_3_1_1_2 = document.createElement("option");
+                                      option1_2_3_1_1_2.value = '';
+                                      option1_2_3_1_1_2.append("--option--");
+                                      select1_2_3_1_1_2.append(option1_2_3_1_1_2);
+                                      $.ajax({
+                                        type: 'GET', //THIS NEEDS TO BE GET
+                                        url: '{{ url('employestatus/show') }}',
+                                        dataType: 'json',
+                                        success: function (data) {
+                                                //   console.log(data.dataE);
+                                                var employestatus = data.dataE;
+                                                employestatus.forEach(fordata);
+                                                function fordata(item, index) {
+                                                    var optionPdata = document.createElement("option");
+                                                    optionPdata.value = item.id;
+                                                    optionPdata.append(item.employeestatus);
+                                                    select1_2_3_1_1_2.append(optionPdata);
+                                                }
+                                            },
+                                        error:function(){
+                                                console.log(data.dataE);
+                                            }
+                                        });
+                                        div1_2_3_1_1_2.append(select1_2_3_1_1_2);
+
+                    div1_2_3_1.append(div1_2_3_1_1);
+                    div1_2_3_1_1.append(div1_2_3_1_1_1);
+                    div1_2_3_1_1.append(div1_2_3_1_1_2);
+
+                  var div1_2_3_2 = document.createElement("div");
+                      div1_2_3_2.className = 'col-md-6';
+                      var div1_2_3_2_1 = document.createElement("div");
+                          div1_2_3_2_1.className = 'row';
+                          var div1_2_3_2_1_1 = document.createElement("div");
+                              div1_2_3_2_1_1.className = 'col-md-12';
+                              var input1_2_3_2_1_1 = document.createElement("input");
+                                  input1_2_3_2_1_1.className = 'form-control';
+                                  input1_2_3_2_1_1.name = 'pengalaman['+wx+'][alasan]';
+                                  input1_2_3_2_1_1.placeholder = 'Alasan Berhenti';
+                                  var small1_2_3_2_1_1 = document.createElement("small");
+                                      small1_2_3_2_1_1.className = 'form-text text-muted';
+                                      small1_2_3_2_1_1.append('Alasan Berhenti ');
+                                      var small1_2_3_2_1_1_w = document.createElement("small");
+                                          small1_2_3_2_1_1_w.className = 'wajib';
+                                          small1_2_3_2_1_1_w.append('*');
+                                          small1_2_3_2_1_1.append(small1_2_3_2_1_1_w);
+
+                                          div1_2_3_2_1_1.append(input1_2_3_2_1_1);
+                                          div1_2_3_2_1_1.append(small1_2_3_2_1_1);
+                                          div1_2_3_2_1.append(div1_2_3_2_1_1);
+                                          div1_2_3_2.append(div1_2_3_2_1);
+
+
+                                          div1_2_3.append(div1_2_3_1);
+                                          div1_2_3.append(div1_2_3_2);
+
+                                            div1_2.append(div1_2_1);
+                                            div1_2.append(div1_2_2);
+                                            div1_2.append(div1_2_3);
+    var hr = document.createElement("hr");
+        div1_2.append(hr);
+    //Project
+    pr++;
+    var div1_2_4 = document.createElement("div");
+                  div1_2_4.className = 'form-group';
+                  div1_2_4.id = 'proyek-'+wx+'-'+pr;
+
     var input1 = document.createElement("input");
                 input1.setAttribute("class",'form-control');
-                input1.setAttribute("name",'sertifikasi['+p+'][name]');
+                input1.setAttribute("name",'sertifikasi['+pr+'][name]');
                 input1.setAttribute("type",'text');
                 input1.setAttribute("placeholder",'Nama Kursus');
     var small1 = document.createElement("small");
                 small1.className = 'form-text text-muted';
                 small1.append('Nama Kursus');
-    div1_1.append(input1);
-    div1_1.append(small1);
-    div1.append(div1_1);
 
+    // var hr2 = document.createElement("hr");
+    div1_1.append(div1_2);
+    // div1.append(div1_1);
 
-    document.getElementById("workexperiencelist").appendChild(div1);
+    document.getElementById("workexperiencelist").appendChild(div1_1);
     }else if(x == 2){
             if (p > 0) {
                 var formaldel = document.getElementById('workexperience-'+p);
