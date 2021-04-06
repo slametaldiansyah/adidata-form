@@ -87,7 +87,7 @@ class WorkapplicationformController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $rules = [
             //
@@ -314,6 +314,7 @@ class WorkapplicationformController extends Controller
         // dd($request->pengalaman[0]['proyek'][0]['nama']);
         // dd($request->pengalaman[0]['statuskerja']);
         // Workexperience
+        // dd($request->all());
         if ($request->pengalaman != null ) {
             $sizeexperience = count($request->pengalaman);
             for ($i=0; $i < $sizeexperience; $i++) {
@@ -346,15 +347,18 @@ class WorkapplicationformController extends Controller
                 ])->id;
             }
                 if ($request->pengalaman[$i]['proyek']) {
-                    $sizeproject = count($request->pengalaman[$i]['proyek']);
-                    for ($p=0; $p < $sizeproject; $p++) {
-                        $project = Project::create([
-                            'workexperienceid' => $workexperienceId,
-                            'name' => $request->pengalaman[$i]['proyek'][$p]['nama'],
-                            'position' => $request->pengalaman[$i]['proyek'][$p]['posisi'],
-                            'division' => $request->pengalaman[$i]['proyek'][$p]['divisi'],
-                            'jobdescription' => $request->pengalaman[$i]['proyek'][$p]['deskripsi'],
-                        ]);
+                    $getkey = array_keys($request->pengalaman[$i]['proyek']);
+                    $getkeylast = end($getkey)+1;
+                    for ($p=0; $p < $getkeylast; $p++) {
+                        if (isset($request->pengalaman[$i]['proyek'][$p]['nama']) == true) {
+                                $project = Project::create([
+                                    'workexperienceid' => $workexperienceId,
+                                    'name' => $request->pengalaman[$i]['proyek'][$p]['nama'],
+                                    'position' => $request->pengalaman[$i]['proyek'][$p]['posisi'],
+                                    'division' => $request->pengalaman[$i]['proyek'][$p]['divisi'],
+                                    'jobdescription' => $request->pengalaman[$i]['proyek'][$p]['deskripsi'],
+                                ]);
+                        }
                     }
                 }
             }

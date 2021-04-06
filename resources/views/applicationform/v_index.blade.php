@@ -617,9 +617,10 @@
                 <!--Proyek-->
                 <div class="form-group" id="proyek-1">
                     <span><h4> <strong> PROYEK </strong></h4> </span>
-                    <button type="button" class="btn btn-primary btn-sm">+</button>
-                    <button type="button" class="btn btn-danger btn-sm">-</button>
-                    <div class="row">
+                    <button type="button" onclick="addProject(0,0)" class="btn btn-primary btn-sm">+</button>
+                    {{-- <button type="button" onclick="delProject(0,0)" class="btn btn-danger btn-sm">-</button> --}}
+                    <div id="workEXP-0">
+                    <div class="row" id="proyek-0-0">
                     <div class="col-6">
                         <div class="col mb-3">
                         <input name="pengalaman[0][proyek][0][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
@@ -639,13 +640,18 @@
                         </div>
                     </div>
                     <div class="col-6 mb-3">
-                        <div class="col">
-                        <textarea name="pengalaman[0][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="4" aria-describedby="alamat" placeholder="" ></textarea>
-                        <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan <small class="wajib">*</small></small>
+                        <div class="row">
+                          <div class="col-12">
+                            <textarea name="pengalaman[0][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="4" aria-describedby="alamat" placeholder="" ></textarea>
+                            <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan <small class="wajib">*</small></small>
+                          </div>
+                          {{-- <div class="">
+                            <button type="button" onclick="delProject(0,0)" class="btn btn-danger btn-sm">-</button>
+                          </div> --}}
                         </div>
                     </div>
                     </div>
-                    <hr>
+                  </div>
                 </div>
 
               </div>
@@ -1815,6 +1821,14 @@
                                             }
                                         });
                                         div1_2_3_1_1_2.append(select1_2_3_1_1_2);
+                                        var small1_2_3_1_1_2 = document.createElement("small");
+                                            small1_2_3_1_1_2.className = 'form-text text-muted';
+                                            small1_2_3_1_1_2.append('Status Karyawan ');
+                                            var small1_2_3_1_1_2_w = document.createElement("small");
+                                                small1_2_3_1_1_2_w.className = 'wajib';
+                                                small1_2_3_1_1_2_w.append('*');
+                                                small1_2_3_1_1_2.append(small1_2_3_1_1_2_w);
+                                                div1_2_3_1_1_2.append(small1_2_3_1_1_2);
 
                     div1_2_3_1.append(div1_2_3_1_1);
                     div1_2_3_1_1.append(div1_2_3_1_1_1);
@@ -1853,35 +1867,267 @@
     var hr = document.createElement("hr");
         div1_2.append(hr);
     //Project
-    pr++;
+    var div1_2_5 = document.createElement("div");
+    div1_2_5.id = 'workEXP-'+wx;
     var div1_2_4 = document.createElement("div");
                   div1_2_4.className = 'form-group';
                   div1_2_4.id = 'proyek-'+wx+'-'+pr;
+         var span1_2_4 = document.createElement("span");
+             var h41_2_4 = document.createElement("h4");
+                 var strong1_2_4 = document.createElement("strong");
+                     strong1_2_4.append('PROYEK');
+                     div1_2_4.append(span1_2_4);
+                     span1_2_4.append(h41_2_4);
+                     h41_2_4.append(strong1_2_4);
+                     div1_2_5.append(div1_2_4);
+                     div1_2.append(div1_2_5);
 
-    var input1 = document.createElement("input");
-                input1.setAttribute("class",'form-control');
-                input1.setAttribute("name",'sertifikasi['+pr+'][name]');
-                input1.setAttribute("type",'text');
-                input1.setAttribute("placeholder",'Nama Kursus');
-    var small1 = document.createElement("small");
-                small1.className = 'form-text text-muted';
-                small1.append('Nama Kursus');
+        var buttonadd1_2_4 = document.createElement("button");
+            buttonadd1_2_4.type = 'button';
+            buttonadd1_2_4.className = 'btn btn-primary btn-sm';
+            buttonadd1_2_4.setAttribute('onclick','addProject('+wx+','+pr+')');
+            buttonadd1_2_4.append('+');
+            div1_2_4.append(buttonadd1_2_4);
+
+        var div1_2_4_4 = document.createElement("div");
+            div1_2_4_4.className = 'row';
+            var div1_2_4_4_1 = document.createElement("div");
+                div1_2_4_4_1.className = 'col-6';
+                var div1_2_4_4_1_1 = document.createElement("div");
+                    div1_2_4_4_1_1.className = 'col mb-3';
+                    var input1_2_4_4_1_1 = document.createElement("input");
+                        input1_2_4_4_1_1.className = 'form-control';
+                        input1_2_4_4_1_1.name = 'pengalaman['+wx+'][proyek]['+pr+'][nama]';
+                        input1_2_4_4_1_1.type = 'text';
+                        input1_2_4_4_1_1.required = 'required';
+                        input1_2_4_4_1_1.placeholder = 'Nama Proyek';
+                        var small1_2_4_4_1_1 = document.createElement("small");
+                            small1_2_4_4_1_1.className = 'form-text text-muted';
+                            small1_2_4_4_1_1.append('Nama Proyek ');
+                            var small1_2_4_4_1_1_w = document.createElement("small");
+                                small1_2_4_4_1_1_w.className = 'wajib';
+                                small1_2_4_4_1_1_w.append('*');
+                                small1_2_4_4_1_1.append(small1_2_4_4_1_1_w);
+                                div1_2_4_4_1_1.append(input1_2_4_4_1_1);
+                                div1_2_4_4_1_1.append(small1_2_4_4_1_1);
+                                div1_2_4_4_1.append(div1_2_4_4_1_1);
+
+                    var div1_2_4_4_1_1_1 = document.createElement("div");
+                        div1_2_4_4_1_1_1.className = 'col mb-3';
+                        var div1_2_4_4_1_1_1_1 = document.createElement("div");
+                            div1_2_4_4_1_1_1_1.className = 'row';
+                            var div1_2_4_4_1_1_1_1_1 = document.createElement("div");
+                                div1_2_4_4_1_1_1_1_1.className = 'col-6';
+                                var input1_2_4_4_1_1_1_1_1 = document.createElement("input");
+                                    input1_2_4_4_1_1_1_1_1.className = 'form-control';
+                                    input1_2_4_4_1_1_1_1_1.name = 'pengalaman['+wx+'][proyek]['+pr+'][posisi]';
+                                    input1_2_4_4_1_1_1_1_1.type = 'text';
+                                    input1_2_4_4_1_1_1_1_1.required = 'required';
+                                    input1_2_4_4_1_1_1_1_1.placeholder = 'Posisi';
+                                    var small1_2_4_4_1_1_1_1_1 = document.createElement("small");
+                                        small1_2_4_4_1_1_1_1_1.className = 'form-text text-muted';
+                                        small1_2_4_4_1_1_1_1_1.append('Posisi ');
+                                        var small1_2_4_4_1_1_1_1_1_w = document.createElement("small");
+                                            small1_2_4_4_1_1_1_1_1_w.className = 'wajib';
+                                            small1_2_4_4_1_1_1_1_1_w.append('*');
+                                            small1_2_4_4_1_1_1_1_1.append(small1_2_4_4_1_1_1_1_1_w);
+                                            div1_2_4_4_1_1_1_1_1.append(input1_2_4_4_1_1_1_1_1);
+                                            div1_2_4_4_1_1_1_1_1.append(small1_2_4_4_1_1_1_1_1);
+                                            div1_2_4_4_1_1_1_1.append(div1_2_4_4_1_1_1_1_1);
+
+                            var div1_2_4_4_1_1_1_1_2 = document.createElement("div");
+                                div1_2_4_4_1_1_1_1_2.className = 'col-6';
+                                var input1_2_4_4_1_1_1_1_2 = document.createElement("input");
+                                    input1_2_4_4_1_1_1_1_2.className = 'form-control';
+                                    input1_2_4_4_1_1_1_1_2.name = 'pengalaman['+wx+'][proyek]['+pr+'][divisi]';
+                                    input1_2_4_4_1_1_1_1_2.type = 'text';
+                                    input1_2_4_4_1_1_1_1_2.required = 'required';
+                                    input1_2_4_4_1_1_1_1_2.placeholder = 'Divisi';
+                                    var small1_2_4_4_1_1_1_1_2 = document.createElement("small");
+                                        small1_2_4_4_1_1_1_1_2.className = 'form-text text-muted';
+                                        small1_2_4_4_1_1_1_1_2.append('Divisi ');
+                                        var small1_2_4_4_1_1_1_1_2_w = document.createElement("small");
+                                            small1_2_4_4_1_1_1_1_2_w.className = 'wajib';
+                                            small1_2_4_4_1_1_1_1_2_w.append('*');
+                                            small1_2_4_4_1_1_1_1_2.append(small1_2_4_4_1_1_1_1_2_w);
+                                            div1_2_4_4_1_1_1_1_2.append(input1_2_4_4_1_1_1_1_2);
+                                            div1_2_4_4_1_1_1_1_2.append(small1_2_4_4_1_1_1_1_2);
+                                            div1_2_4_4_1_1_1_1.append(div1_2_4_4_1_1_1_1_2);
+
+                                            div1_2_4_4_1_1_1.append(div1_2_4_4_1_1_1_1);
+                                            div1_2_4_4_1.append(div1_2_4_4_1_1_1);
+
+
+                                            div1_2_4_4.append(div1_2_4_4_1);
+                                            div1_2_4.append(div1_2_4_4);
+
+            var div1_2_4_4_2 = document.createElement("div");
+                div1_2_4_4_2.className = 'col-6 mb-3';
+                var div1_2_4_4_2_1 = document.createElement("div");
+                    div1_2_4_4_2_1.className = 'col';
+                    var textarea1_2_4_4_2_1 = document.createElement("textarea");
+                        textarea1_2_4_4_2_1.className = 'form-control';
+                        textarea1_2_4_4_2_1.name = 'pengalaman['+wx+'][proyek]['+pr+'][deskripsi]';
+                        textarea1_2_4_4_2_1.rows = '4';
+                        textarea1_2_4_4_2_1.required = 'required';
+                        var small1_2_4_4_2_1 = document.createElement("small");
+                            small1_2_4_4_2_1.className = 'form-text text-muted';
+                            small1_2_4_4_2_1.append('Deskripsi Perkerjaan ');
+                            var small1_2_4_4_2_1_w = document.createElement("small");
+                                small1_2_4_4_2_1_w.className = 'wajib';
+                                small1_2_4_4_2_1_w.append('*');
+                                small1_2_4_4_2_1.append(small1_2_4_4_2_1_w);
+                                div1_2_4_4_2_1.append(textarea1_2_4_4_2_1);
+                                div1_2_4_4_2_1.append(small1_2_4_4_2_1);
+                                div1_2_4_4_2.append(div1_2_4_4_2_1);
+                                div1_2_4_4.append(div1_2_4_4_2);
+
+
+
+
 
     // var hr2 = document.createElement("hr");
+    // div1_2_5.append(div1_2_4);
     div1_1.append(div1_2);
-    // div1.append(div1_1);
-
     document.getElementById("workexperiencelist").appendChild(div1_1);
     }else if(x == 2){
-            if (p > 0) {
-                var formaldel = document.getElementById('workexperience-'+p);
+            if (wx > 0) {
+                var formaldel = document.getElementById('workexperience-'+wx);
                 formaldel.remove();
-                p--;
+                wx--;
             }else{
             alert('form tidak bisa dihapus lagi');
             }
         }
     }
+
+
+    var proadd = 0;
+    function addProject(wxi,pro) {
+      if (pro >= 0) {
+          proadd++;
+          var p_div = document.createElement("div");
+          p_div.className = 'row';
+          p_div.id = 'proyek-'+wxi+'-'+proadd;
+            var p_div_1 = document.createElement("div");
+            p_div_1.className = 'col-6';
+              var p_div_1_1 = document.createElement("div")
+              p_div_1_1.className = 'col mb-3';
+                var p_input_1_1 = document.createElement("input");
+                p_input_1_1.className = 'form-control';
+                p_input_1_1.placeholder = 'Nama Proyek';
+                p_input_1_1.type = 'text';
+                p_input_1_1.required = 'required';
+                p_input_1_1.name = 'pengalaman['+wxi+'][proyek]['+proadd+'][nama]';
+                  var p_small_1_1 = document.createElement("small");
+                  p_small_1_1.className = 'form-text text-muted';
+                  p_small_1_1.append('Nama Proyek ');
+                    var p_small_w_1_1 = document.createElement("small");
+                    p_small_w_1_1.className = 'wajib';
+                    p_small_w_1_1.append('*');
+                    p_small_1_1.append(p_small_w_1_1);
+
+                    p_div_1_1.append(p_input_1_1);
+                    p_div_1_1.append(p_small_1_1);
+
+
+
+
+              var p_div_1_2 = document.createElement("div")
+              p_div_1_2.className = 'col mb-3';
+                var p_div_1_2_1 = document.createElement("div");
+                p_div_1_2_1.className = 'row';
+                  var p_div_1_2_1_1 = document.createElement("div");
+                  p_div_1_2_1_1.className = 'col-6';
+                    var p_input_1_2_1_1 = document.createElement("input");
+                    p_input_1_2_1_1.className = 'form-control';
+                    p_input_1_2_1_1.type = 'text';
+                    p_input_1_2_1_1.placeholder = 'Posisi';
+                    p_input_1_2_1_1.name = 'pengalaman['+wxi+'][proyek]['+proadd+'][posisi]';
+                      var p_small_1_2_1_1 = document.createElement("small");
+                      p_small_1_2_1_1.className = 'form-text text-muted';
+                      p_small_1_2_1_1.append('Posisi ');
+                        var p_small_w_1_2_1_1 = document.createElement("small");
+                        p_small_w_1_2_1_1.className = 'wajib';
+                        p_small_w_1_2_1_1.append('*');
+                        p_small_1_2_1_1.append(p_small_w_1_2_1_1);
+
+                        p_div_1_2_1_1.append(p_input_1_2_1_1);
+                        p_div_1_2_1_1.append(p_small_1_2_1_1);
+                        p_div_1_2_1.append(p_div_1_2_1_1);
+
+                  var p_div_1_2_1_2 = document.createElement("div");
+                  p_div_1_2_1_2.className = 'col-6';
+                    var p_input_1_2_1_2 = document.createElement("input");
+                    p_input_1_2_1_2.className = 'form-control';
+                    p_input_1_2_1_2.type = 'text';
+                    p_input_1_2_1_2.placeholder = 'Divisi';
+                    p_input_1_2_1_2.name = 'pengalaman['+wxi+'][proyek]['+proadd+'][divisi]';
+                      var p_small_1_2_1_2 = document.createElement("small");
+                      p_small_1_2_1_2.className = 'form-text text-muted';
+                      p_small_1_2_1_2.append('Divisi ');
+                        var p_small_w_1_2_1_2 = document.createElement("small");
+                        p_small_w_1_2_1_2.className = 'wajib';
+                        p_small_w_1_2_1_2.append('*');
+                        p_small_1_2_1_2.append(p_small_w_1_2_1_2);
+
+                        p_div_1_2_1_2.append(p_input_1_2_1_2);
+                        p_div_1_2_1_2.append(p_small_1_2_1_2);
+                        p_div_1_2_1.append(p_div_1_2_1_2);
+
+                        p_div_1_2.append(p_div_1_2_1);
+
+
+              p_div_1.append(p_div_1_1);
+              p_div_1.append(p_div_1_2);
+
+            var p_div_2 = document.createElement("div");
+            p_div_2.className = 'col-6 mb-3';
+              var p_div_2_1 = document.createElement("div");
+              p_div_2_1.className = 'row';
+                var p_div_2_1_1 = document.createElement("div");
+                p_div_2_1_1.className = 'col-10';
+                  var p_textarea_2_1_1 = document.createElement("textarea");
+                  p_textarea_2_1_1.className = 'form-control';
+                  p_textarea_2_1_1.rows = '4';
+                  p_textarea_2_1_1.required = 'required';
+                  p_textarea_2_1_1.name = 'pengalaman['+wxi+'][proyek]['+proadd+'][deskripsi]';
+                  var p_small_2_1_1 = document.createElement("small");
+                  p_small_2_1_1.className = 'form-text text-muted';
+                  p_small_2_1_1.append('Deskripsi Perkerjaan ');
+                    var p_small_w_2_1_1 = document.createElement("small");
+                    p_small_w_2_1_1.className = 'wajib';
+                    p_small_w_2_1_1.append('*');
+                    p_small_2_1_1.append(p_small_w_2_1_1);
+                    p_div_2_1_1.append(p_textarea_2_1_1);
+                    p_div_2_1_1.append(p_small_2_1_1);
+
+
+
+                var p_div_2_1_2 = document.createElement("div");
+                  var p_button_2_1_2 = document.createElement("button");
+                  p_button_2_1_2.className = 'btn btn-danger btn-sm';
+                  p_button_2_1_2.type = 'button';
+                  p_button_2_1_2.setAttribute('onclick','delProject('+wxi+','+proadd+')');
+                  p_button_2_1_2.append('-');
+                  p_div_2_1_2.append(p_button_2_1_2);
+
+              p_div_2_1.append(p_div_2_1_1);
+              p_div_2_1.append(p_div_2_1_2);
+              p_div_2.append(p_div_2_1);
+
+            p_div.append(p_div_1);
+            p_div.append(p_div_2);
+
+          document.getElementById('workEXP-'+wxi).appendChild(p_div);
+      }
+    }
+
+    function delProject(work_exp,pro_del) {
+      var formprodel = document.getElementById('proyek-'+work_exp+'-'+pro_del);
+                formprodel.remove();
+    }
+
 </script>
   <!--Check Pernah di rawat-->
       <!-- Checkbox -->
