@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\WorkApplicationForm;
 
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\DataColl\EducationController;
 use App\Http\Controllers\DataColl\EmployestatusController;
 use App\Http\Controllers\DataColl\LanguageContoller;
@@ -31,5 +32,8 @@ Route::resource('education',EducationController::class);
 Route::resource('proficiencieslevel',ProficiencieslevelContoller::class);
 Route::resource('language',LanguageContoller::class);
 Route::resource('employestatus',EmployestatusController::class);
-// Route::resource('photos', PhotoController::class);
+
+
+//admin
+Route::resource('login',AuthController::class);
 
