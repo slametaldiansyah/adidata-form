@@ -11,5 +11,5 @@ class Formaleducation extends Model
     protected $guarded=['id'];
 
 
-    protected $table = "formaleducation";
+    protected $table = "formaleducationnew";
 }

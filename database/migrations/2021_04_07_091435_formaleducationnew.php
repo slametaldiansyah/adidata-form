@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Formaleducation extends Migration
+class Formaleducationnew extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class Formaleducation extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('formaleducation', function (Blueprint $table) {
+        Schema::create('formaleducationnew', function (Blueprint $table) {
             $table->id()->length(11);
             $table->foreignId('candidateid')->constrained('candidate')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('educationlevelid')->constrained('education')->onDelete('cascade')->onUpdate('cascade');
@@ -37,6 +36,6 @@ class Formaleducation extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formaleducation');
+        Schema::dropIfExists('formaleducationnew');
     }
 }

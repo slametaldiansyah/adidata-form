@@ -22,9 +22,19 @@ $(document).ready(function() {
             });
             $('#'+secs[steps]).collapse('show');
             steps++;
+            console.log(steps);
+            console.log(secs);
         }else{
             $('#'+secs[steps-1]+' :input')[0].reportValidity();
         }
+        $('#'+secs[steps]).collapse('show');
+        // steps++;
+        if (steps == 7){
+            document.getElementById("mySubmitId").style.display = "block";
+            document.getElementById("myNextID").style.display = "none";
+        }
+
+
     });
 
     $('.prev').click(function() {
@@ -35,6 +45,10 @@ $(document).ready(function() {
             });
             $('#'+secs[steps-2]).collapse('show');
             steps--;
+        }
+        if (steps < 7){
+            document.getElementById("mySubmitId").style.display = "none";
+            document.getElementById("myNextID").style.display = "block";
         }
     });
 

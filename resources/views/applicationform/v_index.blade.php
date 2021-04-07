@@ -49,7 +49,8 @@
 
             <form id="myFormId" role="form" action="/" method="post">
                 @csrf
-            {{-- <section id="jabatan" class="collapse show">
+                {{-- Jabatan --}}
+            <section id="jabatan" class="collapse show">
               <div class="form-group">
                   <select class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
                     @foreach ($positionlist as $p)
@@ -325,7 +326,7 @@
 
 
               <!-- Education -->
-            <section id="education" class="collapse show">
+            <section id="education" class="collapse">
               <!-- Formal -->
 
               <span>Formal Education</span>
@@ -540,9 +541,9 @@
 
             </section>
 
---}}
+
             <!--Work Experience-->
-            <section id="pengalaman" class="collapse show">
+            <section id="pengalaman" class="collapse">
               <span><h4> <strong>Pengalaman Kerja</h4></strong></span>
               <button type="button" onclick="addBtnWorkexperience(1)" class="btn btn-primary btn-sm">+</button>
               <button type="button" onclick="addBtnWorkexperience(2)" class="btn btn-danger btn-sm">-</button>
@@ -618,7 +619,6 @@
                 <div class="form-group" id="proyek-1">
                     <span><h4> <strong> PROYEK </strong></h4> </span>
                     <button type="button" onclick="addProject(0,0)" class="btn btn-primary btn-sm">+</button>
-                    {{-- <button type="button" onclick="delProject(0,0)" class="btn btn-danger btn-sm">-</button> --}}
                     <div id="workEXP-0">
                     <div class="row" id="proyek-0-0">
                     <div class="col-6">
@@ -645,9 +645,6 @@
                             <textarea name="pengalaman[0][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="4" aria-describedby="alamat" placeholder="" ></textarea>
                             <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan <small class="wajib">*</small></small>
                           </div>
-                          {{-- <div class="">
-                            <button type="button" onclick="delProject(0,0)" class="btn btn-danger btn-sm">-</button>
-                          </div> --}}
                         </div>
                     </div>
                     </div>
@@ -658,153 +655,9 @@
               </div>
               <br>
               </div>
-              <!-- Proyek 2 -->
-              {{-- <div class="form-group" id="proyek-2">
-                <span>Proyek</span>
-                <br>
-                <button type="button" class="btn btn-primary btn-sm">+</button>
-                <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="row">
-                  <div class="col-6">
-                    <div class="col">
-                      <input name="pengalaman[0][proyek][1][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
-                      <small id="proyek-nama" class="form-text text-muted">Nama Proyek</small>
-                    </div>
-                    <div class="col">
-                      <div class="row">
-                        <div class="col-6">
-                          <input name="pengalaman[0][proyek][1][posisi]" required type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" >
-                          <small id="proyek-posisi" class="form-text text-muted">Posisi</small>
-                        </div>
-                        <div class="col-6">
-                          <input name="pengalaman[0][proyek][1][divisi]" type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" >
-                          <small id="proyek-divisi" class="form-text text-muted">Divisi</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="col">
-                      <textarea name="pengalaman[0][proyek][1][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" ></textarea>
-                      <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan</small>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-              </div> --}}
-
-              <br>
-              {{-- <br><br><br><br> --}}
-
-              <!--Work Experience 2-->
-                {{-- <span>Pengalaman Kerja</span>
-                <br>
-                <button type="button" class="btn btn-primary btn-sm">+</button>
-                <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group" id="workexperience">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <input name="pengalaman[1][nama]" type="text" class="form-control" id="pengalaman-nama" aria-describedby="nama" placeholder="Nama Perusahaan" required>
-                      <small id="pengalaman-nama" class="form-text text-muted">Nama Perusahaan</small>
-                    </div>
-                    <div class="col-md-6">
-                      <input name="pengalaman[1][bidang]" required type="text" class="form-control" id="pengalaman-bidang" aria-describedby="nama" placeholder="Bidang Perusahaan" >
-                      <small id="pengalaman-bidang" class="form-text text-muted">Bidang Perusahaan</small>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <textarea name="pengalaman[1][alamat]" required class="form-control" id="pengalaman-alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Perusahaan" ></textarea>
-                      <small id="pengalaman-alamat" class="form-text text-muted">Alamat Perusahaan</small>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="row">
-                        <div class="col-md-5">
-                          <input name="pengalaman[1][mulai]" required type="date" class="form-control" id="pengalaman-mulai" aria-describedby="nama" placeholder="" >
-                          <small id="pengalaman-mulai" class="form-text text-muted">Mulai</small>
-                        </div>
-                        <div class="col-md-5" id="berakhir">
-                          <input name="pengalaman[1][berakhir]" type="date" class="form-control" id="pengalaman-akhir" aria-describedby="nama" placeholder="" >
-                          <small class="form-text text-muted">Berakhir</small>
-                        </div>
-                        <div class="col-md-1">
-                          <input type="hidden" name="pengalaman[1][statuskerja]" value="0" >
-                          <input name="pengalaman[1][statuskerja]" type="checkbox" value="1" id="pengalaman-statuskerja">
-                          <small class="form-text text-muted">Masih Bekerja</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="row">
-                        <div class="col-8">
-                          <input name="pengalaman[1][upah]" required type="text" class="form-control" id="pengalaman-upah" aria-describedby="nama" placeholder="Upah Pokok" >
-                          <small id="pengalaman-upah" class="form-text text-muted">Upah Pokok</small>
-                        </div>
-                        <div class="col-md-4">
-                          <select name="pengalaman[1][status]" required class="form-control" name="pengalaman-status[]" id="pengalaman-status">
-                              <option value="">--option--</option>
-                              @foreach ($employeestatuslist as $el)
-                              <option value="{{$el->id}}"
-                                >{{$el->employeestatus}}</option>
-                              @endforeach
-                          </select>
-                          <small id="pengalaman-status" class="form-text text-muted">Status Karyawan</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="col">
-                        <input name="pengalaman[1][alasan]" required type="text" class="form-control" id="pengalaman-alasan" aria-describedby="nama" placeholder="Alasan Berhenti" >
-                        <small id="pengalaman-alasan" class="form-text text-muted">Alasan Berhenti</small>
-                      </div>
-                    </div>
-                  </div>
-                  <hr>
-                </div>
-
-                <!--Proyek-->
-              <div class="form-group" id="proyek-1">
-                <span>Proyek</span>
-                <br>
-                <button type="button" class="btn btn-primary btn-sm">+</button>
-                <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="row">
-                  <div class="col-6">
-                    <div class="col">
-                      <input name="pengalaman[1][proyek][0][nama]" required type="text" class="form-control" id="proyek-nama" aria-describedby="nama" placeholder="Nama Proyek" >
-                      <small id="proyek-nama" class="form-text text-muted">Nama Proyek</small>
-                    </div>
-                    <div class="col">
-                      <div class="row">
-                        <div class="col-6">
-                          <input name="pengalaman[1][proyek][0][posisi]" required type="text" class="form-control" id="proyek-posisi" aria-describedby="nama" placeholder="Posisi" >
-                          <small id="proyek-posisi" class="form-text text-muted">Posisi</small>
-                        </div>
-                        <div class="col-6">
-                          <input name="pengalaman[1][proyek][0][divisi]" type="text" class="form-control" id="proyek-divisi" aria-describedby="nama" placeholder="Divisi" >
-                          <small id="proyek-divisi" class="form-text text-muted">Divisi</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="col">
-                      <textarea name="pengalaman[1][proyek][0][deskripsi]" required class="form-control" id="proyek-deskripsi" rows="3" aria-describedby="alamat" placeholder="" ></textarea>
-                      <small id="proyek-deskripsi" class="form-text text-muted">Deskripsi Perkerjaan</small>
-                    </div>
-                  </div>
-                </div>
-                <hr>
-              </div> --}}
-
-
 
                     <!--Benefit-->
-            {{-- <div class="form-group">
+            <div class="form-group">
               <div class="row">
                   @foreach ($benefitlist as $index => $ben)
                   @if ($index == 0)
@@ -839,20 +692,20 @@
 
               </div>
               <hr>
-            </div> --}}
+            </div>
 
             </section>
 
 
-{{--            <!--Organisasi dan Refrensi-->
+           <!--Organisasi dan Refrensi-->
             <section id="orgnref" class="collapse">
 
               <!--Organisasi-->
               <span>Organisasi</span>
               <br>
-              <button type="button" class="btn btn-primary btn-sm">+</button>
-              <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group">
+              <button type="button" onclick="addBtnOrganisasi(1)" class="btn btn-primary btn-sm">+</button>
+              <button type="button" onclick="addBtnOrganisasi(2)" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="organisasilist">
                   <div class="row">
                     <div class="col-md-3">
                       <input name="organisasi[0][nama]" required type="text" class="form-control" id="organisasi-nama" aria-describedby="nama" placeholder="Nama Organisasi" >
@@ -871,33 +724,15 @@
                       <small id="organisasi-jabatan" class="form-text text-muted">Jabatan</small>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <input name="organisasi[1][nama]" required type="text" class="form-control" id="organisasi-nama-1" aria-describedby="nama" placeholder="Nama Organisasi" >
-                      <small id="organisasi-nama-1" class="form-text text-muted">Nama Organisasi</small>
-                    </div>
-                    <div class="col-md-3">
-                      <input name="organisasi[1][jenis]" required type="text" class="form-control" id="organisasi-jenis-1" aria-describedby="nama" placeholder="Jenis Organisasi" >
-                      <small id="organisasi-penerbit-1" class="form-text text-muted">Jenis Organisasi</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="organisasi[1][tahun]" required type="text" class="form-control" id="organisasi-tahun-1" aria-describedby="nama" placeholder="Tahun" >
-                      <small id="organisasi-tahun-1" class="form-text text-muted">Tahun</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="organisasi[1][jabatan]" required type="text" class="form-control" id="organisasi-jabatan-1" aria-describedby="nama" placeholder="Jabatan" >
-                      <small id="organisasi-jabatan-1" class="form-text text-muted">Jabatan</small>
-                    </div>
-                  </div>
-                  <hr>
                 </div>
+                <hr>
 
               <!--Refrensi-->
               <span>Refrensi dan Rekomendasi</span>
               <br>
-              <button type="button" class="btn btn-primary btn-sm">+</button>
-              <button type="button" class="btn btn-primary btn-sm">-</button>
-                <div class="form-group">
+              <button type="button" onclick="addBtnRefrensi(1)" class="btn btn-primary btn-sm">+</button>
+              <button type="button" onclick="addBtnRefrensi(2)" class="btn btn-primary btn-sm">-</button>
+                <div class="form-group" id="refrensilist">
                   <div class="row">
                     <div class="col-md-3">
                       <input name="refrensi[0][nama]" required type="text" class="form-control" id="Ref-nama" aria-describedby="nama" placeholder="Nama Refrensi" >
@@ -916,26 +751,9 @@
                       <small id="Ref-hubungan" class="form-text text-muted">Hubungan</small>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-3">
-                      <input name="refrensi[1][nama]" required type="text" class="form-control" id="Ref-nama-1" aria-describedby="nama" placeholder="Nama Refrensi" >
-                      <small id="Ref-nama-1" class="form-text text-muted">Nama Refrensi</small>
-                    </div>
-                    <div class="col-md-3">
-                      <input name="refrensi[1][notlp]" required type="text" class="form-control" id="Ref-notlp-1" aria-describedby="nama" placeholder="Nomor Telepon" >
-                      <small id="Ref-notlp-1" class="form-text text-muted">No.Telepon</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="refrensi[1][jabatan]" required type="text" class="form-control" id="Ref-jabatan-1" aria-describedby="nama" placeholder="Jabatan" >
-                      <small id="Ref-jabatan-1" class="form-text text-muted">Jabatan</small>
-                    </div>
-                    <div class="col-md-2">
-                      <input name="refrensi[1][hubungan]" required type="text" class="form-control" id="Ref-hubungan-1" aria-describedby="nama" placeholder="Hubungan" >
-                      <small id="Ref-hubungan-1" class="form-text text-muted">Hubungan</small>
-                    </div>
-                  </div>
-                  <hr>
+
                 </div>
+                <hr>
             </section>
 
 
@@ -995,13 +813,18 @@
               </div>
 
 
-            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
-            </section> --}}
-
+            {{-- <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button> --}}
+            </section>
+        <div class="row">
             <button type="button" class="btn btn-primary prev"> Pref</button>
-            <button type="button" class="btn btn-primary next"> Next</button>
-            <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
+            <div class="ml-3" id="myNextID" style="display: block">
+                <button type="button" id="myButtonID" class="btn btn-primary next"> Next</button>
+            </div>
+            <div class="ml-3" id="mySubmitId" style="display: none">
+                <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
+        </div>
           {{-- </form> --}}
         </div>
       </div>
@@ -1017,19 +840,19 @@
 
   {{-- Formal --}}
     <script>
-        var n = 0;
+        var fo = 0;
         function addBtnFormal(x) {
             if (x == 1) {
-            n++;
+            fo++;
             //jenjang
             var div1 = document.createElement("div");
                         div1.className = 'row';
-                        div1.id = 'formal-'+n;
+                        div1.id = 'formal-'+fo;
             var div1_1 = document.createElement("div");
                         div1_1.className = 'col-md-2';
             var select = document.createElement("select");
                         select.setAttribute("class",'form-control');
-                        select.setAttribute("name",'formal['+n+'][jenjang]');
+                        select.setAttribute("name",'formal['+fo+'][jenjang]');
             var small = document.createElement("small");
                         small.className = 'form-text text-muted';
                         small.append('Jenjang');
@@ -1064,7 +887,7 @@
             var div1_2 = document.createElement("div");
             div1_2.className = 'col-md-2';
             var input1_1 = document.createElement("input");
-            input1_1.setAttribute("name",'formal['+n+'][nama]');
+            input1_1.setAttribute("name",'formal['+fo+'][nama]');
             input1_1.setAttribute("type",'text');
             input1_1.setAttribute("class",'form-control');
             input1_1.setAttribute("placeholder",'Nama');
@@ -1080,7 +903,7 @@
             var div1_3 = document.createElement("div");
             div1_3.className = 'col-md-2';
             var input1_2 = document.createElement("input");
-            input1_2.setAttribute("name",'formal['+n+'][kota]');
+            input1_2.setAttribute("name",'formal['+fo+'][kota]');
             input1_2.setAttribute("type",'text');
             input1_2.setAttribute("class",'form-control');
             input1_2.setAttribute("placeholder",'Kota');
@@ -1096,7 +919,7 @@
             var div1_4 = document.createElement("div");
             div1_4.className = 'col-md-2';
             var input1_3 = document.createElement("input");
-            input1_3.setAttribute("name",'formal['+n+'][IPK]');
+            input1_3.setAttribute("name",'formal['+fo+'][IPK]');
             input1_3.setAttribute("type",'text');
             input1_3.setAttribute("class",'form-control');
             input1_3.setAttribute("placeholder",'Kota');
@@ -1112,7 +935,7 @@
             var div1_5 = document.createElement("div");
             div1_5.className = 'col-md-2';
             var input1_4 = document.createElement("input");
-            input1_4.setAttribute("name",'formal['+n+'][masuk]');
+            input1_4.setAttribute("name",'formal['+fo+'][masuk]');
             input1_4.setAttribute("type",'text');
             input1_4.setAttribute("class",'form-control');
             input1_4.setAttribute("placeholder",'Masuk');
@@ -1128,7 +951,7 @@
             var div1_6 = document.createElement("div");
             div1_6.className = 'col-md-2';
             var input1_5 = document.createElement("input");
-            input1_5.setAttribute("name",'formal['+n+'][lulus]');
+            input1_5.setAttribute("name",'formal['+fo+'][lulus]');
             input1_5.setAttribute("type",'text');
             input1_5.setAttribute("class",'form-control');
             input1_5.setAttribute("placeholder",'Lulus');
@@ -1142,31 +965,31 @@
 
             document.getElementById("formallist").appendChild(div1);
             }else if(x == 2){
-                    if (n > 0) {
-                        var formaldel = document.getElementById('formal-'+n);
+                    if (fo > 0) {
+                        var formaldel = document.getElementById('formal-'+fo);
                         formaldel.remove();
-                        n--;
+                        fo--;
                     }else{
                     alert('form tidak bisa dihapus lagi');
                     }
                 }
             }
-            console.log(n);
+            // console.log(n);
     </script>
   {{-- NonFormal --}}
     <script>
-        var n = 0;
+        var nofo = 0;
         function addBtnNonFormal(x) {
           if (x == 1) {
-          n++;
+            nofo++;
           var div1 = document.createElement("div");
                       div1.className = 'row';
-                      div1.id = 'nonformal-'+n;
+                      div1.id = 'nonformal-'+nofo;
           //nama
           var div1_2 = document.createElement("div");
           div1_2.className = 'col-md-3';
           var input1_1 = document.createElement("input");
-          input1_1.setAttribute("name",'nonformal['+n+'][nama]');
+          input1_1.setAttribute("name",'nonformal['+nofo+'][nama]');
           input1_1.setAttribute("type",'text');
           input1_1.setAttribute("class",'form-control');
           input1_1.setAttribute("placeholder",'Nama Kursus');
@@ -1181,7 +1004,7 @@
           var div1_3 = document.createElement("div");
           div1_3.className = 'col-md-2';
           var input1_2 = document.createElement("input");
-          input1_2.setAttribute("name",'nonformal['+n+'][tahun]');
+          input1_2.setAttribute("name",'nonformal['+nofo+'][tahun]');
           input1_2.setAttribute("type",'text');
           input1_2.setAttribute("class",'form-control');
           input1_2.setAttribute("placeholder",'Tahun');
@@ -1196,7 +1019,7 @@
           var div1_4 = document.createElement("div");
           div1_4.className = 'col-md-2';
           var input1_3 = document.createElement("input");
-          input1_3.setAttribute("name",'nonformal['+n+'][durasi]');
+          input1_3.setAttribute("name",'nonformal['+nofo+'][durasi]');
           input1_3.setAttribute("type",'text');
           input1_3.setAttribute("class",'form-control');
           input1_3.setAttribute("placeholder",'Lama Kursus');
@@ -1211,11 +1034,11 @@
           var div1_5 = document.createElement("div");
           div1_5.className = 'col-md-1';
           var input1_4_h = document.createElement("input");
-          input1_4_h.setAttribute("name",'nonformal['+n+'][ijazah]');
+          input1_4_h.setAttribute("name",'nonformal['+nofo+'][ijazah]');
           input1_4_h.setAttribute("type", 'hidden');
           input1_4_h.setAttribute("value", '0');
           var input1_4 = document.createElement("input");
-          input1_4.setAttribute("name",'nonformal['+n+'][ijazah]');
+          input1_4.setAttribute("name",'nonformal['+nofo+'][ijazah]');
           input1_4.setAttribute("type",'checkbox');
           input1_4.setAttribute("value", '1');
           var small_5 = document.createElement("small");
@@ -1230,7 +1053,7 @@
           var div1_6 = document.createElement("div");
           div1_6.className = 'col-md-2';
           var input1_5 = document.createElement("input");
-          input1_5.setAttribute("name",'nonformal['+n+'][biaya]');
+          input1_5.setAttribute("name",'nonformal['+nofo+'][biaya]');
           input1_5.setAttribute("type",'text');
           input1_5.setAttribute("class",'form-control');
           input1_5.setAttribute("placeholder",'Dibiayai');
@@ -1243,10 +1066,10 @@
 
           document.getElementById("nonformallist").appendChild(div1);
           }else if(x == 2){
-                  if (n > 0) {
-                      var formaldel = document.getElementById('nonformal-'+n);
+                  if (nofo > 0) {
+                      var formaldel = document.getElementById('nonformal-'+nofo);
                       formaldel.remove();
-                      n--;
+                      nofo--;
                   }else{
                   alert('form tidak bisa dihapus lagi');
                   }
@@ -2128,6 +1951,211 @@
                 formprodel.remove();
     }
 
+</script>
+  {{-- Organisasi --}}
+  <script>
+    var or = 0;
+    function addBtnOrganisasi(x) {
+    if (x == 1) {
+    or++;
+    //Organisasi nama
+    var div1 = document.createElement("div");
+                div1.className = 'row';
+                div1.id = 'organisasi-'+or;
+    var div1_1 = document.createElement("div");
+                div1_1.className = 'col-md-3';
+    var input1 = document.createElement("input");
+                input1.setAttribute("class",'form-control');
+                input1.setAttribute("name",'organisasi['+or+'][nama]');
+                input1.setAttribute("type",'text');
+                input1.setAttribute("placeholder",'Nama Organisasi');
+                input1.required = 'required';
+    var small1 = document.createElement("small");
+                small1.className = 'form-text text-muted';
+                small1.append('Nama Kursus ');
+    var small1_1 = document.createElement("small");
+                small1_1.className = 'wajib';
+                small1_1.append('*');
+                small1.append(small1_1);
+    div1_1.append(input1);
+    div1_1.append(small1);
+    div1.append(div1_1);
+
+    //Jenis Organisasi
+    var div1_2 = document.createElement("div");
+                div1_2.className = 'col-md-3';
+    var input2 = document.createElement("input");
+                input2.setAttribute("class",'form-control');
+                input2.setAttribute("name",'organisasi['+or+'][jenis]');
+                input2.required = 'required';
+                input2.setAttribute("type",'text');
+                input2.setAttribute("placeholder",'Jenis Organisasi');
+    var small2 = document.createElement("small");
+                small2.className = 'form-text text-muted';
+                small2.append('Jenis Organisasi ');
+                var small2_1 = document.createElement("small");
+                small2_1.className = 'wajib';
+                small2_1.append('*');
+                small2.append(small2_1);
+
+    div1_2.append(input2);
+    div1_2.append(small2);
+    div1.append(div1_2);
+
+    //Organisasi Tahun
+    var div1_3 = document.createElement("div");
+                div1_3.className = 'col-md-2';
+    var input3 = document.createElement("input");
+                input3.setAttribute("class",'form-control');
+                input3.setAttribute("name",'organisasi['+or+'][tahun]');
+                input3.setAttribute("type",'text');
+                input3.required = 'required';
+                input3.setAttribute("placeholder",'Tahun');
+    var small3 = document.createElement("small");
+                small3.className = 'form-text text-muted';
+                small3.append('Tahun ');
+                var small3_1 = document.createElement("small");
+                small3_1.className = 'wajib';
+                small3_1.append('*');
+                small3.append(small3_1);
+    div1_3.append(input3);
+    div1_3.append(small3);
+    div1.append(div1_3);
+
+    //Jabatan
+    var div1_4 = document.createElement("div");
+                div1_4.className = 'col-md-2';
+    var input4 = document.createElement("input");
+                input4.setAttribute("class",'form-control');
+                input4.setAttribute("name",'organisasi['+or+'][jabatan]');
+                input4.setAttribute("type",'text');
+                input4.required = 'required';
+                input4.setAttribute("placeholder",'Jabatan');
+    var small4 = document.createElement("small");
+                small4.className = 'form-text text-muted';
+                small4.append('Jabatan ');
+                var small4_1 = document.createElement("small");
+                small4_1.className = 'wajib';
+                small4_1.append('*');
+                small4.append(small4_1);
+    div1_4.append(input4);
+    div1_4.append(small4);
+    div1.append(div1_4);
+
+    document.getElementById("organisasilist").appendChild(div1);
+    }else if(x == 2){
+            if (or > 0) {
+                var formaldel = document.getElementById('organisasi-'+or);
+                formaldel.remove();
+                or--;
+            }else{
+            alert('form organsisasi tidak bisa dihapus lagi');
+            }
+        }
+    }
+</script>
+  {{-- Refrensi --}}
+  <script>
+    var re = 0;
+    function addBtnRefrensi(x) {
+    if (x == 1) {
+    re++;
+    //Refrensi nama
+    var div1 = document.createElement("div");
+                div1.className = 'row';
+                div1.id = 'refrensi-'+re;
+    var div1_1 = document.createElement("div");
+                div1_1.className = 'col-md-3';
+    var input1 = document.createElement("input");
+                input1.setAttribute("class",'form-control');
+                input1.setAttribute("name",'refrensi['+re+'][nama]');
+                input1.setAttribute("type",'text');
+                input1.required = 'required';
+                input1.setAttribute("placeholder",'Nama Refrensi');
+                input1.required = 'required';
+    var small1 = document.createElement("small");
+                small1.className = 'form-text text-muted';
+                small1.append('Nama Refrensi ');
+    var small1_1 = document.createElement("small");
+                small1_1.className = 'wajib';
+                small1_1.append('*');
+                small1.append(small1_1);
+    div1_1.append(input1);
+    div1_1.append(small1);
+    div1.append(div1_1);
+
+    //Jenis Organisasi
+    var div1_2 = document.createElement("div");
+                div1_2.className = 'col-md-3';
+    var input2 = document.createElement("input");
+                input2.setAttribute("class",'form-control');
+                input2.setAttribute("name",'refrensi['+re+'][notlp]');
+                input2.required = 'required';
+                input2.setAttribute("type",'text');
+                input2.setAttribute("placeholder",'Nomor Telepon');
+    var small2 = document.createElement("small");
+                small2.className = 'form-text text-muted';
+                small2.append('No.Telepon ');
+                var small2_1 = document.createElement("small");
+                small2_1.className = 'wajib';
+                small2_1.append('*');
+                small2.append(small2_1);
+
+    div1_2.append(input2);
+    div1_2.append(small2);
+    div1.append(div1_2);
+
+    //Jabatan
+    var div1_3 = document.createElement("div");
+                div1_3.className = 'col-md-2';
+    var input3 = document.createElement("input");
+                input3.setAttribute("class",'form-control');
+                input3.setAttribute("name",'refrensi['+re+'][jabatan]');
+                input3.setAttribute("type",'text');
+                input3.required = 'required';
+                input3.setAttribute("placeholder",'Jabatan');
+    var small3 = document.createElement("small");
+                small3.className = 'form-text text-muted';
+                small3.append('Jabatan ');
+                var small3_1 = document.createElement("small");
+                small3_1.className = 'wajib';
+                small3_1.append('*');
+                small3.append(small3_1);
+    div1_3.append(input3);
+    div1_3.append(small3);
+    div1.append(div1_3);
+
+    //Hubungan
+    var div1_4 = document.createElement("div");
+                div1_4.className = 'col-md-2';
+    var input4 = document.createElement("input");
+                input4.setAttribute("class",'form-control');
+                input4.setAttribute("name",'refrensi['+re+'][hubungan]');
+                input4.setAttribute("type",'text');
+                input4.required = 'required';
+                input4.setAttribute("placeholder",'Hubungan');
+    var small4 = document.createElement("small");
+                small4.className = 'form-text text-muted';
+                small4.append('Hubungan ');
+                var small4_1 = document.createElement("small");
+                small4_1.className = 'wajib';
+                small4_1.append('*');
+                small4.append(small4_1);
+    div1_4.append(input4);
+    div1_4.append(small4);
+    div1.append(div1_4);
+
+    document.getElementById("refrensilist").appendChild(div1);
+    }else if(x == 2){
+            if (re > 0) {
+                var formaldel = document.getElementById('refrensi-'+re);
+                formaldel.remove();
+                re--;
+            }else{
+            alert('form Refrensi tidak bisa dihapus lagi');
+            }
+        }
+    }
 </script>
   <!--Check Pernah di rawat-->
       <!-- Checkbox -->
