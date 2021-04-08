@@ -50,7 +50,6 @@
         }
 
 	</style>
-@include('sweetalert::alert')
 </head>
 
 <body class="login-page w3-animate-zoom">
@@ -60,6 +59,7 @@
             <small>Delivers IT Solution</small>
         </div>
         <div class="card">
+            @include('sweetalert::alert')
             <div class="body">
                 <form id="sign_in" action="login" method="POST">
                     @csrf

@@ -37,7 +37,7 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
             // Inputan yg diambil
             $credentials = $request->only('username', 'password');
@@ -51,23 +51,29 @@ class AuthController extends Controller
                     'password' => $credentials['password'],
                 ]);
                 $data = json_decode((string) $response->body(), true);
-                // dd($data);
-                try {
-                    $data['access_token'] == true;
-                    session()->put('token', $data);
-                    session()->push($data['user']['username'], $data['user']['username']);
-                    Alert::toast('Slamat Datang', 'success');
-                    return redirect()->intended('/');
-                } catch (\Throwable $th) {
+                // dd();
+                if ($data['position']['name'] == "Human Resources") {
+                    # code...
                     try {
-                        $data['password'] == true;
-                        Alert::toast('Username or password salah', 'error');
-                        return redirect('login');
+                        $data['access_token'] == true;
+                        session()->put('token', $data);
+                        session()->push($data['user']['username'], $data['user']['username']);
+                        Alert::toast('Slamat Datang', 'success');
+                        return redirect()->intended('/');
                     } catch (\Throwable $th) {
-                        $data['error'] == true;
-                        return redirect('login');
+                        try {
+                            $data['password'] == true;
+                            Alert::toast('Username or password salah', 'error');
+                            return redirect('login');
+                        } catch (\Throwable $th) {
+                            $data['error'] == true;
+                            return redirect('login');
+                        }
                     }
                 }
+                Alert::toast('you dont have access', 'error');
+                return redirect('login');
+                // dd($response);
             }
             return redirect('login');
         }
