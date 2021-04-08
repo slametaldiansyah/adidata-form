@@ -59,7 +59,7 @@ class AuthController extends Controller
                         session()->put('token', $data);
                         session()->push($data['user']['username'], $data['user']['username']);
                         Alert::toast('Slamat Datang', 'success');
-                        return redirect()->intended('/');
+                        return redirect()->intended('dashboard');
                     } catch (\Throwable $th) {
                         try {
                             $data['password'] == true;

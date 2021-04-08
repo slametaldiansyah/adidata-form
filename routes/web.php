@@ -3,9 +3,11 @@
 // use App\Http\Controllers\WorkApplicationForm;
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\DataColl\EducationController;
 use App\Http\Controllers\DataColl\EmployestatusController;
 use App\Http\Controllers\DataColl\LanguageContoller;
+use App\Http\Controllers\DataColl\PositionController;
 use App\Http\Controllers\DataColl\ProficiencieslevelContoller;
 use App\Http\Controllers\WorkapplicationformController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +35,8 @@ Route::resource('proficiencieslevel',ProficiencieslevelContoller::class);
 Route::resource('language',LanguageContoller::class);
 Route::resource('employestatus',EmployestatusController::class);
 
-
 //admin
 Route::resource('login',AuthController::class);
+Route::resource('dashboard',DashboardController::class);
+Route::resource('position',PositionController::class);
 
