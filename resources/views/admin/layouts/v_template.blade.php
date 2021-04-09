@@ -324,7 +324,7 @@
 
     <!-- Morris Plugin Js -->
     <script src="{{ asset('admin/login/') }}/plugins/raphael/raphael.min.js"></script>
-    <script src="{{ asset('admin/login/') }}/plugins/morrisjs/morris.js"></script>
+    {{-- <script src="{{ asset('admin/login/') }}/plugins/morrisjs/morris.js"></script> --}}
 {{--
     <!-- ChartJs -->
     <script src="{{ asset('admin/login/') }}/plugins/chartjs/Chart.bundle.js"></script>
@@ -341,7 +341,7 @@
 
     <!-- Custom Js -->
     <script src="{{ asset('admin/login/') }}/js/admin.js"></script>
-    <script src="{{ asset('admin/login/') }}/js/pages/index.js"></script>
+    {{-- <script src="{{ asset('admin/login/') }}/js/pages/index.js"></script> --}}
 
     <!-- Demo Js -->
     <script src="{{ asset('admin/login/') }}/js/demo.js"></script>

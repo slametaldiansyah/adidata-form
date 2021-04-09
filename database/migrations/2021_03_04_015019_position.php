@@ -17,6 +17,7 @@ class Position extends Migration
         Schema::create('position', function (Blueprint $table) {
             $table->id()->length(11);
             $table->string('position')->length(30);
+            $table->boolean('available')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

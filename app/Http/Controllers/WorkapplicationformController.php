@@ -42,7 +42,7 @@ class WorkapplicationformController extends Controller
      */
     public function index()
     {
-        $positionlist = Position::all();
+        $positionlist = Position::all()->where('available',1);
         $sexlist = Sex::all();
         $bloodlist = Bloodtype::all();
         $citizenshiplist = Citizenship::all();

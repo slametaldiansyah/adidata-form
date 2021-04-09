@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\DataColl;
 
 use App\Http\Controllers\Controller;
+use App\Models\Position;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PositionController extends Controller
 {
@@ -14,7 +16,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return view('admin.position.v_index');
+        $position = Position::all();
+        return view('admin.position.v_index' ,compact('position'));
     }
 
     /**
@@ -35,7 +38,12 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'position' => 'required',
+        ]);
+        Position::create($request->all());
+        Alert::toast('ADD Position Success', 'success');
+        return redirect('position');
     }
 
     /**
@@ -46,7 +54,15 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        //
+        // $position = Position::select('id','position')->get();
+        // // return datatables()->of($position)->make(true);
+        // return response()->json([
+        //     'dataPosition' => $position
+        //     ]);
+        // $usersQuery = Role::query();
+        //   $users = $usersQuery->select('*');
+        //   return datatables()->of($users)
+        //       ->make(true);
     }
 
     /**

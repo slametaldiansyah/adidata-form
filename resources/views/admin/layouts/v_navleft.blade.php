@@ -20,9 +20,9 @@
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active">
-                <a href="index.html">
+            <li class="header">INFO</li>
+            <li class="{{ (request()->is('dashboard')) ? 'active' : '' }}">
+                <a href="/dashboard">
                     <i class="material-icons">dashboard</i>
                     <span>Dashboard</span>
                 </a>
@@ -107,7 +107,7 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="{{ (request()->is('position')) ? 'active' : '' }}">
                 <a href="/position">
                     <i class="material-icons">person_pin_circle</i>
                     <span>Position</span>

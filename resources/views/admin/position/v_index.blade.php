@@ -3,12 +3,74 @@
 
 @push('custom-css')
 <!-- DataTables -->
-{{-- <link rel="stylesheet" href="{{asset('assets/')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+{{-- <link rel="stylesheet" href="{{asset('admin/login/')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.css"> --}}
 <!-- Dropdown-item -->
-<link rel="stylesheet" href="{{asset('assets/')}}/dist/css/custom/dropdowncustom.css">
+{{-- <link rel="stylesheet" href="{{asset('admin/login/')}}/dist/css/custom/dropdowncustom.css"> --}}
 
-<link href="{{asset('assets/')}}/costume/tablecostume.css" rel="stylesheet">
-<link href="{{asset('assets/')}}/costume/switchcostume.css" rel="stylesheet"> --}}
+<link href="{{asset('admin/login/')}}/costume/tablecostume.css" rel="stylesheet">
+{{-- <link href="{{asset('admin/login/')}}/costume/switchcostume.css" rel="stylesheet"> --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<!-- JQuery DataTable Css -->
+{{-- <link href="{{ asset('admin/login/') }}/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"> --}}
+<style>
+    .material-icons {
+        vertical-align: top;
+    }
+    label {
+    color: #f44336;
+    }
+    a{
+    color: #f44336;
+    }
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: #f44336;
+    }
+    .btn-circle {
+        width: 13px !important;
+        height: 28px !important;
+    }
+    .btn-circle i {
+        font-size: 16px !important;
+        position: inherit !important;
+        right: 8px !important;
+        left: unset;
+    }
+
+    /* dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  border-radius: 5px;
+  background-color: #f44336;;
+  /* min-width: 40px; */
+  width: 50px;
+  height: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 0px 0px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgb(196, 123, 56);
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+}
+</style>
 
 @endpush
 @section('content')
@@ -16,19 +78,23 @@
 <div class="container-fluid">
     <div class="block-header">
         <h2>
-            JQUERY DATATABLES
-            <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>
+            CONFIG
+            <small>Table Config <a target="_blank">Position</a></small>
         </h2>
     </div>
     <!-- Basic Examples -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
+                @include('sweetalert::alert')
                 <div class="header">
-                    <h2>
-                        BASIC EXAMPLE
-                    </h2>
-                    <ul class="header-dropdown m-r--5">
+                    <div class="row">
+                    <div class="col-sm-5">
+                        <h2>
+                            Position
+                        </h2>
+                    </div>
+                    {{-- <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">more_vert</i>
@@ -39,28 +105,63 @@
                                 <li><a href="javascript:void(0);" class=" waves-effect waves-block">Something else here</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> --}}
+                    <div class="col-sm-1 dropdown pull-right">
+                        <button type="button" class="dropdown-toggle btn bg-red btn-circle waves-effect waves-circle waves-float"
+                        data-toggle="modal" data-target="#addPosition">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <div class="dropdown-content" style="height: unset; border-radius: 5px;">
+                            <a href="#" class="text-center"  data-toggle="modal" data-target="#addPosition"><strong>Add</strong></a>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="body">
                     <div class="table-responsive">
-                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_0"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
-                            <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 128px;">Name</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 215px;">Position</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 94px;">Office</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 42px;">Age</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 89px;">Start date</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 72px;">Salary</th></tr>
-                            </thead>
-                            <tfoot>
-                                <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
-                            </tfoot>
-                            <tbody>
-                            <tr role="row" class="odd">
-                                    <td class="sorting_1">Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>
-                                </tr>
-                            </tbody>
-                        </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
+                        <div>
+                            <table id="aldiTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th class="text-center">Position</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($position as $item)
+                                    <tr>
+                                            <td>{{$item->id}}</td>
+                                            <td class="text-center">{{$item->position}}</td>
+                                            <td class="text-center">
+                                                <div class="dropdown">
+                                                <button type="button" class="dropdown-toggle btn bg-orange btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">mode_edit</i>
+                                                </button>
+                                                <div class="dropdown-content">
+                                                    <a href="#"><strong>Edit</strong></a>
+                                                </div>
+                                                </div>
+                                                <div class="dropdown">
+                                                <form action="/positioin/{{$item->id}}"
+                                                        onsubmit="return confirm('Are you sure you want to delete?')" method="post"
+                                                        class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                <button type="button" class="dropdown-toggle btn btn-circle waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">delete_forever</i>
+                                                </button>
+                                                <div class="dropdown-content">
+                                                    <a href="#"><strong>Delete</strong></a>
+                                                </div>
+                                                </form>
+                                                </div>
+                                            </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,34 +171,71 @@
 </div>
 
 @endsection
-
+@extends('admin.position.modals.v_add')
 @push('custom-js')
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script> --}}
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
 <script>
-// $(document).ready( function () {
-//     $.ajaxSetup({
-//           headers: {
-//               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//           }
-//       });
-//     $('#aldiTable').DataTable({
-//         processing: true,
-//         serverSide: true,
-//         ajax: {
-//           url: "{{ url('position-list') }}",
-//           type: 'GET',
-//           },
-//                 columns: [
-//                         {data: 'id', name: 'id'},
-//                         {data: 'name', name: 'name'},
-//                     ],
-//         language: {
-//             searchPlaceholder: "Search",
-//             search : '<i class="fas fa-search"></i>',
-//             'paginate': {
-//                 'previous': '<a>Back <i class="fas fa-hand-point-left"></i></a>',
-//                 'next': '<a><i class="fas fa-hand-point-right"></i> Next</a>',
-//                 }}
-//     });
-// });
+    $('#myFormIdCreate').submit(function() {
+        $("#myButtonID", this)
+            .html("Please Wait...")
+            .attr('disabled', 'disabled');
+        return true;
+    });
+</script>
+<script type="text/javascript">
+    @if (count($errors) > 0)
+        $('#addPosition').modal('show');
+    @endif
+</script>
+<script>
+//     $(document).ready( function () {
+//     $('#aldiTable').DataTable();
+// } );
+$(document).ready( function () {
+    $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+    $('#aldiTable').DataTable({
+        // processing: true,
+        // serverSide: true,
+        // ajax: {
+        //   url: '{{ url('position/show') }}',
+        //   type: 'GET',
+        //   destroy: true,
+        // //   dataType: 'json',
+        //         // "dataSrc": "dataPosition"
+        //   dataSrc: function(json) {
+        //             if ( json.dataPosition === null ) {
+        //                 return [];
+        //             }
+        //             // var amount = JSON.parse(json.dataPosition);
+        //             console.log(json);
+        //             return json.dataPosition;
+        //             }
+        //         },
+        //         columns: [
+        //             {data: "id"},
+        //             {data: "position"},
+        //             ],
+        //             "columnDefs": [
+        //                 {
+        //                 "data": null
+        //                 }
+        //             ],
+        language: {
+            searchPlaceholder: "Search",
+            search : '<i class="material-icons">search</i>',
+            'paginate': {
+                'previous': '<a>Back <i class="material-icons">call_missed</i></a>',
+                'next': '<a><i class="material-icons">call_missed_outgoing</i> Next</a>',
+                }}
+    });
+});
   </script>
 @endpush
