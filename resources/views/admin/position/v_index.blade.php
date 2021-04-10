@@ -8,70 +8,12 @@
 {{-- <link rel="stylesheet" href="{{asset('admin/login/')}}/dist/css/custom/dropdowncustom.css"> --}}
 
 <link href="{{asset('admin/login/')}}/costume/tablecostume.css" rel="stylesheet">
+<link href="{{asset('admin/login/')}}/costume/newtablecostume.css" rel="stylesheet">
+<link href="{{asset('admin/login/')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 {{-- <link href="{{asset('admin/login/')}}/costume/switchcostume.css" rel="stylesheet"> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <!-- JQuery DataTable Css -->
 {{-- <link href="{{ asset('admin/login/') }}/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet"> --}}
-<style>
-    .material-icons {
-        vertical-align: top;
-    }
-    label {
-    color: #f44336;
-    }
-    a{
-    color: #f44336;
-    }
-    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
-    color: #f44336;
-    }
-    .btn-circle {
-        width: 13px !important;
-        height: 28px !important;
-    }
-    .btn-circle i {
-        font-size: 16px !important;
-        position: inherit !important;
-        right: 8px !important;
-        left: unset;
-    }
-
-    /* dropdown */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  border-radius: 5px;
-  background-color: #f44336;;
-  /* min-width: 40px; */
-  width: 50px;
-  height: 15px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: rgb(255, 255, 255);
-  padding: 0px 0px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: rgb(196, 123, 56);
-    border-radius: 5px;
-}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-}
-</style>
-
 @endpush
 @section('content')
 
@@ -125,6 +67,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th class="text-center">Position</th>
+                                        <th class="text-center">Available</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -133,9 +76,23 @@
                                     <tr>
                                             <td>{{$item->id}}</td>
                                             <td class="text-center">{{$item->position}}</td>
+                                            {{-- <td class="text-center">{{$item->available}}</td> --}}
+                                            <td class="text-center">
+                                                @if ($item->available == 1)
+                                                <i class="material-icons" style="color: blue">event_available</i>
+                                                @else
+                                                <i class="material-icons" style="color: red">event_busy</i>
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 <div class="dropdown">
-                                                <button type="button" class="dropdown-toggle btn bg-orange btn-circle waves-effect waves-circle waves-float">
+                                                <button type="button" onclick="editPosition(this)"
+                                                     data-toggle="modal"
+                                                     data-target="#editPosition"
+                                                     data-id="{{$item->id}}"
+                                                     data-position="{{$item->position}}"
+                                                     data-available="{{$item->available}}"
+                                                     class="dropdown-toggle btn bg-orange btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">mode_edit</i>
                                                 </button>
                                                 <div class="dropdown-content">
@@ -143,18 +100,19 @@
                                                 </div>
                                                 </div>
                                                 <div class="dropdown">
-                                                <form action="/positioin/{{$item->id}}"
+                                                {{-- <form action="/positioin/{{$item->id}}"
                                                         onsubmit="return confirm('Are you sure you want to delete?')" method="post"
                                                         class="d-inline">
                                                         @method('delete')
-                                                        @csrf
-                                                <button type="button" class="dropdown-toggle btn btn-circle waves-effect waves-circle waves-float">
+                                                        @csrf --}}
+                                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                <button type="submit" data-id="{{$item->id}}" class="sa-remove dropdown-toggle btn btn-circle waves-effect waves-circle waves-float">
                                                     <i class="material-icons">delete_forever</i>
                                                 </button>
                                                 <div class="dropdown-content">
                                                     <a href="#"><strong>Delete</strong></a>
                                                 </div>
-                                                </form>
+                                                {{-- </form> --}}
                                                 </div>
                                             </td>
                                     </tr>
@@ -172,15 +130,25 @@
 
 @endsection
 @extends('admin.position.modals.v_add')
+@extends('admin.position.modals.v_edit')
 @push('custom-js')
 
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script> --}}
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('admin/login/')}}/plugins/sweetalert/sweetalert.min.js"></script>
 
 <script>
     $('#myFormIdCreate').submit(function() {
         $("#myButtonID", this)
+            .html("Please Wait...")
+            .attr('disabled', 'disabled');
+        return true;
+    });
+</script>
+<script>
+    $('#myFormIdEdit').submit(function() {
+        $("#myButtonIDEdit", this)
             .html("Please Wait...")
             .attr('disabled', 'disabled');
         return true;
@@ -191,10 +159,69 @@
         $('#addPosition').modal('show');
     @endif
 </script>
+<script type="application/javascript">
+    function editPosition(e) {
+        var positionId = $(e).data("id");
+        var position = $(e).data("position");
+        var available = $(e).data("available");
+        if (e != 0) {
+        document.getElementById("id").value = positionId;
+        document.getElementById("position_name").value = position;
+        if (available == 1) {
+            document.getElementById("customSwitch").checked = true;
+        } else {
+            document.getElementById("customSwitch").checked = false;
+        }
+    // alert(required);
+    }else{
+    alert("no");
+    // console.log("")
+    }
+    }
+
+    $('input[type="checkbox"]').on('customSwitch', function (e, data) {
+        var $element = $(data.el),
+            value = data.value;
+        $element.attr('value', value);
+    });
+    $('input[type="checkbox"]').on('customSwitch', function (e, data) {
+        var $element = $(data.el),
+            value = data.value;
+        $element.attr('value', value);
+    });
+</script>
 <script>
-//     $(document).ready( function () {
-//     $('#aldiTable').DataTable();
-// } );
+
+    $('.sa-remove').click(function () {
+            var token = $("meta[name='csrf-token']").attr("content");
+            var postId = $(this).data('id');
+            swal({
+                title: "are u sure?",
+                text: "Delete Position",
+                type: "error",
+                showCancelButton: true,
+                confirmButtonClass: 'btn-danger waves-effect waves-light',
+                confirmButtonText: "Delete",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: true,
+                closeOnCancel: true
+            },
+            function(){
+                $.ajax({
+                url:'/position/'+postId,
+                type:'DELETE',
+                data:{id:postId
+                     ,_token: token,},
+                success:function(result){
+                // console.log(result.dataId);
+                location.reload();
+                }
+                });
+                // window.location.href = "position/destroy/" + postId;
+                });
+            });
+</script>
+<script>
 $(document).ready( function () {
     $.ajaxSetup({
           headers: {
@@ -202,32 +229,6 @@ $(document).ready( function () {
           }
       });
     $('#aldiTable').DataTable({
-        // processing: true,
-        // serverSide: true,
-        // ajax: {
-        //   url: '{{ url('position/show') }}',
-        //   type: 'GET',
-        //   destroy: true,
-        // //   dataType: 'json',
-        //         // "dataSrc": "dataPosition"
-        //   dataSrc: function(json) {
-        //             if ( json.dataPosition === null ) {
-        //                 return [];
-        //             }
-        //             // var amount = JSON.parse(json.dataPosition);
-        //             console.log(json);
-        //             return json.dataPosition;
-        //             }
-        //         },
-        //         columns: [
-        //             {data: "id"},
-        //             {data: "position"},
-        //             ],
-        //             "columnDefs": [
-        //                 {
-        //                 "data": null
-        //                 }
-        //             ],
         language: {
             searchPlaceholder: "Search",
             search : '<i class="material-icons">search</i>',

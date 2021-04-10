@@ -83,9 +83,21 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+    if ($request->available != null) {
+                    $request->merge([
+                        'available' => 1,
+                    ]);
+    }else{
+                    $request->merge([
+                        'available' => 0,
+                    ]);
+    }
+    $updatePosition = $request->except('_method', '_token');
+    Position::where('id', $request->id)->update($updatePosition);
+    Alert::success('Edit Position', 'Success');
+    return redirect('position');
     }
 
     /**
@@ -94,8 +106,9 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Position $position)
     {
-        //
+        $ok = Position::destroy($position->id);
+        return response()->json(['dataId' => $ok]);
     }
 }
