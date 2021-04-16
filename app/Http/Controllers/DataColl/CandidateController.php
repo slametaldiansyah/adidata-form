@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\DataColl;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
-use App\Models\Position;
+use App\Models\Sex;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class CandidateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $position = Position::select('*')->where('available',1);
-        $candidate = Candidate::all();
-        $male = Candidate::select('*')->where('sexid',1);
-        $female = Candidate::select('*')->where('sexid',2);
-        return view('admin.v_dashboard', compact('position','candidate','male','female'));
+        //
     }
 
     /**
@@ -52,7 +49,14 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        $gender = Sex::withCount('candidate as y')->get();
+            // $gender = Candidate::with('sex')->get();
+        // $gender = Candidate::select('name', DB::raw('COUNT(sexid) as y'))->get();
+        // $gender = DB::table('sex as s')
+        // ->select('sex as name' ,DB::raw('COUNT(c.sexid) as y'))
+        // ->join('candidate as c', 'c.sexid', '=', 's.id')
+        // ->groupBy('c.sexid')->get();
+        return json_encode($gender);
     }
 
     /**

@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\DataColl\CandidateController;
 use App\Http\Controllers\DataColl\EducationController;
 use App\Http\Controllers\DataColl\EmployestatusController;
 use App\Http\Controllers\DataColl\LanguageContoller;
@@ -39,4 +40,5 @@ Route::resource('employestatus',EmployestatusController::class);
 Route::resource('login',AuthController::class);
 Route::resource('dashboard',DashboardController::class);
 Route::resource('position',PositionController::class);
+Route::resource('candidate',CandidateController::class);
 
