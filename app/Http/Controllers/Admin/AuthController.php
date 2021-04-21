@@ -122,4 +122,15 @@ class AuthController extends Controller
     {
         //
     }
+
+    public function logout()
+    {
+        if (session()->has('token')) {
+            session()->flush();
+            Alert::toast('Anda telah logout !!!', 'success');
+            return redirect('login');
+        } else {
+            return response('Unauthorized.', 401);
+        }
+    }
 }

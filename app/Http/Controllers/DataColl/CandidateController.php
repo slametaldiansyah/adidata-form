@@ -17,7 +17,9 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        //
+        $candidate = Candidate::with('sex','additionalinformation.position')->get();
+        // dd($candidate);
+        return view('admin.candidate.v_index', compact('candidate'));
     }
 
     /**
@@ -49,14 +51,14 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $gender = Sex::withCount('candidate as y')->get();
-            // $gender = Candidate::with('sex')->get();
-        // $gender = Candidate::select('name', DB::raw('COUNT(sexid) as y'))->get();
-        // $gender = DB::table('sex as s')
-        // ->select('sex as name' ,DB::raw('COUNT(c.sexid) as y'))
-        // ->join('candidate as c', 'c.sexid', '=', 's.id')
-        // ->groupBy('c.sexid')->get();
-        return json_encode($gender);
+
+
+        if ($id == 'show0') {
+            $gender = Sex::withCount('candidate as y')->get();
+            return json_encode($gender);
+        }else{
+            // dd($id);
+        }
     }
 
     /**

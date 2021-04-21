@@ -14,6 +14,10 @@ class Candidate extends Model
     {
         return $this->belongsTo('App\Models\Sex','sexid','id');
     }
+    public function additionalinformation()
+    {
+        return $this->hasMany('App\Models\Additionalinformation','candidateid','id');
+    }
 
     protected $table = "candidate";
 }

@@ -11,7 +11,7 @@
                 <ul class="dropdown-menu pull-right">
                     <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                    <li><a href="/logout"><i class="material-icons">input</i>Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -29,7 +29,7 @@
             </li>
 
             <li class="header">CONFIGURATION</li>
-            <li>
+            {{-- <li>
                 <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">swap_calls</i>
                     <span>User Interface (UI)</span>
@@ -106,11 +106,17 @@
                         <a href="pages/ui/waves.html">Waves</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="{{ (request()->is('position')) ? 'active' : '' }}">
                 <a href="/position">
                     <i class="material-icons">person_pin_circle</i>
-                    <span>Position</span>
+                    <span>Positions</span>
+                </a>
+            </li>
+            <li class="{{ (request()->is('candidate')) ? 'active' : '' }}">
+                <a href="/candidate">
+                    <i class="material-icons">group</i>
+                    <span>Candidates</span>
                 </a>
             </li>
 

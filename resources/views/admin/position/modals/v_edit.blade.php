@@ -5,7 +5,7 @@
                 @method('patch')
                 @csrf
             <div class="modal-header">
-                <h4 class="modal-title" id="smallModalLabel">Add Position</h4>
+                <h4 class="modal-title" id="smallModalLabel">Edit Position</h4>
             </div>
             <div class="modal-body">
                     <div class="row clearfix">

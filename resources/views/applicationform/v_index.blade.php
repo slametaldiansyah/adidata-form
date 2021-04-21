@@ -52,7 +52,7 @@
                 {{-- Jabatan --}}
             <section id="jabatan" class="collapse show">
               <div class="form-group">
-                  <select class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
+                  <select required class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
                     @foreach ($positionlist as $p)
                     <option value="{{$p->id}}">{{$p->position}}</option>
                     @endforeach

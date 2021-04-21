@@ -251,8 +251,9 @@ $('#container').highcharts({
 }
 
 $(document).ready(function() {
+    var Genid = 0;
      $.ajax({
-        url: '{{ url('candidate/show') }}',
+        url: '{{ url('candidate/show/') }}' + Genid,
         type: 'GET',
         async: true,
         dataType: 'json',

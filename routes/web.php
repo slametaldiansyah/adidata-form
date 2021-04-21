@@ -38,7 +38,9 @@ Route::resource('employestatus',EmployestatusController::class);
 
 //admin
 Route::resource('login',AuthController::class);
-Route::resource('dashboard',DashboardController::class);
-Route::resource('position',PositionController::class);
-Route::resource('candidate',CandidateController::class);
+Route::resource('dashboard',DashboardController::class)->middleware('adminHR');
+Route::resource('position',PositionController::class)->middleware('adminHR');
+Route::resource('candidate',CandidateController::class)->middleware('adminHR');
 
+//logout
+Route::get('logout',[AuthController::class, 'logout']);
