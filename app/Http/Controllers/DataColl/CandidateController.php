@@ -57,7 +57,16 @@ class CandidateController extends Controller
             $gender = Sex::withCount('candidate as y')->get();
             return json_encode($gender);
         }else{
-            // dd($id);
+            $candidate = Candidate::with(
+                'family',
+                'familymember',
+                'religion',
+                'citizenship',
+                'bloodtype',
+                'sex',
+                'additionalinformation.position')->where('id',$id)->first();
+            // dd($candidate);
+            return view('admin.candidate.v_show',compact('candidate'));
         }
     }
 
