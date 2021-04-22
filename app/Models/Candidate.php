@@ -29,6 +29,48 @@ class Candidate extends Model
 
 
 
+    public function workexperience()
+    {
+        return $this->hasMany('App\Models\Workexperience','candidateid','id');
+    }
+    public function project()
+    {
+        return $this->hasManyThrough('App\Models\Project','App\Models\Workexperience','candidateid','workexperienceid','id','id');
+    }
+
+    public function organization()
+    {
+        return $this->hasMany('App\Models\Organization','candidateid','id');
+    }
+    public function reference()
+    {
+        return $this->hasMany('App\Models\Reference','candidateid','id');
+    }
+
+    public function certificate()
+    {
+        return $this->hasMany('App\Models\Certificate','candidateid','id');
+    }
+    public function spesialskillproficiency()
+    {
+        return $this->hasMany('App\Models\Spesialskillproficiency','candidateid','id');
+    }
+    public function computerproficiency()
+    {
+        return $this->hasMany('App\Models\Computerproficiency','candidateid','id');
+    }
+    public function languageproficiency()
+    {
+        return $this->hasMany('App\Models\Languageproficiency','candidateid','id');
+    }
+    public function informaleducation()
+    {
+        return $this->hasMany('App\Models\Informaleducation','candidateid','id');
+    }
+    public function formaleducation()
+    {
+        return $this->hasMany('App\Models\Formaleducation','candidateid','id');
+    }
     public function family()
     {
         return $this->hasMany('App\Models\Family','candidateid','id');

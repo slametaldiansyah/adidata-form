@@ -10,6 +10,10 @@ class Education extends Model
     use HasFactory;
     protected $guarded=['id'];
 
+    public function formaleducation()
+    {
+        return $this->hasMany('App\Models\Formaleducation','educationlevelid','id');
+    }
 
     protected $table = "education";
 }

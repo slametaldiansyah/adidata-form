@@ -64,6 +64,16 @@ class CandidateController extends Controller
                 'citizenship',
                 'bloodtype',
                 'sex',
+                'formaleducation',
+                'informaleducation',
+                'languageproficiency',
+                'computerproficiency',
+                'spesialskillproficiency',
+                'certificate',
+                'workexperience',
+                'project',
+                'organization',
+                'reference',
                 'additionalinformation.position')->where('id',$id)->first();
             // dd($candidate);
             return view('admin.candidate.v_show',compact('candidate'));
