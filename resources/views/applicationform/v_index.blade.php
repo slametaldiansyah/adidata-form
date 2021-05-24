@@ -20,27 +20,158 @@
     .wajib{
       color:red;
     }
+
+    /* warraper */
+    .pita {
+    padding: .34em 1em;
+    margin: 0;
+    margin-top: 5%;
+    position:relative;
+    color: #ffffff;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.3);
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,.3),
+                inset 0px 0px 20px rgba(0,0,0,0.1),
+                0px 1px 1px rgba(0,0,0,0.4);
+    background: -webkit-linear-gradient(top,#1eb2df, #17a7d2);
+    /* display: inline-block; */
+}
+.pita:before,
+.pita:after {
+    content: "";
+    width: .2em;
+    bottom: -.5em;
+    position:absolute;
+    border: .9em solid #1eb2df;
+    z-index: -2;
+}
+.pita:before {
+    left: -1.35em;
+    border-right-width: .75em;
+    border-left-color:transparent;
+}
+.pita:after {
+    right: -1.35em;
+    border-left-width: .75em;
+    border-right-color:transparent;
+}
+
+.pita1 {
+    padding: .34em 1em;
+    margin: 0;
+    margin-top: 5%;
+    position:relative;
+    color: #ffffff;
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.3);
+    box-shadow: inset 0px 1px 0px rgba(255,255,255,.3),
+                inset 0px 0px 20px rgba(0,0,0,0.1),
+                0px 1px 1px rgba(0,0,0,0.4);
+    background: -webkit-linear-gradient(top,#878a8b, #797c7c);
+    /* display: inline-block; */
+}
+.pita1:before,
+.pita1:after {
+    content: "";
+    width: .2em;
+    bottom: -.5em;
+    position:absolute;
+    /* position:static; */
+    border: .9em solid #797c7c;
+    z-index: -2;
+}
+.pita1:before {
+    left: -1.35em;
+    border-right-width: .75em;
+    border-left-color:transparent;
+}
+.pita1:after {
+    right: -1.35em;
+    border-left-width: .75em;
+    border-right-color:transparent;
+}
+.side-fixed{
+    position:fixed;
+}
+.header{
+    position:fixed;
+    top:10px;
+    overflow: hidden;
+    left: 7%;
+    width: 100%;
+}
+.main {
+  overflow: hidden;
+  padding: 16px;
+  margin-top: 70px;
+  padding:15px 15px;
+}
+
   </style>
 </head>
 <body>
   <header>
-      <div class="container">
+      <div class="container header">
         <div class="row" style="margin-top:10px;">
-          <div class="col-6">
-            <img src="{{ asset('pagesource/') }}/Logoadidata.jpg" height="90px" width="250px" alt="logo">
-          </div>
-          <div class="col-6">
-              <h2>FORM LAMARAN KERJA</h2>
-          </div>
+            <div class="col-12 row">
+                <div class="col-12 row">
+                    <div class="col-6">
+                        <img src="{{ asset('pagesource/') }}/Logoadidata.jpg" height="60px" width="200px" alt="logo">
+                    </div>
+                    <div class="col-6">
+                        <h2>FORM LAMARAN KERJA</h2>
+                    </div>
+                </div>
+            </div>
         </div>
       </div>
   </header>
   <main>
-    <div class="container">
+    <div class="container main">
       <!-- Navigatiion Status -->
-      <div class="row">
-        <div class="col-3">
-          Step 1..5
+      <div class="col-12 row">
+        <div class="col-3 mt-2">
+            <div class="side-fixed">
+            <br>
+            <div id="jabatan-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 1
+            </div>
+            <br>
+            <div id="personal-data-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 2
+            </div>
+            <br>
+            <div id="family-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 3
+            </div>
+            <br>
+            <div id="education-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 4
+            </div>
+            <br>
+            <div id="kemampuan-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 5
+            </div>
+            <br>
+            <div id="pengalaman-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 6
+            </div>
+            <br>
+            <div id="orgnref-pita" class="col-12 mt-3 ml-3 pita1">
+              Step 7
+            </div>
+            <br>
+            {{-- <div id="other-pita" class="col-6 mt-3 ml-3 pita1">
+              Step 8
+            </div> --}}
+        </div>
+
         </div>
         <div class="col-9">
           {{-- <form id="forms"> --}}
@@ -65,7 +196,7 @@
             <!-- Personal Data -->
             <section id="personal-data" class="collapse">
               <div class="form-group">
-                <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required>
+                <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required/>
                 <small id="nama" class="form-text text-muted">Nama Lengkap</small>
               </div>
               <div class="form-group">
@@ -154,7 +285,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="npwp" type="text" class="form-control" id="npwp" aria-describedby="nama" placeholder="No NPWP" required>
+                    <input name="npwp" type="text" class="form-control" id="npwp" aria-describedby="nama" placeholder="No NPWP" required />
                     <small id="npwp" class="form-text text-muted">No NPWP</small>
                   </div>
                 </div>
@@ -162,7 +293,7 @@
 
               <div class="row">
                 <div class="col-6">
-                  <select class="form-control" name="citizenship" id="citizenship">
+                  <select required class="form-control" name="citizenship" id="citizenship">
                     <option value="">--option--</option>
                     @foreach ($citizenshiplist as $cs)
                     <option value="{{$cs->id}}"
@@ -173,7 +304,7 @@
                 </div>
 
                 <div class="col-6">
-                  <select class="form-control" name="religion" id="agama">
+                  <select required class="form-control" name="religion" id="agama">
                     <option value="">--option--</option>
                     @foreach ($religionlist as $rl)
                     <option value="{{$rl->id}}"
@@ -202,7 +333,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="menikah_thn" type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah">
+                    <input required name="menikah_thn" type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" />
                     <small id="menikah-thn" class="form-text text-muted">Tahun menikah</small>
                   </div>
                 </div>
@@ -215,12 +346,12 @@
                 <!-- Loop -->
                 <div class="family-loop">
                   <div class="form-group">
-                    <input name="faminti[0][name]" type="text" class="form-control" id="fam-name-inti" aria-describedby="fam-name-inti" placeholder="Nama Pasangan / Anak">
+                    <input name="faminti[0][name]" type="text" class="form-control" id="fam-name-inti" aria-describedby="fam-name-inti" placeholder="Nama Pasangan / Anak" required />
                     <small id="fam-nameinti" class="form-text text-muted">Nama Pasangan / Anak</small>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <select class="form-control" name="faminti[0][status]" id="fam-statusinti">
+                      <select required class="form-control" name="faminti[0][status]" id="fam-statusinti">
                         <option value="">--option--</option>
                         @foreach ($familystatuslist as $fs)
                         @if ($fs->id <= 3)
@@ -271,7 +402,7 @@
               <!-- Loop -->
               <div class="family-loop">
                 <div class="form-group">
-                  <input name="fam[0][name]" type="text" class="form-control" id="fam-name" aria-describedby="fam-name" placeholder="Nama keluarga" required>
+                  <input name="fam[0][name]" type="text" class="form-control" id="fam-name" aria-describedby="fam-name" placeholder="Nama keluarga">
                   <small id="fam-name[]" class="form-text text-muted">Nama keluarga</small>
                 </div>
                 <div class="row">

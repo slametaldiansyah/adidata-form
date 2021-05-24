@@ -16,20 +16,21 @@ $(document).ready(function() {
       })
 
     $('.next').click(function() {
+
         if(steps > 0 & $('#'+secs[steps-1]+' :input')[0].checkValidity()){
             $('#forms').on('show.bs.collapse','.collapse', function() {
                 $('#forms').find('.collapse.show').collapse('hide');
             });
             $('#'+secs[steps]).collapse('show');
-            steps++;
+            $('#'+secs[steps-1]+'-pita').removeClass("pita1");
+            $('#'+secs[steps-1]+'-pita').addClass("pita");
+            console.log(secs[steps-1]);
             console.log(steps);
-            console.log(secs);
+            steps++;
         }else{
             $('#'+secs[steps-1]+' :input')[0].reportValidity();
         }
-        $('#'+secs[steps]).collapse('show');
-        // steps++;
-        if (steps == 7){
+        if (steps == 8){
             document.getElementById("mySubmitId").style.display = "block";
             document.getElementById("myNextID").style.display = "none";
         }
@@ -39,11 +40,14 @@ $(document).ready(function() {
 
     $('.prev').click(function() {
         console.log(secs[steps-1]);
+        console.log(steps);
         if(steps > 1){
-            $('#forms').on('show.bs.collapse','.collapse', function() {
-                $('#forms').find('.collapse.show').collapse('hide');
-            });
-            $('#'+secs[steps-2]).collapse('show');
+            // $('#forms').on('show.bs.collapse','.collapse', function() {
+            //     $('#forms').find('.collapse.show').collapse('hide');
+            // });
+            $('#'+secs[steps-1]).collapse('hide');
+            $('#'+secs[steps-2]+'-pita').removeClass("pita");
+            $('#'+secs[steps-2]+'-pita').addClass("pita1");
             steps--;
         }
         if (steps < 7){
