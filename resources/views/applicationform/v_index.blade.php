@@ -112,7 +112,6 @@
   margin-top: 70px;
   padding:15px 15px;
 }
-
   </style>
 </head>
 <body>
@@ -125,7 +124,7 @@
                         <img src="{{ asset('pagesource/') }}/Logoadidata.jpg" height="60px" width="200px" alt="logo">
                     </div>
                     <div class="col-6">
-                        <h2>FORM LAMARAN KERJA</h2>
+
                     </div>
                 </div>
             </div>
@@ -174,37 +173,50 @@
 
         </div>
         <div class="col-9">
+            <div class="mb-3">
+                <h2>FORM LAMARAN KERJA</h2>
+            </div>
+            <br>
           {{-- <form id="forms"> --}}
             <!-- Jabatan -->
 
 
-            <form id="myFormId" role="form" action="/" method="post">
+            <form id="myFormId" class="forms" role="form" action="/" method="post">
                 @csrf
                 {{-- Jabatan --}}
             <section id="jabatan" class="collapse show">
-              <div class="form-group">
-                  <select required class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
+              <div id="jabatan-input-1" name="jabatan" class="form-group">
+                  <select required="required" class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
                     @foreach ($positionlist as $p)
                     <option value="{{$p->id}}">{{$p->position}}</option>
                     @endforeach
                   </select>
                   <small id="emailHelp" class="form-text text-muted">Jabatan</small>
               </div>
+              <div id="jabatan-input-2" data-error="name" class="form-group">
+                <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required="required"/>
+                <small id="nama" class="form-text text-muted">Nama Lengkap</small>
+              </div>
+              <div id="jabatan-input-3" data-error="Alamat" class="form-group">
+                <textarea name="alamat" class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required="required"></textarea>
+                <small id="alamat" class="form-text text-muted">Alamat Rumah</small>
+              </div>
             </section>
 
 
             <!-- Personal Data -->
             <section id="personal-data" class="collapse">
-              <div class="form-group">
+            <div id="personal-data-validation">
+              <div id="personal-data-input-1" data-error="Nama Lengkap" class="form-group">
                 <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required/>
                 <small id="nama" class="form-text text-muted">Nama Lengkap</small>
               </div>
-              <div class="form-group">
+              <div id="personal-data-input-2" class="form-group">
                 <textarea name="alamat" class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required></textarea>
                 <small id="alamat" class="form-text text-muted">Alamat Rumah</small>
               </div>
-              <div class="form-group">
-                <input name="kode-pos" type="text" class="form-control" id="postal" aria-describedby="postal" placeholder="Kode Pos" required>
+              <div id="personal-data-input-3" class="form-group">
+                <input name="kode-pos" type="text" class="form-control" id="postal" aria-describedby="postal" placeholder="Kode Pos" required/>
                 <small id="postal" class="form-text text-muted">Kode Pos</small>
               </div>
               <div class="form-group">
@@ -226,7 +238,7 @@
 
                         </div>
                         <div class="col-6">
-                        <input name="tempat_lahir" type="text" class="form-control" id="tempat-lahir" aria-describedby="tempat-lahir" placeholder="Tempat Lahir" required>
+                        <input name="tempat_lahir" type="text" class="form-control" id="tempat-lahir" aria-describedby="tempat-lahir" placeholder="Tempat Lahir" required/>
                         <small id="tempat-lahir" class="form-text text-muted">Tempat Lahir</small>
                         </div>
                     </div>
@@ -245,7 +257,7 @@
                 </div>
 
                 <div class="col-6">
-                  <select class="form-control" name="blood" id="blood">
+                  <select required class="form-control" name="blood" id="blood">
                     <option value="">--option--</option>
                     @foreach ($bloodlist as $bl)
                     <option value="{{$bl->id}}"
@@ -256,21 +268,21 @@
                 </div>
               </div>
               <div class="form-group">
-                <input name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email" required>
+                <input name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email" required/>
                 <small id="email" class="form-text text-muted">Email</small>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="tel_rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah" required>
+                    <input name="tel_rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah" required/>
                     <small id="tel-rmh" class="form-text text-muted">Telfon Rumah</small>
                   </div>
 
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="tel_hp" type="text" class="form-control" id="tel-hp" aria-describedby="tel-hp" placeholder="Telepon Selular" required>
+                    <input name="tel_hp" type="text" class="form-control" id="tel-hp" aria-describedby="tel-hp" placeholder="Telepon Selular" required/>
                     <small id="tel-hp" class="form-text text-muted">Telepon Selular</small>
                   </div>
                 </div>
@@ -279,7 +291,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="ktp" type="text" class="form-control" id="ktp" aria-describedby="nama" placeholder="No KTP" required>
+                    <input name="ktp" type="text" class="form-control" id="ktp" aria-describedby="nama" placeholder="No KTP" required/>
                     <small id="ktp" class="form-text text-muted">No KTP</small>
                   </div>
                 </div>
@@ -315,8 +327,16 @@
                 </div>
               </div>
 
+            </div>
 
             </section>
+
+            <div class="row">
+                <button type="button" class="btn btn-primary prev"> Pref</button>
+                <div class="ml-3" id="myNextID" style="display: block">
+                    <button type="button" id="myButtonID" class="btn btn-primary next"> Next</button>
+                </div>
+            </div>
 
             <!-- Family -->
             <section id="family" class="collapse">
@@ -333,7 +353,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input required name="menikah_thn" type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" />
+                    <input name="menikah_thn" type="number" class="form-control" id="menikah-thn" aria-describedby="menikah-thn" placeholder="Tahun menikah" />
                     <small id="menikah-thn" class="form-text text-muted">Tahun menikah</small>
                   </div>
                 </div>
@@ -946,7 +966,7 @@
 
             {{-- <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button> --}}
             </section>
-        <div class="row">
+        {{-- <div class="row">
             <button type="button" class="btn btn-primary prev"> Pref</button>
             <div class="ml-3" id="myNextID" style="display: block">
                 <button type="button" id="myButtonID" class="btn btn-primary next"> Next</button>
@@ -954,6 +974,7 @@
             <div class="ml-3" id="mySubmitId" style="display: none">
                 <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
             </div>
+        </div> --}}
         </form>
         </div>
           {{-- </form> --}}
