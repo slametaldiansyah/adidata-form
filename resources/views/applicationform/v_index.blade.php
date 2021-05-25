@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  {{-- <link href="{{asset('admin/login/')}}/plugins/sweetalert/sweetalert.css" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="{{asset('custome/')}}/sweetalert/dist/sweetalert2.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <style>
     .btn-sm{
@@ -185,21 +187,13 @@
                 @csrf
                 {{-- Jabatan --}}
             <section id="jabatan" class="collapse show">
-              <div id="jabatan-input-1" name="jabatan" class="form-group">
-                  <select required="required" class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="jabatan">
+              <div id="jabatan-input-1" data-error="Jabatan" class="form-group">
+                  <select required="required" class="select2mul form-control" name="jabatan[]" id="jabatan" multiple="multiple" placeholder="Jabatan">
                     @foreach ($positionlist as $p)
                     <option value="{{$p->id}}">{{$p->position}}</option>
                     @endforeach
                   </select>
-                  <small id="emailHelp" class="form-text text-muted">Jabatan</small>
-              </div>
-              <div id="jabatan-input-2" data-error="name" class="form-group">
-                <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required="required"/>
-                <small id="nama" class="form-text text-muted">Nama Lengkap</small>
-              </div>
-              <div id="jabatan-input-3" data-error="Alamat" class="form-group">
-                <textarea name="alamat" class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required="required"></textarea>
-                <small id="alamat" class="form-text text-muted">Alamat Rumah</small>
+                  <small id="emailHelp" class="form-text">Jabatan <small class="wajib">*</small></small>
               </div>
             </section>
 
@@ -209,54 +203,54 @@
             <div id="personal-data-validation">
               <div id="personal-data-input-1" data-error="Nama Lengkap" class="form-group">
                 <input name="name" type="text" class="form-control" id="name" aria-describedby="nama" placeholder="Nama Lengkap" required/>
-                <small id="nama" class="form-text text-muted">Nama Lengkap</small>
+                <small id="nama" class="form-text ">Nama Lengkap <small class="wajib">*</small></small>
               </div>
-              <div id="personal-data-input-2" class="form-group">
+              <div id="personal-data-input-2" data-error="Alamat Rumah" class="form-group">
                 <textarea name="alamat" class="form-control" id="alamat" rows="3" aria-describedby="alamat" placeholder="Alamat Rumah" required></textarea>
-                <small id="alamat" class="form-text text-muted">Alamat Rumah</small>
+                <small id="alamat" class="form-text ">Alamat Rumah <small class="wajib">*</small></small>
               </div>
-              <div id="personal-data-input-3" class="form-group">
+              <div id="personal-data-input-3" data-error="Kode Pos" class="form-group">
                 <input name="kode-pos" type="text" class="form-control" id="postal" aria-describedby="postal" placeholder="Kode Pos" required/>
-                <small id="postal" class="form-text text-muted">Kode Pos</small>
+                <small id="postal" class="form-text ">Kode Pos <small class="wajib">*</small></small>
               </div>
               <div class="form-group">
                     <div class="row">
                         <div class="col-6">
                             <div class="row">
-                                <div class="col-6">
+                                <div id="personal-data-input-4" data-error="Tanggal Lahir" class="col-6">
                                     <input name="tanggal_lahir" type="date" class="form-control" id="tanggal-lahir" aria-describedby="tanggal-lahir" placeholder="Tanggal Lahir" required>
-                                    <small id="tanggal-lahir" class="form-text text-muted">Tanggal Lahir</small>
+                                    <small id="tanggal-lahir" class="form-text">Tanggal Lahir <small class="wajib">*</small></small>
                                 </div>
-                                <div class="col-6">
+                                <div id="personal-data-input-5" data-error="Baru Lulus" class="col-6">
                                     <select class="form-control" name="baru_lulus" id="baru-lulus">
                                       <option value="0">Tidak</option>
                                       <option value="1">Ya</option>
                                     </select>
-                                    <small id="baru-lulus" class="form-text text-muted">Baru Lulus</small>
+                                    <small id="baru-lulus" class="form-text">Baru Lulus <small class="wajib">*</small></small>
                                   </div>
                             </div>
 
                         </div>
-                        <div class="col-6">
+                        <div id="personal-data-input-6" data-error="Tempat Lahir" class="col-6">
                         <input name="tempat_lahir" type="text" class="form-control" id="tempat-lahir" aria-describedby="tempat-lahir" placeholder="Tempat Lahir" required/>
-                        <small id="tempat-lahir" class="form-text text-muted">Tempat Lahir</small>
+                        <small id="tempat-lahir" class="form-text">Tempat Lahir <small class="wajib">*</small></small>
                         </div>
                     </div>
               </div>
 
               <div class="row">
-                <div class="col-6">
-                  <select class="form-control" name="sex" id="sex">
+                <div id="personal-data-input-7" data-error="Jenis Kelamin" class="col-6">
+                  <select required class="form-control" name="sex" id="sex">
                     <option value="">--option--</option>
                       @foreach ($sexlist as $sx)
                       <option value="{{$sx->id}}"
                         >{{$sx->sex}}</option>
                       @endforeach
                   </select>
-                  <small id="sex" class="form-text text-muted">Jenis Kelamin</small>
+                  <small id="sex" class="form-text">Jenis Kelamin <small class="wajib">*</small></small>
                 </div>
 
-                <div class="col-6">
+                <div id="personal-data-input-8" data-error="Golongan Darah" class="col-6">
                   <select required class="form-control" name="blood" id="blood">
                     <option value="">--option--</option>
                     @foreach ($bloodlist as $bl)
@@ -264,47 +258,47 @@
                       >{{$bl->blood}}</option>
                     @endforeach
                   </select>
-                  <small id="emailHelp" class="form-text text-muted">Golongan Darah</small>
+                  <small id="emailHelp" class="form-text">Golongan Darah <small class="wajib">*</small></small>
                 </div>
               </div>
-              <div class="form-group">
+              <div id="personal-data-input-9" data-error="Email" class="form-group">
                 <input name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="Email" required/>
-                <small id="email" class="form-text text-muted">Email</small>
+                <small id="email" class="form-text">Email <small class="wajib">*</small></small>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input name="tel_rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah" required/>
-                    <small id="tel-rmh" class="form-text text-muted">Telfon Rumah</small>
+                    <input name="tel_rumah" type="text" class="form-control" id="tel-rmh" aria-describedby="tel-rmh" placeholder="Telepon Rumah"/>
+                    <small id="tel-rmh" class="form-text">Telepon Rumah</small>
                   </div>
 
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div id="personal-data-input-10" data-error="Telepon Seluler" class="form-group">
                     <input name="tel_hp" type="text" class="form-control" id="tel-hp" aria-describedby="tel-hp" placeholder="Telepon Selular" required/>
-                    <small id="tel-hp" class="form-text text-muted">Telepon Selular</small>
+                    <small id="tel-hp" class="form-text">Telepon Selular <small class="wajib">*</small></small>
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div id="personal-data-input-11" data-error="KTP" class="form-group">
                     <input name="ktp" type="text" class="form-control" id="ktp" aria-describedby="nama" placeholder="No KTP" required/>
-                    <small id="ktp" class="form-text text-muted">No KTP</small>
+                    <small id="ktp" class="form-text">No KTP <small class="wajib">*</small></small>
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div id="personal-data-input-12" data-error="NPWP" class="form-group">
                     <input name="npwp" type="text" class="form-control" id="npwp" aria-describedby="nama" placeholder="No NPWP" required />
-                    <small id="npwp" class="form-text text-muted">No NPWP</small>
+                    <small id="npwp" class="form-text">No NPWP <small class="wajib">*</small></small>
                   </div>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-6">
+                <div id="personal-data-input-13" data-error="Kewarganegaraan" class="col-6 mb-3">
                   <select required class="form-control" name="citizenship" id="citizenship">
                     <option value="">--option--</option>
                     @foreach ($citizenshiplist as $cs)
@@ -312,10 +306,10 @@
                       >{{$cs->citizenship}}</option>
                     @endforeach
                   </select>
-                  <small id="citizenship" class="form-text text-muted">Kewarganegaraan</small>
+                  <small id="citizenship" class="form-text">Kewarganegaraan <small class="wajib">*</small></small>
                 </div>
 
-                <div class="col-6">
+                <div id="personal-data-input-14" data-error="Agama" class="col-6 mb-3">
                   <select required class="form-control" name="religion" id="agama">
                     <option value="">--option--</option>
                     @foreach ($religionlist as $rl)
@@ -323,7 +317,7 @@
                       >{{$rl->religion}}</option>
                     @endforeach
                   </select>
-                  <small id="emailHelp" class="form-text text-muted">Agama</small>
+                  <small id="emailHelp" class="form-text">Agama <small class="wajib">*</small></small>
                 </div>
               </div>
 
@@ -331,25 +325,18 @@
 
             </section>
 
-            <div class="row">
-                <button type="button" class="btn btn-primary prev"> Pref</button>
-                <div class="ml-3" id="myNextID" style="display: block">
-                    <button type="button" id="myButtonID" class="btn btn-primary next"> Next</button>
-                </div>
-            </div>
-
             <!-- Family -->
             <section id="family" class="collapse">
               <div class="row">
-                <div class="col-md-6">
-                  <select class="form-control" name="menikah" id="menikah">
+                <div id="family-input-1" data-error="Status Pernikahan" class="col-md-6">
+                  <select required class="form-control" name="menikah" id="menikah">
                     <option value="">--option--</option>
                     @foreach ($maritalstatuslist as $mr)
                     <option value="{{$mr->id}}"
                       >{{$mr->maritalstatus}}</option>
                     @endforeach
                   </select>
-                  <small id="emailHelp" class="form-text text-muted">Status Pernikahan</small>
+                  <small id="emailHelp" class="form-text text-muted">Status Pernikahan <small class="wajib">*</small></small>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
@@ -472,9 +459,6 @@
               </div>
 
             </section>
-
-
-
 
               <!-- Education -->
             <section id="education" class="collapse">
@@ -966,7 +950,7 @@
 
             {{-- <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button> --}}
             </section>
-        {{-- <div class="row">
+        <div class="row">
             <button type="button" class="btn btn-primary prev"> Pref</button>
             <div class="ml-3" id="myNextID" style="display: block">
                 <button type="button" id="myButtonID" class="btn btn-primary next"> Next</button>
@@ -974,7 +958,7 @@
             <div class="ml-3" id="mySubmitId" style="display: none">
                 <button id="myButtonID" type="submit" class="btn btn-primary">Submit</button>
             </div>
-        </div> --}}
+        </div>
         </form>
         </div>
           {{-- </form> --}}
@@ -986,6 +970,7 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="{{asset('custome/')}}/sweetalert/dist/sweetalert2.min.js"></script>
   {{-- <script src="page.js"></script> --}}
   <script src="{{asset('pagesource/')}}/page.js"></script>
   {{-- <script src="{{asset('pagesource/')}}/createinput.js"></script> --}}

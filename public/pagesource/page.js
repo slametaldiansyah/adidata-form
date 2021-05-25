@@ -17,24 +17,29 @@ $(document).ready(function() {
 
     $('.next').click(function() {
 
-        // if(steps > 0 & $('#'+secs[steps-1]+' :input')[0].checkValidity()){
         if(steps > 0){
-            // validatorcek = 1;
             for (let indexcek = 1; indexcek < 50; indexcek++) {
-                // $('#'+secs[steps-1]+'-input-'+indexcek+' :input')[0].checkValidity();
-                // console.log($('#'+secs[steps-1]+'-input-'+indexcek));
-                if ($('#'+secs[steps-1]+'-input-'+indexcek) != null) {
-                    // console.log($('#'+secs[steps-1]+'-input-'+indexcek+' :input')[0].checkValidity());
-                    if ($('#'+secs[steps-1]+'-input-'+indexcek+' :input')[0].checkValidity() == false) {
+                console.log($('#'+secs[steps-1]+'-input-'+indexcek));
+                if (document.getElementById(secs[steps-1]+'-input-'+indexcek) != null) {
+                    if ($('#'+secs[steps-1]+'-input-'+indexcek+' :input')[0].checkValidity() != true) {
                         // validatorcek++;
                         //  console.log($('#'+secs[steps-1]+'-input-'+indexcek+' :input')[0].reportValidity());
                         //  alert('tolong masukan semua data');
                         //  alert( 'Please Input ' +$('#'+secs[steps-1]+'-input-'+indexcek).attr('data-error'));
-                         alert( 'Please Input ' +$('#'+secs[steps-1]+'-input-'+indexcek)[0].innerText);
+                        //  alert( 'Please Input ' +$('#'+secs[steps-1]+'-input-'+indexcek)[0].innerText);
+                        // let info = $('#'+secs[steps-1]+'-input-'+indexcek).attr('data-error');
+                         Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Please Input ' +$('#'+secs[steps-1]+'-input-'+indexcek).attr('data-error')
+                          });
+                          $('#'+secs[steps-1]+'-input-'+indexcek).attr('style','color: #fa0909!important');
                         //  console.log( 'Please Input ' +$('#'+secs[steps-1]+'-input-'+indexcek)[0].innerHTML);
                         //  $('#'+secs[steps-1]+'-input-'+indexcek)[0].innerHTML;
                         //  console.log($('#'+secs[steps-1]+'-input-'+indexcek));
                          break;
+
+                    }else{
 
                     }
                     // if (validatorcek==0) {
